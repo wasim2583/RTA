@@ -1,0 +1,96 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Ajax extends CI_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library(['form_validation', 'email']);
+		$this->load->model(['Ajax_model', 'Base_model']);
+	}
+
+	public function index() {
+		$this->template->load('homepage', 'base/home', $this->data);
+	}
+
+	public function ajax_search_photos()
+	{
+		$filtered_photos = $this->Ajax_model->get_filtered_photos($_POST);
+		if( ! empty($filtered_photos))
+		{
+			?>
+		<div class="row">
+			<?php
+			foreach($filtered_photos as $rec)
+			{
+				?>
+			<div class="col-sm-4 posRelate">
+				<div class="overflow_hide">
+					<a href="<?php echo base_url().'uploads/files/'.$rec['file_name']; ?>" data-lightbox="gallery" target="_blank">
+					<img src="<?php echo base_url().'uploads/files/'.$rec['file_name']; ?>" class="img-fluid">
+					</a>
+				</div>
+				<span class="gal_btmtext"><?php echo ucfirst($rec['name']);?></span>
+			</div>
+				<?php 
+			}
+			?>
+		</div>
+			<?php
+		}
+	}
+
+	public function ajax_search_videos()
+	{
+		$filtered_videos = $this->Ajax_model->get_filtered_videos($_POST);
+		if( ! empty($filtered_videos))
+		{
+			?>
+		<div class="row">
+			<?php
+			foreach($filtered_videos as $rec1)
+			{
+				?>
+			<div class="col-sm-4">
+				<?php
+				$url=$rec1['url'];
+				$ytarray=explode("/", $url);
+				$ytendstring=end($ytarray);
+				$ytendarray=explode("?v=", $ytendstring);
+				$ytendstring=end($ytendarray);
+				$ytendarray=explode("&", $ytendstring);
+				$ytcode=$ytendarray[0];
+				echo "<iframe width=\"100%\"  src=\"http://www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
+				?>
+			</div>
+				<?php 
+			}
+			?>
+		</div>
+			<?php
+		}
+	}
+	
+	public function ajax_render_location_filters()
+	{
+		if(isset($_POST['states']) && count($_POST['states']) >= 1)
+		{
+			$locations = $this->Ajax_model->get_locations_by_states($_POST['states']);
+			if(!empty($locations))
+			{
+				$output='';
+				foreach($locations as $location)
+				{
+					$output.='<div class="tt-colapse-Inwrap"><input type="checkbox" name="locations[]" value="'.$location->id.'"><label>'.$location->location_name.'</label></div>';
+				}
+				echo $output;
+				exit;				
+			}
+		}		
+	}
+
+}
+
+/* End of file Ajax.php */
+/* Location: ./application/controllers/Ajax.php */
