@@ -50,7 +50,7 @@ class Member extends CI_Controller{
 			$member['state'] = $this->state_id;
 			$config['upload_path'] = './assets/profile_pics/';
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
-            $config['max_size'] = 100;
+            $config['max_size'] = 4096;
             $this->load->library('upload', $config);
         	if($this->upload->do_upload('profile_pic'))
             {
@@ -68,7 +68,7 @@ class Member extends CI_Controller{
 			if($result == TRUE)
 			{
 				$this->session->set_flashdata('member_register_success','Member registration successful!');
-				redirect(base_url().'user/Member/profile');
+				redirect(base_url().'user/Member/profile/'.$result);
 			}
 			else
 			{
