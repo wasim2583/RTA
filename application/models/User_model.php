@@ -28,6 +28,24 @@ class User_model extends CI_Model
         return $result->row_object();
     }
 
+    public function get_member_by_loginId($loginId)
+    {
+        if(is_numeric($loginId))
+        {
+            $this->db->where('mobile', $loginId);
+        }
+        else
+        {
+            $this->db->where('email', $loginId);
+        }       
+        
+        $result = $this->db->get('irsc_members');
+        if($result->num_rows() == 1)
+            return $result->row_object();
+        else
+            return false;
+    }
+
     public function insert_partner($data)
     {
         $result = $this->db->insert('irsc_partners', $data);
@@ -36,8 +54,18 @@ class User_model extends CI_Model
 
     public function get_partner_by_id($id)
     {
-        $this->db->where('id', $id);
-        $result = $this->db->get('irsc_partners');
+        $this->db->select('
+            partner.*,
+            org.organization_type,
+            loc.location_name, loc.state_id,
+            state.state_name
+            ');
+        $this->db->from('irsc_partners partner');
+        $this->db->join('organizations org', 'org.id = partner.organization_type');
+        $this->db->join('locations loc', 'loc.id = partner.location');
+        $this->db->join('states state', 'state.id = loc.state_id');
+        $this->db->where('partner.id', $id);
+        $result = $this->db->get();
         return $result->row_object();
     }
 }

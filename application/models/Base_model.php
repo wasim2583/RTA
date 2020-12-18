@@ -92,6 +92,24 @@ class Base_model extends CI_Model
         return $result->result();
     }
 
+    public function get_user_role_by_id($id)
+    {
+        $this->db->select('id, role_name');
+        $this->db->from('roles');
+        $this->db->where('id', $id);
+        $result = $this->db->get();
+        return $result->row_object();
+    }
+
+    public function get_organization_types()
+    {
+        $this->db->select('id, organization_type');
+        $this->db->from('organizations');
+        $this->db->order_by('id', 'ASC');
+        $result = $this->db->get();
+        return $result->result();
+    }
+
     public function get_photos_by_state()
     {
         $this->db->select('*');

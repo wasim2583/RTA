@@ -7,7 +7,6 @@ class Member extends CI_Controller{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->library('session');
-		$this->load->library('upload');
 		if(empty($this->session->userdata('state_id')))
 		{
 			redirect(base_url());
@@ -16,6 +15,7 @@ class Member extends CI_Controller{
 		{
 			$this->state_id = $this->session->userdata('state_id');
 			$this->data['state'] = $this->Base_model->get_state_by_id($this->state_id);
+			$this->data['states'] = $this->Base_model->get_states();
 			$this->data['locations'] = $this->Base_model->get_locations_by_state($this->state_id);
 		}
 	}
@@ -43,11 +43,15 @@ class Member extends CI_Controller{
                 'is_unique'     => 'This %s already exists.'
 			)
 		);
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[12]', array(
+			'required' => 'Please provide your %s.'
+		));
 		// $this->form_validation->set_rules('profile_pic', 'Profile Pic', 'required');
 		if($this->form_validation->run() == TRUE)
 		{
 			$member = $this->input->post();
-			$member['state'] = $this->state_id;
+			$member['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+
 			$config['upload_path'] = './assets/profile_pics/';
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
@@ -81,14 +85,64 @@ class Member extends CI_Controller{
 			$this->load->view('user/membership', $this->data);
 		}
 	}
-	public function login(){
-		$this->load->view('users/registration_view');
+	public function login()
+	{
+		if($this->session->userdata('member_login')){
+				redirect('dashboard');
+		}
+		$this->data['title'] = 'Member Login';
+			
+		// validate form input
+		$this->form_validation->set_rules('loginId', 'Login ID','required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if ($this->form_validation->run() === TRUE)
+		{
+			$loginId = $this->input->post('loginId');
+			$password = $this->input->post('password');//password_hash($this->input->post('password'),PASSWORD_DEFAULT);
+			$user = $this->User_model->get_member_by_loginId($loginId);
+			
+			if($user)
+			{
+				if(password_verify($password, $user->password))
+				{
+					$this->session->set_userdata('member_id', $user->id);
+					$member = $this->User_model->get_member_by_id($user->id);
+					if( ! $user->status)
+					{
+						$message = 'It seems your account is inactive please <a href="'.$this->config->item('base_url').'/auth/resend_activation_code">Click Here</a> to activate';
+						$this->session->set_flashdata('login_status', $message);
+					}
+					redirect('dashboard');
+				}
+				else
+				{
+					$this->session->set_flashdata('login_error', 'Wrong Password');
+				}
+			}
+			else
+			{
+				$this->session->set_flashdata('login_error', 'Invalid Credentials');
+				redirect(current_url()); 
+			}
+		}
+		else
+		{
+			$this->load->view('user/member_login');
+		}
 	}
 
 	public function profile($id)
 	{
 		$this->data['member'] = $this->User_model->get_member_by_id($id);
 		$this->load->view('user/member', $this->data);
+	}
+
+	public function dashboard()
+	{
+		$this->load->view('user/member_header');
+		$this->load->view('user/member_dashboard');
+		$this->load->view('user/member_footer');
 	}
 }
 

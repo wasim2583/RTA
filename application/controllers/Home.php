@@ -29,7 +29,14 @@ class Home extends CI_Controller
 
 	public function home()
 	{
-		$state_id = $this->session->userdata('state_id');
+		if($this->session->userdata('state_id'))
+		{
+			$state_id = $this->session->userdata('state_id');
+		}
+		else
+		{
+			redirect(base_url());
+		}
 		
 		$this->data['state'] = $this->Base_model->get_state_by_id($state_id);
 		$this->data['slides'] = $this->Base_model->get_slides_by_state($state_id);

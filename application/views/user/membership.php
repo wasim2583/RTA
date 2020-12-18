@@ -34,21 +34,32 @@
                            </div>
                         </div>
                         <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Location</div>
+                           <div class="col-lg-4 lableTxt">State</div>
                            <div class="col-lg-8">
-                              <select class="state_select" name="location" id="location">
-                                 <option value="">Select Your Location</option>
+                              <select class="state_select" name="state" id="state">
+                                 <option value="0">Select Your State</option>
                                  <?php
-                                 if( ! empty($locations))
+                                 if( ! empty($states))
                                  {
-                                    foreach($locations as $loc)
+                                    foreach($states as $state)
                                     {
                                        ?>
-                                 <option value="<?php echo $loc->id ?>" <?php echo ($loc->id == set_value('location')) ? 'selected' : ''; ?>><?php echo $loc->location_name; ?></option>
+                                 <option value="<?php echo $state->id ?>" <?php echo ($state->id == set_value('state')) ? 'selected' : ''; ?>><?php echo $state->state_name; ?></option>
                                        <?php
                                     }
                                  }
                                  ?>
+                              </select>
+                           </div>
+                           <div>
+                              <?php echo form_error('state'); ?>
+                           </div>
+                        </div>
+                        <div class="row Member_labels">
+                           <div class="col-lg-4 lableTxt">Location</div>
+                           <div class="col-lg-8">
+                              <select class="state_select" name="location" id="location">
+                                 <option value="">Select Your Location</option>
                               </select>
                            </div>
                            <div>
@@ -74,6 +85,15 @@
                            </div>
                         </div>
                         <div class="row Member_labels">
+                           <div class="col-lg-4 lableTxt">Password</div>
+                           <div class="col-lg-8">
+                              <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                           </div>
+                           <div>
+                              <?php echo form_error('password'); ?>
+                           </div>
+                        </div>
+                        <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Upload Pic</div>
                            <div class="col-lg-8">
                               <div class="custom-file">
@@ -86,7 +106,8 @@
                         <!-- <button type="submit" class="btn btn-primary btn_submit">Submit</button> -->
                         <input type="submit" value="Submit" class="btn btn-primary btn_submit">
                      </div>
-                  </form>                     
+                  </form>
+                  <div class="Reg_link"><span>Already Registered? </span><a href="<?php echo base_url().'user/Member/login'; ?>">Login</a></div>
                </div>
             </div>
          </div>
@@ -94,7 +115,8 @@
    </body>
    <script type="text/javascript" src="<?php echo base_url(); ?>design/js/bootstrap.js"></script>
    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/rta_js.js"></script>
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 </html>

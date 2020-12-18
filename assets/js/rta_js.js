@@ -30,6 +30,32 @@ $(document).ready(function(){
 		}
 	});
 
+	$('#state').change(function(){
+		var selectedState = $('#state').val();; 
+ 		var options = '<option value="0">Select Your Location</option>';
+ 		if(selectedState){
+ 			$.ajax({
+        		url: site_url+'Base/ajax_get_locations_by_state/'+selectedState,
+        		type: 'GET',        
+        		success: function (data) {
+            		var myJSONObject = JSON.parse(data);			
+            		for (var i=0; i < myJSONObject.length;i++){            
+                		options += '<option value="'+myJSONObject[i].id+'">'+myJSONObject[i].location_name+'</option>';
+                
+            		}
+					if(myJSONObject.length > 0){
+           				$('#location').html(options);
+            			$('select#location').prop('disabled',null);
+					}
+					else{
+						$('#location').html(options);
+						$('select#location').prop('disabled',true);
+					}
+        		}        
+    		});
+ 		}
+ 	});
+
 	$('#jobseeker_filters #states_list input[type=checkbox]').on('change', function(){
 		$.post(site_url+'base/ajax_render_location_filters', $("#jobseeker_filters_form").serialize()).done(function(data){
 			if(data){
