@@ -168,7 +168,7 @@
          <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Member</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><button onclick="location.href='<?php echo base_url(); ?>user/Member/logout'" class="btn btn-danger btn-sm">Logout</button></span>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -224,10 +224,10 @@
                            <div class="col-lg-8"><span>o+ve</span></div>
                         </div>
                         <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Profile Pic</div>
-                        <div class="col-lg-8"><img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url(); ?>design/images/undraw_profile.svg"></div>
-                     </div>
-                        
+                           <div class="col-lg-4 lableTxt">Profile Pic</div>
+                           <div class="col-lg-8"><img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'assets/profile_pics/'.$member->profile_pic; ?>"></div>
+                        </div>
+                        <?php print_r($member); ?>
                      </div>
                   </div>
                   <div class="col-lg-6">

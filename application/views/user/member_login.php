@@ -22,6 +22,10 @@
                <a href="main.html"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></a>
                <span class="btm_text">Road safety Member Login</span>
                <div class="find-location">
+                  <?php
+                  if( ! empty($this->session->flashdata('login_error')))
+                     echo $this->session->flashdata('login_error');
+                  ?>
                   <form action="" method="POST">
                      <div class="col-lg-12 col-md-12">
                         <div class="row Member_labels">

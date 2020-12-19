@@ -4,7 +4,7 @@ class Base_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->state_id = $this->session->userdata('app_state');
+        $this->state_id = $this->session->userdata('state_id');
     }
 
     public function get_locations_by_state($state_id)
@@ -110,6 +110,15 @@ class Base_model extends CI_Model
         return $result->result();
     }
 
+    public function get_all_photos()
+    {
+        $this->db->select('*');
+        $this->db->from('files');
+        $this->db->order_by('uploaded_on', 'DESC');
+        $result = $this->db->get();
+        return $result->result();
+    }
+
     public function get_photos_by_state()
     {
         $this->db->select('*');
@@ -117,7 +126,16 @@ class Base_model extends CI_Model
         $this->db->where('state', $this->state_id);
         $this->db->order_by('uploaded_on', 'DESC');
         $result = $this->db->get();
-        return $result->result_array();
+        return $result->result();
+    }
+
+    public function get_all_videos()
+    {
+        $this->db->select('*');
+        $this->db->from('da_videos_tbl');
+        $this->db->order_by('date', 'DESC');
+        $result = $this->db->get();
+        return $result->result();
     }
 
     public function get_videos_by_state()
@@ -127,6 +145,6 @@ class Base_model extends CI_Model
         $this->db->where('state', $this->state_id);
         $this->db->order_by('date', 'DESC');
         $result = $this->db->get();
-        return $result->result_array();
+        return $result->result();
     }
 }

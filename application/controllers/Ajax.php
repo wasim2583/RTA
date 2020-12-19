@@ -19,25 +19,20 @@ class Ajax extends CI_Controller
 		$filtered_photos = $this->Ajax_model->get_filtered_photos($_POST);
 		if( ! empty($filtered_photos))
 		{
-			?>
-		<div class="row">
-			<?php
-			foreach($filtered_photos as $rec)
+			foreach($filtered_photos as $photo)
 			{
+				// print_r($photo);
 				?>
-			<div class="col-sm-4 posRelate">
-				<div class="overflow_hide">
-					<a href="<?php echo base_url().'uploads/files/'.$rec['file_name']; ?>" data-lightbox="gallery" target="_blank">
-					<img src="<?php echo base_url().'uploads/files/'.$rec['file_name']; ?>" class="img-fluid">
+			<div class="photo_wrap">
+				<a href="<?php echo base_url().'uploads/files/'.$photo->file_name; ?>" data-lightbox="gallery" target="_blank">
+				<img src="<?php echo base_url().'uploads/files/'.$photo->file_name; ?>" class="img-fluid">
 					</a>
-				</div>
-				<span class="gal_btmtext"><?php echo ucfirst($rec['name']);?></span>
+				<span><?php echo $photo->name; ?></span>
+				<p><?php echo $photo->description; ?><br>
+				Discription Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
 			</div>
 				<?php 
 			}
-			?>
-		</div>
-			<?php
 		}
 	}
 
@@ -46,15 +41,12 @@ class Ajax extends CI_Controller
 		$filtered_videos = $this->Ajax_model->get_filtered_videos($_POST);
 		if( ! empty($filtered_videos))
 		{
-			?>
-		<div class="row">
-			<?php
-			foreach($filtered_videos as $rec1)
+			foreach($filtered_videos as $video)
 			{
 				?>
 			<div class="col-sm-4">
 				<?php
-				$url=$rec1['url'];
+				$url=$video->url;
 				$ytarray=explode("/", $url);
 				$ytendstring=end($ytarray);
 				$ytendarray=explode("?v=", $ytendstring);
@@ -66,9 +58,6 @@ class Ajax extends CI_Controller
 			</div>
 				<?php 
 			}
-			?>
-		</div>
-			<?php
 		}
 	}
 	
@@ -82,7 +71,8 @@ class Ajax extends CI_Controller
 				$output='';
 				foreach($locations as $location)
 				{
-					$output.='<div class="tt-colapse-Inwrap"><input type="checkbox" name="locations[]" value="'.$location->id.'"><label>'.$location->location_name.'</label></div>';
+					// $output.='<div class="tt-colapse-Inwrap"><input type="checkbox" name="locations[]" value="'.$location->id.'"><label>'.$location->location_name.'</label></div>';
+					$output .= '<li class="list-group-item"><input class="form-check-input me-1" type="checkbox" name="locations[]" value="'.$location->id.'" aria-label="...">'.$location->location_name.'</li>';
 				}
 				echo $output;
 				exit;				

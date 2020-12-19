@@ -49,7 +49,7 @@ class Ajax_model extends CI_Model
         }
         */
         $this->db->order_by('videos.date','ASC');        
-        $result = $this->db->get()->result_array();
+        $result = $this->db->get()->result();
         
         return $result;
     }
@@ -65,17 +65,20 @@ class Ajax_model extends CI_Model
         $this->db->join('states state', 'photos.state = state.id','left');
         $this->db->join('locations loc', 'photos.location = loc.id','left');
         
-        if(isset($filtersArray['states'])){
+        if(isset($filtersArray['states']))
+        {
             $this->db->where_in('photos.state',$filtersArray['states']);
         }
-        else{
-            $this->db->where('photos.state',$this->state_id);
-        }
-        if(isset($filtersArray['locations'])){
+        // else
+        // {
+        //     $this->db->where('photos.state',$this->state_id);
+        // }
+        if(isset($filtersArray['locations']))
+        {
             $this->db->where_in('photos.location',$filtersArray['locations']);
         }
         $this->db->order_by('photos.uploaded_on','ASC');        
-        $result = $this->db->get()->result_array();
+        $result = $this->db->get()->result();
         
         return $result;
     }

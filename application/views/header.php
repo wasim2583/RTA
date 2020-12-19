@@ -129,6 +129,17 @@
                                <li><a class="dropdown-item" href="" target="_blank">Webinar’s  </a></li>
                            </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle" href="Galphotos.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                           Gallery
+                           </a>
+                           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <li><a class="dropdown-item" href="<?php echo base_url().'Home/gallery_photos'; ?>" target="_self">Photos</a></li>
+                              <li><a class="dropdown-item" href="<?php echo base_url().'Home/gallery_videos'; ?>" target="_self">Videos </a></li>
+                               
+                           </ul>
+                        </li>
+
                         <li class="nav-item">
                            <a class="nav-link" href="#">Gallery</a>
                         </li>

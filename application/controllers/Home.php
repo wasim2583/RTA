@@ -43,5 +43,29 @@ class Home extends CI_Controller
 		$this->load->view('header');
 		$this->load->view('home', $this->data);
 		$this->load->view('footer');
-	}	
+	}
+
+	public function gallery(){
+		$this->data['photos']=$this->crud_model->common_get2('id','files');
+		$this->data['videos']=$this->crud_model->common_get2('id','da_videos_tbl');
+		$this->load->view('header',$this->data);
+		$this->load->view('gallery/gallery_view',$this->data);
+		$this->load->view('footer',$this->data);
+	}
+	public function gallery_photos()
+	{
+		// $this->data['photos']=$this->Base_model->get_photos_by_state();
+		$this->data['photos']=$this->Base_model->get_all_photos();
+		$this->load->view('header',$this->data);
+		$this->load->view('gallery/gallery_photos',$this->data);
+		$this->load->view('footer',$this->data);
+	}
+	public function gallery_videos()
+	{
+		// $this->data['videos']=$this->Base_model->get_videos_by_state();
+		$this->data['videos']=$this->Base_model->get_all_videos();
+		$this->load->view('header',$this->data);
+		$this->load->view('gallery/gallery_videos',$this->data);
+		$this->load->view('footer',$this->data);
+	}
 }

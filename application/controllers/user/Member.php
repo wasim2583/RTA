@@ -21,7 +21,7 @@ class Member extends CI_Controller{
 	}
 	public function index()
 	{
-		redirect(base_url().'user/Member/registration');
+		redirect(base_url().'user/Member/login');
 	}
 	public function registration()
 	{
@@ -68,11 +68,12 @@ class Member extends CI_Controller{
                 
                 $this->upload->display_errors();
             }
-			$result = $this->User_model->insert_member($member);
-			if($result == TRUE)
+			$member_id = $this->User_model->insert_member($member);
+			if($member_id)
 			{
+				$this->session->set_userdata('member_id', $member_id);
 				$this->session->set_flashdata('member_register_success','Member registration successful!');
-				redirect(base_url().'user/Member/profile/'.$result);
+				redirect(base_url().'user/Member/dashboard');
 			}
 			else
 			{
@@ -87,43 +88,39 @@ class Member extends CI_Controller{
 	}
 	public function login()
 	{
-		if($this->session->userdata('member_login')){
-				redirect('dashboard');
+		if($this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/dashboard');
 		}
 		$this->data['title'] = 'Member Login';
-			
-		// validate form input
+		
 		$this->form_validation->set_rules('loginId', 'Login ID','required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if ($this->form_validation->run() === TRUE)
 		{
 			$loginId = $this->input->post('loginId');
-			$password = $this->input->post('password');//password_hash($this->input->post('password'),PASSWORD_DEFAULT);
-			$user = $this->User_model->get_member_by_loginId($loginId);
+			$password = $this->input->post('password');
+			$member = $this->User_model->get_member_by_loginId($loginId);
 			
-			if($user)
+			if($member)
 			{
-				if(password_verify($password, $user->password))
+				if(password_verify($password, $member->password))
 				{
-					$this->session->set_userdata('member_id', $user->id);
-					$member = $this->User_model->get_member_by_id($user->id);
-					if( ! $user->status)
-					{
-						$message = 'It seems your account is inactive please <a href="'.$this->config->item('base_url').'/auth/resend_activation_code">Click Here</a> to activate';
-						$this->session->set_flashdata('login_status', $message);
-					}
-					redirect('dashboard');
+					$this->session->set_userdata('member_id', $member->id);
+					
+					redirect(base_url().'user/Member/dashboard');
 				}
 				else
 				{
 					$this->session->set_flashdata('login_error', 'Wrong Password');
+					redirect(current_url());
 				}
 			}
 			else
 			{
 				$this->session->set_flashdata('login_error', 'Invalid Credentials');
-				redirect(current_url()); 
+				redirect(current_url());
 			}
 		}
 		else
@@ -132,17 +129,26 @@ class Member extends CI_Controller{
 		}
 	}
 
-	public function profile($id)
+	public function profile()
 	{
-		$this->data['member'] = $this->User_model->get_member_by_id($id);
+		$member_id = $this->session->userdata('member_id');
+		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		$this->load->view('user/member', $this->data);
 	}
 
 	public function dashboard()
 	{
-		$this->load->view('user/member_header');
-		$this->load->view('user/member_dashboard');
-		$this->load->view('user/member_footer');
+		$member_id = $this->session->userdata('member_id');
+		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
+		$this->load->view('user/member_header', $this->data);
+		$this->load->view('user/member_dashboard', $this->data);
+		$this->load->view('user/member_footer', $this->data);
+	}
+
+	public function logout()
+	{
+		$this->session->unset_userdata('member_id');
+		redirect(base_url().'Home/home');
 	}
 }
 

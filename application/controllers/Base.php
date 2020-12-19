@@ -191,135 +191,135 @@ public function ajax_search_jobs(){
 
 /* Abhilash Code Starts */
 
-public function ajax_search_jobseekers()
-{
-	$filtered_jobseekers = $this->BaseModel->get_filtered_jobseekers($_POST);
-	$user = $this->session->userdata('user');
-	$recruiter_jobseekers = $this->JobseekerModel->get_all_recruiter_jobseekers($user->id);
-	$jobseekers = array();
-	$formattedJobseekers = array();
-	if( ! empty($recruiter_jobseekers))
+	public function ajax_search_jobseekers()
 	{
-		foreach($recruiter_jobseekers as $rec_js)
+		$filtered_jobseekers = $this->BaseModel->get_filtered_jobseekers($_POST);
+		$user = $this->session->userdata('user');
+		$recruiter_jobseekers = $this->JobseekerModel->get_all_recruiter_jobseekers($user->id);
+		$jobseekers = array();
+		$formattedJobseekers = array();
+		if( ! empty($recruiter_jobseekers))
 		{
-			$formattedJobseekers[$rec_js->user_id] = $rec_js;
+			foreach($recruiter_jobseekers as $rec_js)
+			{
+				$formattedJobseekers[$rec_js->user_id] = $rec_js;
+			}
 		}
-	}
-	if( ! empty($filtered_jobseekers))
-	{
-		foreach($filtered_jobseekers as $filter_js)
+		if( ! empty($filtered_jobseekers))
 		{
-			$jobseekers[$filter_js->user_id] = $filter_js;
+			foreach($filtered_jobseekers as $filter_js)
+			{
+				$jobseekers[$filter_js->user_id] = $filter_js;
+			}
 		}
-	}
 
-	if( ! empty($jobseekers))
-	{
-		?>
-	<h3 class="head_margin">Matched</h3>
-	<div role="alert" class="alert alert-info alert-dismissible fade show" style="display: none;"></div>
-		<?php
-		echo '<h3 class="head_margin">'.count($jobseekers).' Profiles found..</h3>';
-		foreach($jobseekers as $jobseeker)
+		if( ! empty($jobseekers))
 		{
 			?>
-	<div class="tt-posted-jobwrap" id="jobid-<?php echo $jobseeker->user_id;?>">
-		<h3><?php echo $jobseeker->fullname; ?></h3>
-		<div class="tt-posted-j-exp">
-			<i class="fa fa-briefcase" aria-hidden="true"></i>
-			<?php echo ! empty($jobseeker->experience) ? $this->config->item('experience_range')[$jobseeker->experience] : 'Fresher'; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-map-marker" aria-hidden="true"></i>
-			<?php echo $jobseeker->location_name; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-			<?php echo $jobseeker->qualification_name; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-male" aria-hidden="true"></i>
-			<?php echo $jobseeker->gender; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-			<?php echo !empty($jobseeker->dob) ? date_diff(date_create(date('d-M-Y',$jobseeker->dob)), date_create('today'))->y.' Years' : "N/A"; ?>
-		</div>
-		<div class="tt-posted-j-desc dispFull">
-			<span>Skills : </span> <?php echo $jobseeker->skills; ?>
-		</div>
-		<div class="tt-posted-btns-wrap" >
-			<span>Registered on :  <?php echo date('l d M Y h:m A  ',strtotime($jobseeker->created_on));?>  </span>
-			<div class="float-right" id="business_user_actions">
-				<?php
-				if( ! empty($formattedJobseekers))
-				{
-					if(array_key_exists($jobseeker->user_id, $formattedJobseekers))
+		<h3 class="head_margin">Matched</h3>
+		<div role="alert" class="alert alert-info alert-dismissible fade show" style="display: none;"></div>
+			<?php
+			echo '<h3 class="head_margin">'.count($jobseekers).' Profiles found..</h3>';
+			foreach($jobseekers as $jobseeker)
+			{
+				?>
+		<div class="tt-posted-jobwrap" id="jobid-<?php echo $jobseeker->user_id;?>">
+			<h3><?php echo $jobseeker->fullname; ?></h3>
+			<div class="tt-posted-j-exp">
+				<i class="fa fa-briefcase" aria-hidden="true"></i>
+				<?php echo ! empty($jobseeker->experience) ? $this->config->item('experience_range')[$jobseeker->experience] : 'Fresher'; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-map-marker" aria-hidden="true"></i>
+				<?php echo $jobseeker->location_name; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+				<?php echo $jobseeker->qualification_name; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-male" aria-hidden="true"></i>
+				<?php echo $jobseeker->gender; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+				<?php echo !empty($jobseeker->dob) ? date_diff(date_create(date('d-M-Y',$jobseeker->dob)), date_create('today'))->y.' Years' : "N/A"; ?>
+			</div>
+			<div class="tt-posted-j-desc dispFull">
+				<span>Skills : </span> <?php echo $jobseeker->skills; ?>
+			</div>
+			<div class="tt-posted-btns-wrap" >
+				<span>Registered on :  <?php echo date('l d M Y h:m A  ',strtotime($jobseeker->created_on));?>  </span>
+				<div class="float-right" id="business_user_actions">
+					<?php
+					if( ! empty($formattedJobseekers))
 					{
-						if($formattedJobseekers[$jobseeker->user_id]->saved)
+						if(array_key_exists($jobseeker->user_id, $formattedJobseekers))
 						{
-							?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm active">Saved</button>
-							<?php
+							if($formattedJobseekers[$jobseeker->user_id]->saved)
+							{
+								?>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm active">Saved</button>
+								<?php
+							}
+							else
+							{
+								?>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
+								<?php
+							}
+							if($formattedJobseekers[$jobseeker->user_id]->replied)
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm active">Replied</button>
+								<?php
+							}
+							else
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
+								<?php
+							}
+							if($formattedJobseekers[$jobseeker->user_id]->downloaded)
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm active">Downloaded</button>
+								<?php
+							}
+							else
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
+								<?php
+							}
 						}
 						else
 						{
 							?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
-							<?php
-						}
-						if($formattedJobseekers[$jobseeker->user_id]->replied)
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm active">Replied</button>
-							<?php
-						}
-						else
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
-							<?php
-						}
-						if($formattedJobseekers[$jobseeker->user_id]->downloaded)
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm active">Downloaded</button>
-							<?php
-						}
-						else
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
 							<?php
 						}
 					}
 					else
 					{
 						?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
 						<?php
 					}
-				}
-				else
-				{
 					?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
-					<?php
-				}
-				?>
-				<button class="btn btn-success btn-sm" id="<?php echo $jobseeker->user_id.'-viewed';?>">View</button>
+					<button class="btn btn-success btn-sm" id="<?php echo $jobseeker->user_id.'-viewed';?>">View</button>
+				</div>
 			</div>
 		</div>
-	</div>
-			<?php
+				<?php
+			}
 		}
+		exit;
 	}
-	exit;
-}
 
 	public function ajax_set_jobseeker_action($jobseeker_id, $action)
 	{
