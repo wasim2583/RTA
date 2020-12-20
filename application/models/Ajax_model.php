@@ -34,20 +34,18 @@ class Ajax_model extends CI_Model
         $this->db->join('states state', 'videos.state = state.id','left');
         $this->db->join('locations loc', 'videos.location = loc.id','left');
         
-        if(isset($filtersArray['states'])){
+        if(isset($filtersArray['states']))
+        {
             $this->db->where_in('videos.state',$filtersArray['states']);
         }
-        else{
-            $this->db->where('videos.state', $this->state_id);
-        }
-        if(isset($filtersArray['locations'])){
+        // else
+        // {
+        //     $this->db->where('videos.state', $this->state_id);
+        // }
+        if(isset($filtersArray['locations']))
+        {
             $this->db->where_in('videos.location',$filtersArray['locations']);
         }
-        /*
-        if(isset($filtersArray['from_date'])){
-            $this->db->where('videos.date' >= $filtersArray['from_date']);
-        }
-        */
         $this->db->order_by('videos.date','ASC');        
         $result = $this->db->get()->result();
         

@@ -23,15 +23,15 @@ class Ajax extends CI_Controller
 			{
 				// print_r($photo);
 				?>
-			<div class="photo_wrap">
-				<a href="<?php echo base_url().'uploads/files/'.$photo->file_name; ?>" data-lightbox="gallery" target="_blank">
-				<img src="<?php echo base_url().'uploads/files/'.$photo->file_name; ?>" class="img-fluid">
-					</a>
-				<span><?php echo $photo->name; ?></span>
-				<p><?php echo $photo->description; ?><br>
-				Discription Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-			</div>
-				<?php 
+		<div class="photo_wrap">
+			<a href="<?php echo base_url().'uploads/files/'.$photo->file_name; ?>" data-lightbox="gallery" target="_blank">
+			<img src="<?php echo base_url().'uploads/files/'.$photo->file_name; ?>" class="img-fluid">
+				</a>
+			<span><?php echo $photo->name; ?></span>
+			<p><?php echo $photo->description; ?><br>
+			Discription Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+		</div>
+				<?php
 			}
 		}
 	}
@@ -44,17 +44,19 @@ class Ajax extends CI_Controller
 			foreach($filtered_videos as $video)
 			{
 				?>
-			<div class="col-sm-4">
-				<?php
-				$url=$video->url;
-				$ytarray=explode("/", $url);
-				$ytendstring=end($ytarray);
-				$ytendarray=explode("?v=", $ytendstring);
-				$ytendstring=end($ytendarray);
-				$ytendarray=explode("&", $ytendstring);
-				$ytcode=$ytendarray[0];
-				echo "<iframe width=\"100%\"  src=\"http://www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
-				?>
+			<div class="col-6">
+				<div class="embed-responsive embed-responsive-16by9">
+					<?php
+					$url=$video->url;
+					$ytarray=explode("/", $url);
+					$ytendstring=end($ytarray);
+					$ytendarray=explode("?v=", $ytendstring);
+					$ytendstring=end($ytendarray);
+					$ytendarray=explode("&", $ytendstring);
+					$ytcode=$ytendarray[0];
+					echo "<iframe class=\"embed-responsive-item\" width=\"100%\" src=\"http://www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
+					?>
+				</div>
 			</div>
 				<?php 
 			}

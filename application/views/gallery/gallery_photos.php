@@ -29,7 +29,7 @@
                   </div>
                   <div class="nav flex-column nav-pills statesNav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                      
-                     <h3>Location</h3>
+                     <h3>Locations</h3>
                      <div id="locations_message">please select state to load locations</div>
                      <ul class="list-group" id="locations_list">
                      </ul>
