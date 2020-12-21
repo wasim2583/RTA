@@ -100,6 +100,8 @@ $(document).ready(function(){
 	// 		$('#Matched_videos').html(data);
 	// 	});
 	// });
+
+	
 /* Abhilash code for RTA ends */
 
 	$('#jobseeker_filters #categories_list input[type=checkbox]').on('change', function(){

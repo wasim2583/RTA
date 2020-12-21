@@ -7,29 +7,23 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model(['crud_model', 'Base_model']);
-		$this->load->library('form_validation');
+		$this->load->library(['form_validation', 'encryption']);
 		
 		$this->data['states'] = $this->Base_model->get_states();
 	}
 
 	public function index()
 	{
-		$this->form_validation->set_rules('state', 'State', 'required');
-		if($this->form_validation->run() == TRUE)
-		{
-			$state_id = $this->input->post('state');
-			$this->session->set_userdata('state_id', $state_id);
-			redirect('Home/home');
-		}
-		else
-		{
-			$this->load->view('index', $this->data);
-		}
+		$this->load->view('index', $this->data);
 	}
 
 	public function home()
 	{
-		if($this->session->userdata('state_id'))
+		if ($this->uri->segment(3)) {
+			$state_id = $this->uri->segment(3);
+			$this->session->set_userdata('state_id', $state_id);
+		}
+		elseif ( ! empty($this->session->userdata('state_id')))
 		{
 			$state_id = $this->session->userdata('state_id');
 		}
@@ -40,9 +34,9 @@ class Home extends CI_Controller
 		
 		$this->data['state'] = $this->Base_model->get_state_by_id($state_id);
 		$this->data['slides'] = $this->Base_model->get_slides_by_state($state_id);
-		$this->load->view('header');
+		$this->load->view('header', $this->data);
 		$this->load->view('home', $this->data);
-		$this->load->view('footer');
+		$this->load->view('footer', $this->data);
 	}
 
 	public function gallery(){
@@ -55,6 +49,7 @@ class Home extends CI_Controller
 	public function gallery_photos()
 	{
 		// $this->data['photos']=$this->Base_model->get_photos_by_state();
+		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		$this->data['photos']=$this->Base_model->get_all_photos();
 		$this->load->view('header',$this->data);
 		$this->load->view('gallery/gallery_photos',$this->data);
@@ -63,6 +58,7 @@ class Home extends CI_Controller
 	public function gallery_videos()
 	{
 		// $this->data['videos']=$this->Base_model->get_videos_by_state();
+		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		$this->data['videos']=$this->Base_model->get_all_videos();
 		$this->load->view('header',$this->data);
 		$this->load->view('gallery/gallery_videos',$this->data);

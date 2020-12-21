@@ -217,37 +217,48 @@
                      <div class="col-lg-12 col-md-12">
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
-                           <div class="col-lg-8"><span>223286518525</span></div>
+                           <div class="col-lg-8"><span><?php echo $member->aadhaar; ?></span></div>
                         </div>
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Blood group</div>
-                           <div class="col-lg-8"><span>o+ve</span></div>
+                           <div class="col-lg-8"><span><?php echo $member->blood_group; ?></span></div>
                         </div>
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Profile Pic</div>
                            <div class="col-lg-8"><img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'assets/profile_pics/'.$member->profile_pic; ?>"></div>
                         </div>
-                        <?php print_r($member); ?>
+                        <?php //print_r($member); ?>
                      </div>
                   </div>
                   <div class="col-lg-6">
                      <div class="row Member_labels">
                         <div class="col-lg-4 lableTxt">Gender</div>
-                        <div class="col-lg-8"><span>Male</span></div>
+                        <div class="col-lg-8"><span><?php echo $member->gender; ?></span></div>
                      </div>
                      <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Emergency contact</div>
-                           <div class="col-lg-8"><span>900090012</span></div>
-                        </div>
+                        <div class="col-lg-4 lableTxt">Emergency contact</div>
+                        <div class="col-lg-8"><span><?php echo $member->emergency_contact; ?></span></div>
+                     </div>
                      <div class="row Member_labels">
                         <div class="col-lg-4 lableTxt">Address</div>
-                        <div class="col-lg-8"><address>
-               <strong>Pallaki Enclave, Plot No 44, </strong><br> 3rd Floor, Municipal Plots, <br>Bapuji Nagar, Udayagiri Road,<br>Kavali, Nellore Dist-524201<br>Andhra Pradesh.
-               <div class="address-align"><abbr class="phone-icon" title="Phone">Ph:</abbr> 08626 - 251777</div>
-               <div class="address-align"> <span class="mobile-icon"></span>+91 7036356760</div>
-               <div class="address-align"> <span class="email-icon"></span>projects@mannschaftit.com</div>
-               <abbr title="email"></abbr> 
-            </address></div>
+                        <div class="col-lg-8">
+                           <?php echo $member->address; ?>
+                           <!-- <address>
+                              <strong>Pallaki Enclave, Plot No 44, </strong><br> 3rd Floor, Municipal Plots, <br>Bapuji Nagar, Udayagiri Road,<br>Kavali, Nellore Dist-524201<br>Andhra Pradesh.
+                              <div class="address-align"><abbr class="phone-icon" title="Phone">Ph:</abbr> 08626 - 251777</div>
+                              <div class="address-align"> <span class="mobile-icon"></span>+91 7036356760</div>
+                              <div class="address-align"> <span class="email-icon"></span>projects@mannschaftit.com</div>
+                              <abbr title="email"></abbr> 
+                           </address> -->
+                        </div>
+                     </div>
+                     <div class="row Member_labels">
+                        <div class="col-lg-4 lableTxt">Mobile</div>
+                        <div class="col-lg-8"><span><?php echo $member->mobile; ?></span></div>
+                     </div>
+                     <div class="row Member_labels">
+                        <div class="col-lg-4 lableTxt">Email</div>
+                        <div class="col-lg-8"><span><?php echo $member->email; ?></span></div>
                      </div>
                      <a href="<?php echo base_url(); ?>user/Member/dashboard" class="float-right"><button class="btn btn-primary btn_submit">Edit</button></a>
                   </div>
@@ -262,4 +273,4 @@
    </div>
    <!-- /.container-fluid -->
 </div>
-<!-- End of Main Content -->
+<!-- End of Main Content

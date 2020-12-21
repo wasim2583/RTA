@@ -18,7 +18,7 @@ class Base_model extends CI_Model
 
     public function get_states()
     {
-        $this->db->select('id, state_name');
+        $this->db->select('*');
         $this->db->from('states');
         $this->db->where_in('id', array(2, 35));
         $result = $this->db->get();
@@ -27,7 +27,7 @@ class Base_model extends CI_Model
 
     public function get_state_by_id($id)
     {
-        $this->db->select('id, state_name');
+        $this->db->select('*');
         $this->db->from('states');
         $this->db->where('id', $id);
         $result = $this->db->get();
