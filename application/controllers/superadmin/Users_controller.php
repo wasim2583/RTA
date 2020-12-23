@@ -291,8 +291,8 @@ class Users_controller extends CI_Controller{
 		
 		$res=$this->crud_model->get('da_users_tbl',$config['per_page'],$si);
 		$res=$this->crud_model->get('da_users_tbl',$config['per_page'],$si);
-		// $this->data['row']=$res->result_array();
-		$this->data['row'] = $this->Base_model->get_users($this->state_id);
+		$this->data['row']=$res->result_array();
+		// $this->data['row'] = $this->Base_model->get_users($this->state_id);
 		$this->load->view('superadmin_view/users/user_information_view',$this->data);
 	}
 	

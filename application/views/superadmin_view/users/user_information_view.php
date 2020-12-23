@@ -107,11 +107,11 @@
                           echo $cd;
                           ?></td>
                         <td>
-                          <p><?php echo $rec['role_name']; ?></p>
+                          <p><?php echo empty($rec['role_name']) ? $rec['disignation'] : $rec['role_name']; ?></p>
                         </td>
                         <td>
-                          <p><?php echo (empty($rec['location'])) ? $rec['location_name'] : ucfirst($rec['location']) ;?></p>
-                          <p><?php echo ucfirst($rec['location']);?></p>
+                          <p><?php echo (empty($rec['location_name'])) ? ucfirst($rec['location']) : $rec['location_name'] ;?></p>
+                          <!-- <p><?php // echo ucfirst($rec['location']);?></p> -->
                         </td>
                         <td><?php $s=$rec['user_status'];
                           if($s==1){ ?>
