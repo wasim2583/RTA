@@ -1,0 +1,107 @@
+.bg-site{background-color: #FF931E!important;}
+.menu .navbar-nav .nav-link{padding: 6px 81px !important;font-size: 17px;
+font-weight: bold;color: #333 !important}
+.logo-sec{    padding: 14px 0px;}
+.banner-bg{background-size: 100% 100%;background-repeat: no-repeat;background-attachment: fixed;background-image: url(../images/banner.jpg);min-height: 400px}
+.gallery-bg{background-size: 100% 100%;background-repeat: no-repeat;background-image: url(https://lohiaauto.com/main/images/home-banner.jpg);min-height: 250px}
+.gallery-bg .overlay{background-color: rgba(0,0,0,0.5)}
+.title{    padding: 165px 0px;font-size: 74px;color: #fff;}
+.b-l{    border-left: 1px solid #ff931e;}
+.b-l h4{margin-top: 15px;}
+.b-b{border-bottom: 3px solid #ff931e;}
+.ourapp .mar-adj{    margin: 32px 0px;}
+.footer {background: #01203F;/* margin-top: 20px; */  padding: 0px;}
+.footer-main-left p {color: #fff;font-size: 14px;line-height: 20px;}
+.footer-main-left ul {margin: 0px;padding: 0px;}
+.footer-main-left ul li {margin: 0px;padding: 0px;list-style: none;}
+.footer-main-left ul li a {margin: 5px;color: #fff;line-height: 25px;font-size: 21px;}
+/* dropdown css*/
+.navbar-nav li:hover > ul.dropdown-menu {display: block;}
+.dropdown-submenu {position:relative;}
+.dropdown-submenu>.dropdown-menu {top:0;left:100%;margin-top:-6px;}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {text-decoration: underline;transform: rotate(-90deg);}
+.dropdown-toggle::after{    float: right;margin-top: 9px;}
+.gallery img{height: 175px;width: 100%;margin-top: 29px;}
+.subtitle {padding: 97px 0px;font-size: 51px;color: #fff;}
+.no-padd{padding-left: 0px !important;padding-right: 0px !important}
+/* dropdown css*/
+/* slider css start */
+
+.osSlider-main .slider-btn-prev {
+    position: absolute;
+    z-index: 30;
+    top: 50%;
+    left: -45px;
+    width: 40px;
+    height: 40px;
+    text-indent: -9999px;
+    margin-top: -20px;
+    background: url(../images/prev.png) 50% 50% no-repeat;
+    transition: all .5s linear;
+}
+
+.osSlider-main:hover .slider-btn-prev {
+    left: 5px;
+}
+.osSlider-main .slider-btn-next {
+    position: absolute;
+    z-index: 30;
+    top: 50%;
+    right: -45px;
+    width: 40px;
+    height: 40px;
+    text-indent: -9999px;
+    margin-top: -20px;
+    background: url(../images/next.png) 50% 50% no-repeat;
+    transition: all .5s linear;list-style: none;
+}
+
+.osSlider-main:hover .slider-btn-next {
+    right: 5px;
+}
+
+/* 高亮导航部分 */
+.osSlider-main .slider-nav {
+    position: absolute;
+    width:100%;
+    height: 22px;
+    bottom: 20px;
+    text-align: center;
+    z-index: 25;
+}
+.osSlider-main .slider-nav li {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 6px;
+    margin: 0 12px;
+    font-size: 12px;
+    color: #eee;
+    border: 1px solid #eee;
+    background: none;
+    cursor: pointer;
+}
+.osSlider-main .slider-nav li.active {
+    color: #333;
+    background: #eee;
+}
+.osSlider-main .slider-nav li:hover {
+    border: 1px solid #f60;
+    background: #f60;
+}
+.slider {
+    width: 100% !important;
+    height: 700px;
+    margin: 0px auto;
+    overflow: hidden;
+/* slider css end */
+@media (min-width:320px) and (max-width:720px){
+    .footer-main-left ul li a {
+    margin: 5px;
+    color: #fff;
+    line-height: 25px;
+    font-size: 18px;
+}
+}

@@ -537,7 +537,17 @@ public function accidentInspectionFetch($id)
 			$response['data']=array();
 		}
 		return json_encode($response);
-	}	
+	}
+
+	/* Add-on starts */
+	public function fetch_irsc_members()
+	{
+		$this->db->select('*');
+		$this->db->from('irsc_members');
+		$result = $this->db->get();
+		return $result->result();
+	}
+	/* Add-on ends */
 	
 }
 ?>

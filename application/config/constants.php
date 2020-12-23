@@ -83,3 +83,59 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+
+$url_details=$_SERVER['HTTP_HOST'];
+$url_details.=str_replace(basename($_SERVER['SCRIPT_NAME']),'',$_SERVER['SCRIPT_NAME']);/*For Getting the project(Hosting Name)*/
+$config['base_url'] ='http://'.$url_details;
+
+define('HTTP_BASE_PATH',$config['base_url']);
+define('AM_CSS',$config['base_url'].'admin_assets/css/');
+define('AM_IMG',$config['base_url'].'admin_assets/img/');
+define('AM_JS',$config['base_url'].'admin_assets/js/');
+
+/*
+|--------------------------------------------------------------------------
+| RESPONSE Codes(for Developer Purpose)
+|--------------------------------------------------------------------------
+ */
+date_default_timezone_set("Asia/Calcutta");
+define('DATE',date('Y-m-d H:i:s'));
+define('QUERY_DEBUG',1);
+define('QUERY_MESSAGE','query_show');
+define('QUERY_DEBUG_MESSAGE','query_debug');
+define('CODE','code');
+define('MESSAGE','message');
+define('DESCRIPTION','description');
+define('EMAIL_EXISTS','emailexists');
+define('MOBILE_EXISTS','mobileexists');
+define('INSERTED_ID','inserted_id');
+define('DB_ERROR','dberror');
+define('SUCCESS_CODE',200);
+define('FAIL_CODE',204);
+define('VALIDATION_CODE',301);
+define('EXISTS_CODE',422);
+define('INTERNAL_SERVER_ERROR_CODE',500);
+define('DB_ERROR_CODE',575);
+
+define('SITE_TITLE','Test');
+define('SITE_DOMAIN','test.com');
+
+
+define('APP_EXT','api/');
+define('PROJECT_NAME','suits');
+/*
+|-------------------------------------------------------
+|---------------------------------------------------------
+*/
+define('EMAIL_TEMPLATE_FOLDER','pages/templates/');
+define('SITE_MODE',1);/*1 : LIVE & 0 : LOCALHOST*/
+define('SMTP_FROM_EMAIL',(SITE_MODE==1)?'achari@realrichies.com':'achariphp@gmail.com');
+define('SMTP_FROM_NAME',SITE_DOMAIN);
+define('BCC_EMAIL','achari@realrichies.com');
+define('SMTP_PORT',(SITE_MODE==1)?25:465);
+define('SMTP_USER',(SITE_MODE==1)?'achari@realrichies.com':'knsr1987@gmail.com');
+define('SMTP_PASSWORD',(SITE_MODE==1)?'mahalacto':'reddy*123');
+define('SMTP_HOST',(SITE_MODE==1)?'mail.realrichies.com':'ssl://smtp.googlemail.com');
+define('SMTP_PROTOCAL',(SITE_MODE==1)?'mail':'smtp');

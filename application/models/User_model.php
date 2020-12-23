@@ -68,4 +68,22 @@ class User_model extends CI_Model
         $result = $this->db->get();
         return $result->row_object();
     }
+
+    public function get_partner_by_loginId($loginId)
+    {
+        if(is_numeric($loginId))
+        {
+            $this->db->where('mobile', $loginId);
+        }
+        else
+        {
+            $this->db->where('email', $loginId);
+        }       
+        
+        $result = $this->db->get('irsc_partners');
+        if($result->num_rows() == 1)
+            return $result->row_object();
+        else
+            return false;
+    }
 }

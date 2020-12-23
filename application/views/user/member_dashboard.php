@@ -225,7 +225,7 @@
                         </div>
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Profile Pic</div>
-                           <div class="col-lg-8"><img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'assets/profile_pics/'.$member->profile_pic; ?>"></div>
+                           <div class="col-lg-8"><img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/'.$member->profile_pic; ?>"></div>
                         </div>
                         <?php //print_r($member); ?>
                      </div>

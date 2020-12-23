@@ -3,10 +3,8 @@ class Member extends CI_Controller{
 	public function __construct()
 	{    
 		parent::__construct();
-		$this->load->model(['crud_model', 'Base_model', 'User_model']);
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-		$this->load->library('session');
+		$this->load->model(['crud_model', 'Base_model', 'User_model']);	
+
 		if(empty($this->session->userdata('state_id')))
 		{
 			redirect(base_url());
@@ -46,12 +44,21 @@ class Member extends CI_Controller{
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[12]', array(
 			'required' => 'Please provide your %s.'
 		));
-		// $this->form_validation->set_rules('profile_pic', 'Profile Pic', 'required');
+		$this->form_validation->set_rules('cnfpwd', 'Confirm Password', 'required|matches[password]', array(
+			'required' => 'Please provide your %s.'
+		));
 		if($this->form_validation->run() == TRUE)
 		{
-			$member = $this->input->post();
+			$member = [];
+			$member['full_name'] = $this->input->post('full_name');
+			$member['email'] = $this->input->post('email');
+			$member['mobile'] = $this->input->post('mobile');
+			$member['state'] = $this->input->post('state');
+			$member['location'] = $this->input->post('location');
+			$member['address'] = $this->input->post('full_name');
 			$member['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-
+			$member['status'] = 1;
+			/*
 			$config['upload_path'] = './assets/profile_pics/';
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
@@ -68,6 +75,7 @@ class Member extends CI_Controller{
                 
                 $this->upload->display_errors();
             }
+            */
 			$member_id = $this->User_model->insert_member($member);
 			if($member_id)
 			{
@@ -83,7 +91,7 @@ class Member extends CI_Controller{
 		}
 		else
 		{
-			$this->load->view('user/membership', $this->data);
+			$this->load->view('user/member_registration', $this->data);
 		}
 	}
 	public function login()
@@ -138,6 +146,10 @@ class Member extends CI_Controller{
 
 	public function dashboard()
 	{
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
 		$member_id = $this->session->userdata('member_id');
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		$this->load->view('user/member_header', $this->data);
