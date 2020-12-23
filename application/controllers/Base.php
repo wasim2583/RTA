@@ -68,7 +68,7 @@ class Base extends CI_Controller
 /* Abhilash code ends */
 	public function ajax_get_locations_by_state($state_id){
 
-		$locations = $this->BaseModel->get_locations_by_state($state_id);
+		$locations = $this->Base_model->get_locations_by_state($state_id);
 		echo json_encode($locations);
 		exit;
 
