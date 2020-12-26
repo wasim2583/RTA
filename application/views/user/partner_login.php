@@ -41,8 +41,8 @@
                               <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                            </div>
                         </div>                     
-                        
-                        <a href="member_profile.html"><button class="btn btn-primary btn_submit">Submit</button></a>
+                        <button type="submit" class="btn btn-primary btn_submit">Submit</button>
+                        <!-- <a href="member_profile.html"><button class="btn btn-primary btn_submit">Submit</button></a> -->
 
                         <div class="Reg_link"><span>Not Yet Registered? </span><a href="<?php echo base_url().'user/Partner/registration'; ?>">Register</a></div>
                      </div>

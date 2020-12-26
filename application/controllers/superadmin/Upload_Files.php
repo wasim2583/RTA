@@ -266,7 +266,8 @@ public function pagination1($base_url, $total_rows, $per_page){
 	{
 		$si=$this->uri->segment(4,0);
 		$base_url= HTTP_BASE_PATH."admin/gallery/gallery_information";
-		$this->data['row'] = $this->Base_model->get_photos_by_state();
+		// $this->data['row'] = $this->Base_model->get_photos_by_state();
+		$this->data['row'] = $this->Base_model->get_all_photos();
 		// $tr=$this->crud_model->count_num_recs('files');
 		$tr = count($this->data['row']);
 		$pp=10;
@@ -274,7 +275,7 @@ public function pagination1($base_url, $total_rows, $per_page){
 	 	$this->load->library('pagination');
 	 	$this->pagination->initialize($config);
 	 	$this->data['links']=$this->pagination->create_links($config);
-	 	// $res=$this->crud_model->common_fetch('files',$config['per_page'],$si,'id');		
+	 	$this->data['row'] = $this->crud_model->common_fetch('files',$config['per_page'],$si,'id');		
 		$this->load->view('superadmin_view/photos/gallery_information_view',$this->data);
 	}
 

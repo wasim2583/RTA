@@ -58,7 +58,7 @@ class Partner extends CI_Controller{
 			$partner['mobile'] = $this->input->post('mobile');
 			$partner['state'] = $this->input->post('state');
 			$partner['location'] = $this->input->post('location');
-			$partner['address'] = $this->input->post('full_name');
+			// $partner['address'] = $this->input->post('full_name');
 			$partner['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			$partner['status'] = 1;
 			/*
@@ -101,7 +101,7 @@ class Partner extends CI_Controller{
     {
         if($this->session->userdata('partner_id'))
         {
-            redirect(base_url().'user/Member/dashboard');
+            redirect(base_url().'user/Partner/dashboard');
         }
         $this->data['title'] = 'Partner Login';
         

@@ -7,11 +7,43 @@ class User_model extends CI_Model
         $this->state_id = $this->session->userdata('app_state');
     }
 
+    public function insert_user($data)
+    {
+        $result = $this->db->insert('irsc_users', $data);
+        return $this->db->insert_id();
+    }
+
+    public function get_user_by_id($id)
+    {
+        $this->db->where('id', $id);
+        $result = $this->db->get('irsc_users');
+        return $result->row_object();
+    }
+
+    public function get_user_by_loginId($loginId)
+    {
+        if(is_numeric($loginId))
+        {
+            $this->db->where('mobile', $loginId);
+        }
+        else
+        {
+            $this->db->where('email', $loginId);
+        }       
+        
+        $result = $this->db->get('irsc_users');
+        if($result->num_rows() == 1)
+            return $result->row_object();
+        else
+            return false;
+    }
+
     public function insert_member($data)
     {
         $result = $this->db->insert('irsc_members', $data);
         return $this->db->insert_id();
     }
+
 
     public function get_member_by_id($id)
     {

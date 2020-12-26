@@ -29,13 +29,13 @@ class Member extends CI_Controller{
 		$this->form_validation->set_rules('location', 'Location', 'required', array(
 			'required' => 'Please select your %s.'
 		));
-		$this->form_validation->set_rules('email', 'E-mail ID', 'required|valid_email|is_unique[irsc_members.email]',
+		$this->form_validation->set_rules('email', 'E-mail ID', 'required|valid_email|is_unique[irsc_users.email]',
 			array(
 				'required'      => 'Please provide your valid %s',
                 'is_unique'     => 'This %s already exists.'
 			)
         );
-		$this->form_validation->set_rules('mobile', 'Mobile Phone Number', 'required|exact_length[10]|is_unique[irsc_members.mobile]',
+		$this->form_validation->set_rules('mobile', 'Mobile Phone Number', 'required|exact_length[10]|is_unique[irsc_users.mobile]',
 			array(
 				'required'      => 'Please provide your valid %s',
                 'is_unique'     => 'This %s already exists.'
@@ -55,7 +55,7 @@ class Member extends CI_Controller{
 			$member['mobile'] = $this->input->post('mobile');
 			$member['state'] = $this->input->post('state');
 			$member['location'] = $this->input->post('location');
-			$member['address'] = $this->input->post('full_name');
+			// $member['address'] = $this->input->post('full_name');
 			$member['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			$member['status'] = 1;
 			/*
@@ -76,7 +76,7 @@ class Member extends CI_Controller{
                 $this->upload->display_errors();
             }
             */
-			$member_id = $this->User_model->insert_member($member);
+			$member_id = $this->User_model->insert_user($member);
 			if($member_id)
 			{
 				$this->session->set_userdata('member_id', $member_id);
