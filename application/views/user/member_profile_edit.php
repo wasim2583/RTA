@@ -110,7 +110,7 @@
                </h6>
                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                     <img class="rounded-circle" src="<?php echo base_url(); ?>design/img/undraw_profile_1.svg"
+                     <img class="rounded-circle" src="img/undraw_profile_1.svg"
                         alt="">
                      <div class="status-indicator bg-success"></div>
                   </div>
@@ -123,7 +123,7 @@
                </a>
                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                     <img class="rounded-circle" src="<?php echo base_url(); ?>design/img/undraw_profile_2.svg"
+                     <img class="rounded-circle" src="img/undraw_profile_2.svg"
                         alt="">
                      <div class="status-indicator"></div>
                   </div>
@@ -136,7 +136,7 @@
                </a>
                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                     <img class="rounded-circle" src="<?php echo base_url(); ?>design/img/undraw_profile_3.svg"
+                     <img class="rounded-circle" src="img/undraw_profile_3.svg"
                         alt="">
                      <div class="status-indicator bg-warning"></div>
                   </div>
@@ -168,7 +168,7 @@
          <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><button onclick="location.href='<?php echo base_url(); ?>user/Member/logout'" class="btn btn-danger btn-sm">Logout</button></span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Member</span>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -212,86 +212,63 @@
                   <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
                </div>
                <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-6">
-                     <div class="col-lg-12 col-md-12">
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Name</div>
-                           <div class="col-lg-8"><span><?php echo $member->full_name; ?></span></div>
-                        </div>
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Gender</div>
-                           <div class="col-lg-8"><span><?php echo empty($member->gender) ? 'NA' : $member->gender; ?></span></div>
-                        </div>
-                        
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
-                           <div class="col-lg-8"><span><?php echo empty($member->aadhaar) ? 'NA' : $member->aadhaar; ?></span></div>
-                        </div>
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Blood group</div>
-                           <div class="col-lg-8"><span><?php echo empty($member->blood_group) ? 'NA' : $member->group; ?></span></div>
-                        </div>
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Profile Pic</div>
-                           <div class="col-lg-8">
-                              <?php
-                              if(empty($member->profile_pic))
-                              {
-                                 ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/parrot.jpg'; ?>">
-                                 <?php
-                              }
-                              else
-                              {
-                                 ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/'.$member->profile_pic; ?>">
-                                 <?php
-                              }
-                              ?>
+                  <div class="row">
+                     <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="col-lg-6">
+                           <div class="col-lg-12 col-md-12">
+                              <div class="row Member_labels">
+                                 <div class="col-lg-4 lableTxt">Gender</div>
+                                 <div class="col-lg-8">
+                                    <select class="form-control" name="gender" id="gender">
+                                       <option>--Select Gender--</option>
+                                       <option value="Male">Male</option>
+                                       <option value="Female">Female</option>
+                                       <option value="Third-gender">Transgender</option>
+                                    </select>
+                                 </div>
+                              </div>                        
+                              <div class="row Member_labels">
+                                 <div class="col-lg-4 lableTxt">Blood group</div>
+                                 <div class="col-lg-8">
+                                    <input type="text" class="form-control" placeholder="blood group">
+                                 </div>
+                              </div>
+                              <div class="row Member_labels">
+                                 <div class="col-lg-4 lableTxt">Emergency contact</div>
+                                 <div class="col-lg-8">
+                                    <input type="text" class="form-control" placeholder="Emergency contact">
+                                 </div>
+                              </div>
                            </div>
                         </div>
-                        <?php //print_r($member); ?>
-                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Mobile</div>
-                        <div class="col-lg-8"><span><?php echo $member->mobile; ?></span></div>
-                     </div>
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Email</div>
-                        <div class="col-lg-8"><span><?php echo $member->email; ?></span></div>
-                     </div>
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Emergency contact</div>
-                        <div class="col-lg-8"><span><?php echo empty($member->emergency_contact) ? 'NA' : $member->emergency_contact; ?></span></div>
-                     </div>
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Address</div>
-                        <div class="col-lg-8">
-                           <?php echo empty($member->address) ? 'NA' : $member->address; ?>
-                           <!-- <address>
-                              <strong>Pallaki Enclave, Plot No 44, </strong><br> 3rd Floor, Municipal Plots, <br>Bapuji Nagar, Udayagiri Road,<br>Kavali, Nellore Dist-524201<br>Andhra Pradesh.
-                              <div class="address-align"><abbr class="phone-icon" title="Phone">Ph:</abbr> 08626 - 251777</div>
-                              <div class="address-align"> <span class="mobile-icon"></span>+91 7036356760</div>
-                              <div class="address-align"> <span class="email-icon"></span>projects@mannschaftit.com</div>
-                              <abbr title="email"></abbr> 
-                           </address> -->
+                        <div class="col-lg-6">
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
+                              <div class="col-lg-8">
+                                 <input type="text" class="form-control" placeholder="aadhar">
+                              </div>
+                           </div>                     
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Address</div>
+                              <div class="col-lg-8">
+                                 <textarea class="form-control" placeholder="Address"></textarea>
+                              </div>
+                           </div>
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Profile Pic</div>
+                              <div class="col-lg-8"><input type="file" placeholder="Profile Pic" name="Profile Pic" value="Profile Pic"></div>
+                           </div>
+                           <button type="submit" class="btn btn-primary btn_submit">Update</button>
                         </div>
-                     </div>
-                     
-                     <a href="<?php echo base_url(); ?>user/Member/dashboard" class="float-right"><button class="btn btn-primary btn_submit">Edit</button></a>
-                  </div>
+                     </form>
                   </div>
                </div>
             </div>
             <!-- Color System -->
          </div>
       </div>
-       <!-- Content Row -->
-      
+      <!-- Content Row -->
    </div>
    <!-- /.container-fluid -->
 </div>
-<!-- End of Main Content
+<!-- End of Main Content -->

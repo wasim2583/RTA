@@ -109,7 +109,7 @@ class Member extends CI_Controller{
 		{
 			$loginId = $this->input->post('loginId');
 			$password = $this->input->post('password');
-			$member = $this->User_model->get_member_by_loginId($loginId);
+			$member = $this->User_model->get_user_by_loginId($loginId);
 			
 			if($member)
 			{
@@ -144,6 +144,19 @@ class Member extends CI_Controller{
 		$this->load->view('user/member', $this->data);
 	}
 
+	public function profile_edit()
+	{
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
+		$member_id = $this->session->userdata('member_id');
+		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
+		$this->load->view('user/member_header', $this->data);
+		$this->load->view('user/member_profile_edit', $this->data);
+		$this->load->view('user/member_footer', $this->data);
+	}
+
 	public function dashboard()
 	{
 		if( ! $this->session->userdata('member_id'))
@@ -152,6 +165,7 @@ class Member extends CI_Controller{
 		}
 		$member_id = $this->session->userdata('member_id');
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
+		
 		$this->load->view('user/member_header', $this->data);
 		$this->load->view('user/member_dashboard', $this->data);
 		$this->load->view('user/member_footer', $this->data);

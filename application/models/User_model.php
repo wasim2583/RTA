@@ -52,7 +52,7 @@ class User_model extends CI_Model
             loc.location_name, loc.state_id,
             state.state_name
             ');
-        $this->db->from('irsc_members member');
+        $this->db->from('irsc_users member');
         $this->db->join('locations loc', 'loc.id = member.location');
         $this->db->join('states state', 'state.id = loc.state_id');
         $this->db->where('member.id', $id);
