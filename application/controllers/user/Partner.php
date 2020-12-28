@@ -16,6 +16,7 @@ class Partner extends CI_Controller{
 	}
 	public function registration()
 	{
+		$irsc_user_role = $this->Base_model->get_irsc_user_role_by_name('Partner');
 		$this->data['organization_types'] = $this->Base_model->get_organization_types();
 
 		$this->form_validation->set_rules('full_name', 'Full Name', 'required', array(
@@ -30,13 +31,13 @@ class Partner extends CI_Controller{
 		$this->form_validation->set_rules('location', 'Location', 'required', array(
 			'required' => 'Please select your %s.'
 		));
-		$this->form_validation->set_rules('email', 'E-mail ID', 'required|valid_email|is_unique[irsc_partners.email]',
+		$this->form_validation->set_rules('email', 'E-mail ID', 'required|valid_email|is_unique[irsc_users.email]',
 			array(
 				'required'      => 'Please provide your valid %s',
                 'is_unique'     => 'This %s already exists.'
 			)
         );
-		$this->form_validation->set_rules('mobile', 'Mobile Phone Number', 'required|exact_length[10]|is_unique[irsc_partners.mobile]',
+		$this->form_validation->set_rules('mobile', 'Mobile Phone Number', 'required|exact_length[10]|is_unique[irsc_users.mobile]',
 			array(
 				'required'      => 'Please provide your valid %s',
                 'is_unique'     => 'This %s already exists.'
@@ -58,7 +59,7 @@ class Partner extends CI_Controller{
 			$partner['mobile'] = $this->input->post('mobile');
 			$partner['state'] = $this->input->post('state');
 			$partner['location'] = $this->input->post('location');
-			// $partner['address'] = $this->input->post('full_name');
+			$partner['role'] = $irsc_user_role->id;
 			$partner['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			$partner['status'] = 1;
 			/*
@@ -77,7 +78,7 @@ class Partner extends CI_Controller{
                 $this->upload->display_errors();
             }
 			*/
-            $partner_id = $this->User_model->insert_partner($partner);
+            $partner_id = $this->User_model->insert_user($partner);
 
 			if($partner_id)
 			{
@@ -149,8 +150,13 @@ class Partner extends CI_Controller{
 
     public function dashboard()
     {
-        $partner_id = $this->session->userdata('partner_id');
-        $this->data['partner'] = $this->User_model->get_partner_by_id($partner_id);
+        if( ! $this->session->userdata('partner_id'))
+		{
+			redirect(base_url().'user/Partner/login');
+		}
+		$partner_id = $this->session->userdata('partner_id');
+		$this->data['partner'] = $this->User_model->get_partner_by_id($partner_id);
+
         $this->load->view('user/partner_header', $this->data);
         $this->load->view('user/partner_dashboard', $this->data);
         $this->load->view('user/partner_footer', $this->data);

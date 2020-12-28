@@ -280,6 +280,18 @@
                            </address> -->
                         </div>
                      </div>
+                     <div class="row Member_labels">
+                        <div class="col-lg-4 lableTxt">City/Town/Village</div>
+                        <div class="col-lg-8">
+                           <?php echo $member->location_name; ?>
+                        </div>
+                     </div>
+                     <div class="row Member_labels">
+                        <div class="col-lg-4 lableTxt">State</div>
+                        <div class="col-lg-8">
+                           <?php echo $member->state_name; ?>
+                        </div>
+                     </div>
                      
                      <a href="<?php echo base_url(); ?>user/Member/dashboard" class="float-right"><button class="btn btn-primary btn_submit">Edit</button></a>
                   </div>

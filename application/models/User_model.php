@@ -15,6 +15,16 @@ class User_model extends CI_Model
 
     public function get_user_by_id($id)
     {
+        $this->db->select('
+            user.*,
+            role.role_name,
+            loc.location_name, loc.state_id,
+            state.state_name
+            ');
+        $this->db->from('irsc_users user');
+        $this->db->join('irsc_user_roles role', 'role.id = user.role');
+        $this->db->join('locations loc', 'loc.id = user.location');
+        $this->db->join('states state', 'state.id = location.state_id');
         $this->db->where('id', $id);
         $result = $this->db->get('irsc_users');
         return $result->row_object();
@@ -71,7 +81,7 @@ class User_model extends CI_Model
             $this->db->where('email', $loginId);
         }       
         
-        $result = $this->db->get('irsc_members');
+        $result = $this->db->get('irsc_users');
         if($result->num_rows() == 1)
             return $result->row_object();
         else
@@ -92,7 +102,7 @@ class User_model extends CI_Model
             loc.location_name, loc.state_id,
             state.state_name
             ');
-        $this->db->from('irsc_partners partner');
+        $this->db->from('irsc_users partner');
         $this->db->join('organizations org', 'org.id = partner.organization_type');
         $this->db->join('locations loc', 'loc.id = partner.location');
         $this->db->join('states state', 'state.id = loc.state_id');
@@ -112,7 +122,7 @@ class User_model extends CI_Model
             $this->db->where('email', $loginId);
         }       
         
-        $result = $this->db->get('irsc_partners');
+        $result = $this->db->get('irsc_users');
         if($result->num_rows() == 1)
             return $result->row_object();
         else

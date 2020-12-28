@@ -147,4 +147,22 @@ class Base_model extends CI_Model
         $result = $this->db->get();
         return $result->result();
     }
+
+    public function get_irsc_user_role_by_id($id)
+    {
+        $this->db->select('id, role_name');
+        $this->db->from('irsc_user_roles');
+        $this->db->where('id', $id);
+        $result = $this->db->get();
+        return $result->row_object();
+    }
+
+    public function get_irsc_user_role_by_name($role_name)
+    {
+        $this->db->select('id, role_name');
+        $this->db->from('irsc_user_roles');
+        $this->db->where('role_name', $role_name);
+        $result = $this->db->get();
+        return $result->row_object();
+    }
 }

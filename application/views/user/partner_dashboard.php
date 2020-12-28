@@ -227,27 +227,49 @@
                            <div class="col-lg-4 lableTxt">Organization Type</div>
                            <div class="col-lg-8"><span><?php echo empty($partner->organization_type) ? 'NA' : $partner->organization_type; ?></span></div>
                         </div>
-                        <div class="row Member_labels">
+                        <!-- <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Blood group</div>
-                           <div class="col-lg-8"><span><?php echo empty($partner->blood_group) ? 'NA' : $partner->blood_group; ?></span></div>
-                        </div>
+                           <div class="col-lg-8"><span><?php // echo empty($partner->blood_group) ? 'NA' : $partner->blood_group; ?></span></div>
+                        </div> -->
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Profile Pic</div>
                            <div class="col-lg-8">
+                              <?php
+                              if(empty($partner->profile_pic))
+                              {
+                                 ?>
+                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/parrot.jpg'; ?>">
+                                 <?php
+                              }
+                              else
+                              {
+                                 ?>
                               <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/'.$partner->profile_pic; ?>">
+                                 <?php
+                              }
+                              ?>
                            </div>
                         </div>
                         <?php //print_r($partner); ?>
                      </div>
                   </div>
                   <div class="col-lg-6">
-                     <div class="row Member_labels">
+                     <!-- <div class="row Member_labels">
                         <div class="col-lg-4 lableTxt">Gender</div>
-                        <div class="col-lg-8"><span><?php echo empty($partner->gender) ? 'NA' : $partner->gender; ?></span></div>
-                     </div>
-                     <div class="row Member_labels">
+                        <div class="col-lg-8"><span><?php // echo empty($partner->gender) ? 'NA' : $partner->gender; ?></span></div>
+                     </div> -->
+                     <!-- <div class="row Member_labels">
                         <div class="col-lg-4 lableTxt">Emergency contact</div>
                         <div class="col-lg-8"><span><?php echo empty($partner->emergency_contact) ? 'NA' : $partner->emergency_contact; ?></span></div>
+                     </div> -->
+                     
+                     <div class="row Member_labels">
+                        <div class="col-lg-4 lableTxt">Mobile</div>
+                        <div class="col-lg-8"><span><?php echo $partner->mobile; ?></span></div>
+                     </div>
+                     <div class="row Member_labels">
+                        <div class="col-lg-4 lableTxt">Email</div>
+                        <div class="col-lg-8"><span><?php echo $partner->email; ?></span></div>
                      </div>
                      <div class="row Member_labels">
                         <div class="col-lg-4 lableTxt">Address</div>
@@ -263,12 +285,12 @@
                         </div>
                      </div>
                      <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Mobile</div>
-                        <div class="col-lg-8"><span><?php echo empty($partner->mobile) ? 'NA' : $partner->mobile; ?></span></div>
+                        <div class="col-lg-4 lableTxt">City/Town/Village</div>
+                        <div class="col-lg-8"><span><?php echo $partner->location_name; ?></span></div>
                      </div>
                      <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Email</div>
-                        <div class="col-lg-8"><span><?php echo empty($partner->email) ? 'NA' : $partner->email; ?></span></div>
+                        <div class="col-lg-4 lableTxt">State</div>
+                        <div class="col-lg-8"><span><?php echo $partner->state_name; ?></span></div>
                      </div>
                      <a href="<?php echo base_url(); ?>user/Partner/dashboard" class="float-right"><button class="btn btn-primary btn_submit">Edit</button></a>
                   </div>

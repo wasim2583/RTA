@@ -230,13 +230,13 @@
                               <div class="row Member_labels">
                                  <div class="col-lg-4 lableTxt">Blood group</div>
                                  <div class="col-lg-8">
-                                    <input type="text" class="form-control" placeholder="blood group">
+                                    <input type="text" name="blood_group" id="blood_group" class="form-control" placeholder="blood group">
                                  </div>
                               </div>
                               <div class="row Member_labels">
                                  <div class="col-lg-4 lableTxt">Emergency contact</div>
                                  <div class="col-lg-8">
-                                    <input type="text" class="form-control" placeholder="Emergency contact">
+                                    <input type="text" name="emergency_contact" id="emergency_contact" class="form-control" placeholder="Emergency contact">
                                  </div>
                               </div>
                            </div>
@@ -245,18 +245,20 @@
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
                               <div class="col-lg-8">
-                                 <input type="text" class="form-control" placeholder="aadhar">
+                                 <input type="text" name="aadhaar" id="aadhaar" class="form-control" placeholder="aadhar">
                               </div>
                            </div>                     
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Address</div>
                               <div class="col-lg-8">
-                                 <textarea class="form-control" placeholder="Address"></textarea>
+                                 <textarea class="form-control" name="address" id="address" placeholder="Address"></textarea>
                               </div>
                            </div>
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Profile Pic</div>
-                              <div class="col-lg-8"><input type="file" placeholder="Profile Pic" name="Profile Pic" value="Profile Pic"></div>
+                              <div class="col-lg-8">
+                                 <input type="file" placeholder="Profile Pic" name="profile_pic" id="profile_pic">
+                              </div>
                            </div>
                            <button type="submit" class="btn btn-primary btn_submit">Update</button>
                         </div>

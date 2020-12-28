@@ -23,6 +23,8 @@ class Member extends CI_Controller{
 	}
 	public function registration()
 	{
+		$irsc_user_role = $this->Base_model->get_irsc_user_role_by_name('Member');
+		
 		$this->form_validation->set_rules('full_name', 'Full Name', 'required', array(
 			'required' => 'Please provide your %s.'
 		));
@@ -55,7 +57,7 @@ class Member extends CI_Controller{
 			$member['mobile'] = $this->input->post('mobile');
 			$member['state'] = $this->input->post('state');
 			$member['location'] = $this->input->post('location');
-			// $member['address'] = $this->input->post('full_name');
+			$member['role'] = $irsc_user_role->id;
 			$member['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			$member['status'] = 1;
 			/*
@@ -150,6 +152,7 @@ class Member extends CI_Controller{
 		{
 			redirect(base_url().'user/Member/login');
 		}
+
 		$member_id = $this->session->userdata('member_id');
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		$this->load->view('user/member_header', $this->data);
