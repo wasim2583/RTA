@@ -165,4 +165,10 @@ class Base_model extends CI_Model
         $result = $this->db->get();
         return $result->row_object();
     }
+
+    public function get_blood_groups()
+    {
+        $result = $this->db->get('blood_groups');
+        return $result->result();
+    }
 }

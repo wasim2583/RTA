@@ -82,6 +82,9 @@ class Member extends CI_Controller{
 			if($member_id)
 			{
 				$this->session->set_userdata('member_id', $member_id);
+				$member_data['member_id'] = $member_id;
+				$member_data['blood_group'] = 9;
+				$this->User_model->insert_member($member_data);
 				$this->session->set_flashdata('member_register_success','Member registration successful!');
 				redirect(base_url().'user/Member/dashboard');
 			}
@@ -111,8 +114,10 @@ class Member extends CI_Controller{
 		{
 			$loginId = $this->input->post('loginId');
 			$password = $this->input->post('password');
-			$member = $this->User_model->get_user_by_loginId($loginId);
-			
+			$role = $this->Base_model->get_irsc_user_role_by_name('Member');
+			$member = $this->User_model->get_user_by_loginId($loginId, $role->id);
+			// print_r($member);
+			// die;
 			if($member)
 			{
 				if(password_verify($password, $member->password))
@@ -152,12 +157,63 @@ class Member extends CI_Controller{
 		{
 			redirect(base_url().'user/Member/login');
 		}
-
 		$member_id = $this->session->userdata('member_id');
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
-		$this->load->view('user/member_header', $this->data);
-		$this->load->view('user/member_profile_edit', $this->data);
-		$this->load->view('user/member_footer', $this->data);
+		$this->data['blood_groups'] = $this->Base_model->get_blood_groups();
+		// echo "<pre>";
+		// print_r($this->data['blood_groups']);
+		// die;
+		$this->form_validation->set_rules('full_name', 'Full Name', 'required');
+		$this->form_validation->set_rules('dob', 'DoB', 'required');
+		$this->form_validation->set_rules('gender', 'Gender', 'required');
+		$this->form_validation->set_rules('blood_group', 'Blood Group', 'required');
+		$this->form_validation->set_rules('emergency_contact', 'Emergency Contact Number', 'required|numeric|exact_length[10]');
+		$this->form_validation->set_rules('address', 'Address', 'required');
+		if($this->form_validation->run() == TRUE)
+		{
+			$user['full_name'] = $this->input->post('full_name');
+			$member['dob'] = $this->input->post('dob');
+			$member['gender'] = $this->input->post('gender');
+			$member['blood_group'] = $this->input->post('blood_group');
+			$member['emergency_contact'] = $this->input->post('emergency_contact');
+			$member['address'] = $this->input->post('address');
+			$member['dob'] = $this->input->post('dob');
+
+			$config['upload_path'] = './rta_assets/profile_pics/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = 4096;
+            $this->load->library('upload', $config);
+        	if($this->upload->do_upload('profile_pic'))
+            {
+                $fdata = $this->upload->data();
+                
+                $member['profile_pic'] = $fdata['file_name'];
+            }
+            else
+            {
+                $member['profile_pic'] = 'parrot.jpg';
+                
+                $this->upload->display_errors();
+            }
+
+            $result = $this->User_model->update_member($member, $member_id);
+			if($result)
+			{
+				$this->session->set_flashdata('member_update_success', 'Details updated..');
+				redirect(base_url().'user/Member/dashboard');
+			}
+			else
+			{
+				$this->session->set_flashdata('member_update_error', 'Details NOT updated..');
+				redirect(current_url());
+			}
+		}
+		else
+		{
+			$this->load->view('user/member_header', $this->data);
+			$this->load->view('user/member_profile_edit', $this->data);
+			$this->load->view('user/member_footer', $this->data);
+		}
 	}
 
 	public function dashboard()
@@ -168,7 +224,9 @@ class Member extends CI_Controller{
 		}
 		$member_id = $this->session->userdata('member_id');
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
-		
+		// echo "<pre>";
+		// print_r($this->data['member']);
+		// die;
 		$this->load->view('user/member_header', $this->data);
 		$this->load->view('user/member_dashboard', $this->data);
 		$this->load->view('user/member_footer', $this->data);

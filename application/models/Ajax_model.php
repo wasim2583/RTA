@@ -4,7 +4,7 @@ class Ajax_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->state_id = $this->session->userdata('app_state');
+        $this->state_id = $this->session->userdata('state_id');
     }
 
     public function get_locations_by_states($statesArray)

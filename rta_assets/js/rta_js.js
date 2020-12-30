@@ -94,13 +94,6 @@ $(document).ready(function(){
 			$('#Matched_videos').html(data);
 		});
 	});
-	// $('#location_filters').on('select', 'input[type=date]', function(){
-	// 	$.post(site_url+'ajax/ajax_search_videos', $("#location_filters_form").serialize()).done(function(data){
-	// 		$('#search_loader').hide();
-	// 		$('#Matched_videos').html(data);
-	// 	});
-	// });
-
 	
 /* Abhilash code for RTA ends */
 

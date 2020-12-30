@@ -30,7 +30,7 @@ class User_model extends CI_Model
         return $result->row_object();
     }
 
-    public function get_user_by_loginId($loginId)
+    public function get_user_by_loginId($loginId, $role)
     {
         if(is_numeric($loginId))
         {
@@ -40,7 +40,7 @@ class User_model extends CI_Model
         {
             $this->db->where('email', $loginId);
         }       
-        
+        $this->db->where('role', $role);
         $result = $this->db->get('irsc_users');
         if($result->num_rows() == 1)
             return $result->row_object();
@@ -58,14 +58,18 @@ class User_model extends CI_Model
     public function get_member_by_id($id)
     {
         $this->db->select('
-            member.*,
-            loc.location_name, loc.state_id,
+            user.*,
+            member.aadhaar, member.address, member.gender, member.dob, member.emergency_contact, member.blood_group, member.profile_pic,
+            group.blood_group_name,
+            loc.location_name,
             state.state_name
             ');
-        $this->db->from('irsc_users member');
-        $this->db->join('locations loc', 'loc.id = member.location');
+        $this->db->from('irsc_users user');
+        $this->db->join('irsc_members member', 'member.member_id = user.id');
+        $this->db->join('blood_groups group', 'group.id = member.blood_group');
+        $this->db->join('locations loc', 'loc.id = user.location');
         $this->db->join('states state', 'state.id = loc.state_id');
-        $this->db->where('member.id', $id);
+        $this->db->where('user.id', $id);
         $result = $this->db->get();
         return $result->row_object();
     }
@@ -97,16 +101,18 @@ class User_model extends CI_Model
     public function get_partner_by_id($id)
     {
         $this->db->select('
-            partner.*,
+            user.*,
+            partner.address, partner.profile_pic,
             org.organization_type,
             loc.location_name, loc.state_id,
             state.state_name
             ');
-        $this->db->from('irsc_users partner');
-        $this->db->join('organizations org', 'org.id = partner.organization_type');
-        $this->db->join('locations loc', 'loc.id = partner.location');
+        $this->db->from('irsc_users user');
+        $this->db->join('irsc_partners partner', 'partner.partner_id = user.id', 'left');
+        $this->db->join('organizations org', 'org.id = user.organization_type');
+        $this->db->join('locations loc', 'loc.id = user.location');
         $this->db->join('states state', 'state.id = loc.state_id');
-        $this->db->where('partner.id', $id);
+        $this->db->where('user.id', $id);
         $result = $this->db->get();
         return $result->row_object();
     }
@@ -125,6 +131,16 @@ class User_model extends CI_Model
         $result = $this->db->get('irsc_users');
         if($result->num_rows() == 1)
             return $result->row_object();
+        else
+            return false;
+    }
+
+    public function update_member($member, $member_id)
+    {
+        $this->db->where('member_id', $member_id);
+        $this->db->update('irsc_members', $member);
+        if($this->db->affected_rows() == 1)
+            return true;
         else
             return false;
     }

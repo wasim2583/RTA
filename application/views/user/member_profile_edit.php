@@ -7,8 +7,7 @@
       <i class="fa fa-bars"></i>
       </button>
       <!-- Topbar Search -->
-      <form
-         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
          <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                aria-label="Search" aria-describedby="basic-addon2">
@@ -168,12 +167,12 @@
          <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Member</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><button onclick="location.href='<?php echo base_url(); ?>user/Member/logout'" class="btn btn-danger btn-sm">Logout</button></span>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                aria-labelledby="userDropdown">
-               <a class="dropdown-item" href="#">
+               <a class="dropdown-item" href="<?php echo base_url(); ?>user/Member/profile">
                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                Profile
                </a>
@@ -201,7 +200,10 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
          <h1 class="h3 mb-0 text-gray-800">Profile</h1>
       </div>
-     
+      <?php
+      if($this->session->flashdata('member_update_error'))
+         echo $this->session->flashdata('member_update_error');
+      ?>
       <!-- Content Row -->
       <div class="row">
          <!-- Content Column -->
@@ -212,47 +214,79 @@
                   <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
                </div>
                <div class="card-body">
-                  <div class="row">
-                     <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="col-lg-6">
+                  <form action="" method="POST" enctype="multipart/form-data">
+                     <div class="row">
+                        <div class="col-lg-4">
                            <div class="col-lg-12 col-md-12">
                               <div class="row Member_labels">
-                                 <div class="col-lg-4 lableTxt">Gender</div>
+                                 <div class="col-lg-4 lableTxt">Name</div>
                                  <div class="col-lg-8">
-                                    <select class="form-control" name="gender" id="gender">
-                                       <option>--Select Gender--</option>
-                                       <option value="Male">Male</option>
-                                       <option value="Female">Female</option>
-                                       <option value="Third-gender">Transgender</option>
-                                    </select>
+                                    <input type="text" name="full_name" id="full_name" class="form-control" value="<?php echo $member->full_name; ?>">
                                  </div>
-                              </div>                        
-                              <div class="row Member_labels">
-                                 <div class="col-lg-4 lableTxt">Blood group</div>
-                                 <div class="col-lg-8">
-                                    <input type="text" name="blood_group" id="blood_group" class="form-control" placeholder="blood group">
-                                 </div>
+                                 <?php echo form_error('full_name'); ?>
                               </div>
                               <div class="row Member_labels">
-                                 <div class="col-lg-4 lableTxt">Emergency contact</div>
+                                 <div class="col-lg-4 lableTxt">Date of Birth</div>
                                  <div class="col-lg-8">
-                                    <input type="text" name="emergency_contact" id="emergency_contact" class="form-control" placeholder="Emergency contact">
+                                    <input type="date" name="dob" id="dob" class="form-control" value="<?php echo ( !empty($member->dob)) ? $member->dob : set_value('dob'); ?>">
                                  </div>
+                                 <?php echo form_error('dob'); ?>
                               </div>
                            </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Gender</div>
+                              <div class="col-lg-8">
+                                 <select class="form-control" name="gender" id="gender">
+                                    <option value="">--Select Gender--</option>
+                                    <option value="Male" <?php echo ($member->gender == 'Male') ? 'selected' : ''; ?>>Male</option>
+                                    <option value="Female" <?php echo ($member->gender == 'Female') ? 'selected' : ''; ?>>Female</option>
+                                    <option value="Transgender" <?php echo ($member->gender == 'Transgender') ? 'selected' : ''; ?>>Transgender</option>
+                                 </select>
+                              </div>
+                              <?php echo form_error('gender'); ?>
+                           </div>                        
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Blood group</div>
+                              <div class="col-lg-8">
+                                 
+                                 <select class="form-control" name="blood_group" id="blood_group">
+                                    <option value="">--Select Blood Group--</option>
+                                    <?php
+                                    foreach($blood_groups as $blood_group)
+                                    {
+                                       ?>
+                                    <option value="<?php echo $blood_group->id; ?>" <?php echo ($member->blood_group == $blood_group->id) ? 'selected' : ''; ?>><?php echo $blood_group->blood_group_name; ?></option>
+                                       <?php
+                                    }
+                                    ?>
+                                 </select>
+                              </div>
+                              <?php echo form_error('blood_group'); ?>
+                           </div>
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Emergency contact</div>
+                              <div class="col-lg-8">
+                                 <input type="text" name="emergency_contact" id="emergency_contact" class="form-control" placeholder="Emergency contact" value="<?php echo ( ! empty($member->emergency_contact)) ? $member->emergency_contact : set_value('emergency_contact'); ?>">
+                              </div>
+                              <?php echo form_error('emergency_contact'); ?>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
                               <div class="col-lg-8">
-                                 <input type="text" name="aadhaar" id="aadhaar" class="form-control" placeholder="aadhar">
+                                 <input type="text" name="aadhaar" id="aadhaar" class="form-control" placeholder="aadhar" value="<?php echo ( ! empty($member->aadhaar)) ? $member->aadhaar : set_value('aadhaar'); ?>">
                               </div>
+                              <?php echo form_error('aadhaar'); ?>
                            </div>                     
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Address</div>
                               <div class="col-lg-8">
-                                 <textarea class="form-control" name="address" id="address" placeholder="Address"></textarea>
+                                 <textarea class="form-control" name="address" id="address" placeholder="Address"><?php echo ( ! empty($member->address)) ? $member->address : set_value('address'); ?></textarea>
                               </div>
+                              <?php echo form_error('address'); ?>
                            </div>
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Profile Pic</div>
@@ -262,8 +296,9 @@
                            </div>
                            <button type="submit" class="btn btn-primary btn_submit">Update</button>
                         </div>
-                     </form>
-                  </div>
+
+                     </div>
+                  </form>
                </div>
             </div>
             <!-- Color System -->
@@ -273,4 +308,4 @@
    </div>
    <!-- /.container-fluid -->
 </div>
-<!-- End of Main Content -->
+<!-- End of Main Content

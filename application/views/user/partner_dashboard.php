@@ -292,7 +292,7 @@
                         <div class="col-lg-4 lableTxt">State</div>
                         <div class="col-lg-8"><span><?php echo $partner->state_name; ?></span></div>
                      </div>
-                     <a href="<?php echo base_url(); ?>user/Partner/dashboard" class="float-right"><button class="btn btn-primary btn_submit">Edit</button></a>
+                     <button onclick="location.href='<?php echo base_url(); ?>user/Partner/dashboard'" class="btn btn-primary btn_submit">Edit</button>
                   </div>
                   </div>
                </div>

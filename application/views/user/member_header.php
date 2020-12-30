@@ -8,8 +8,7 @@
       <meta name="author" content="">
       <title>Member Dashboard</title>
       <!-- Custom fonts for this template-->
-      <link
-         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
          rel="stylesheet">
       <link href="<?php echo base_url(); ?>design/css/all.min.css" rel="stylesheet" >
       <!-- Custom styles for this template-->
@@ -31,7 +30,7 @@
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-               <a class="nav-link" href="">
+               <a class="nav-link" href="<?php echo base_url(); ?>user/Member/dashboard">
                <i class="fas fa-fw fa-tachometer-alt"></i>
                <span>Profile</span></a>
             </li>
@@ -39,8 +38,20 @@
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item active">
                <a class="nav-link" href="">
-               <i class="fas fa-fw fa-tachometer-alt"></i>
-               <span>Dashboard</span></a>
+               <i class="fa fa-id-card" aria-hidden="true"></i>
+               <span>Driving Licence</span></a>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <li class="nav-item active">
+               <a class="nav-link" href="">
+               <i class="fas fa-file"></i>
+               <span>Insurance</span></a>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <li class="nav-item active">
+               <a class="nav-link" href="">
+               <i class="fa fa-certificate"></i>
+               <span>Pollution</span></a>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
          </ul>

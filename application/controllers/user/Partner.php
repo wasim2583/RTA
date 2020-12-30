@@ -113,7 +113,8 @@ class Partner extends CI_Controller{
         {
             $loginId = $this->input->post('loginId');
             $password = $this->input->post('password');
-            $partner = $this->User_model->get_partner_by_loginId($loginId);
+            $role = $this->Base_model->get_irsc_user_role_by_name('Partner');
+            $partner = $this->User_model->get_user_by_loginId($loginId, $role->id);
             
             if($partner)
             {
