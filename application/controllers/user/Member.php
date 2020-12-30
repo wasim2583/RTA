@@ -60,24 +60,7 @@ class Member extends CI_Controller{
 			$member['role'] = $irsc_user_role->id;
 			$member['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			$member['status'] = 1;
-			/*
-			$config['upload_path'] = './assets/profile_pics/';
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
-            $config['max_size'] = 4096;
-            $this->load->library('upload', $config);
-        	if($this->upload->do_upload('profile_pic'))
-            {
-                $fdata = $this->upload->data();
-                
-                $member['profile_pic'] = $fdata['file_name'];
-            }
-            else
-            {
-                $member['profile_pic'] = 'parrot.jpg';
-                
-                $this->upload->display_errors();
-            }
-            */
+			
 			$member_id = $this->User_model->insert_user($member);
 			if($member_id)
 			{
@@ -162,6 +145,7 @@ class Member extends CI_Controller{
 		$this->data['blood_groups'] = $this->Base_model->get_blood_groups();
 		// echo "<pre>";
 		// print_r($this->data['blood_groups']);
+		// print_r($this->config->item('profile_pic_path'));
 		// die;
 		$this->form_validation->set_rules('full_name', 'Full Name', 'required');
 		$this->form_validation->set_rules('dob', 'DoB', 'required');
@@ -179,25 +163,24 @@ class Member extends CI_Controller{
 			$member['address'] = $this->input->post('address');
 			$member['dob'] = $this->input->post('dob');
 
-			$config['upload_path'] = './rta_assets/profile_pics/';
+			// $config['upload_path'] = base_url().'rta_assets/profile_pics/';
+			$config['upload_path'] = $this->config->item('profile_pic_path');
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
             $this->load->library('upload', $config);
         	if($this->upload->do_upload('profile_pic'))
             {
-                $fdata = $this->upload->data();
-                
+                $fdata = $this->upload->data();                
                 $member['profile_pic'] = $fdata['file_name'];
             }
             else
             {
-                $member['profile_pic'] = 'parrot.jpg';
-                
                 $this->upload->display_errors();
             }
 
-            $result = $this->User_model->update_member($member, $member_id);
-			if($result)
+            $member_update_result = $this->User_model->update_member($member, $member_id);
+            $user_update_result = $this->User_model->update_user($user, $member_id);
+			if($member_update_result || $user_update_result)
 			{
 				$this->session->set_flashdata('member_update_success', 'Details updated..');
 				redirect(base_url().'user/Member/dashboard');

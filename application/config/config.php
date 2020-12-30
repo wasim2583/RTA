@@ -28,7 +28,7 @@ $url_details=$_SERVER['HTTP_HOST'];
 $url_details.=str_replace(basename($_SERVER['SCRIPT_NAME']),'',$_SERVER['SCRIPT_NAME']);
 /*For Getting the project(Hosting Name)*/
 $config['base_url'] ='http://'.$url_details;
-
+$config['profile_pic_path'] = 'localhost:8080/RTA/rta_assets/profile_pics/';
 $config['default_state_id'] = 2;
 
 /*

@@ -144,4 +144,14 @@ class User_model extends CI_Model
         else
             return false;
     }
+
+    public function update_user($user, $user_id)
+    {
+        $this->db->where('id', $user_id);
+        $this->db->update('irsc_users', $user);
+        if($this->db->affected_rows() == 1)
+            return true;
+        else
+            return false;
+    }
 }
