@@ -53,7 +53,7 @@
                                     foreach($organization_types as $org_type)
                                     {
                                        ?>
-                                 <option value="<?php echo $org_type->id ?>" <?php echo ($org_type->id == set_value('organization_type')) ? 'selected' : ''; ?>><?php echo $org_type->organization_type; ?></option>
+                                 <option value="<?php echo $org_type->id ?>" <?php echo ($org_type->id == set_value('organization_type')) ? 'selected' : ''; ?>><?php echo $org_type->organization_type_name; ?></option>
                                        <?php
                                     }
                                  }

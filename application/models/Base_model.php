@@ -103,7 +103,7 @@ class Base_model extends CI_Model
 
     public function get_organization_types()
     {
-        $this->db->select('id, organization_type');
+        $this->db->select('id, organization_type_name');
         $this->db->from('organizations');
         $this->db->order_by('id', 'ASC');
         $result = $this->db->get();

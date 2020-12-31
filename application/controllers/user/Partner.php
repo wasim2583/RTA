@@ -63,18 +63,18 @@ class Partner extends CI_Controller{
 			$partner['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			$partner['status'] = 1;
 			/*
-			$config['upload_path'] = './assets/profile_pics/';
+			$config['upload_path'] = './assets/logos/';
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
             $this->load->library('upload', $config);
-        	if($this->upload->do_upload('profile_pic'))
+        	if($this->upload->do_upload('logo'))
             {
                 $fdata = $this->upload->data();
-                $partner['profile_pic'] = $fdata['file_name'];
+                $partner['logo'] = $fdata['file_name'];
             }
             else
             {
-                $partner['profile_pic'] = 'parrot.jpg';
+                $partner['logo'] = 'parrot.jpg';
                 $this->upload->display_errors();
             }
 			*/
@@ -82,6 +82,8 @@ class Partner extends CI_Controller{
 
 			if($partner_id)
 			{
+				$partner_data['partner_id'] = $partner_id;
+				$this->User_model->insert_partner($partner_data);
 				$this->session->set_userdata('partner_id', $partner_id);
 				$this->session->set_flashdata('partner_register_success','Partner registration successful!');
 				redirect(base_url().'user/Partner/dashboard');
@@ -156,6 +158,7 @@ class Partner extends CI_Controller{
 			redirect(base_url().'user/Partner/login');
 		}
 		$partner_id = $this->session->userdata('partner_id');
+		$this->data['title'] = 'Partner - Dashboard';
 		$this->data['partner'] = $this->User_model->get_partner_by_id($partner_id);
 
         $this->load->view('user/partner_header', $this->data);

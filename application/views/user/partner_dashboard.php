@@ -225,17 +225,17 @@
                         </div>
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Organization Type</div>
-                           <div class="col-lg-8"><span><?php echo empty($partner->organization_type) ? 'NA' : $partner->organization_type; ?></span></div>
+                           <div class="col-lg-8"><span><?php echo empty($partner->organization_type_name) ? 'NA' : $partner->organization_type_name; ?></span></div>
                         </div>
                         <!-- <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Blood group</div>
                            <div class="col-lg-8"><span><?php // echo empty($partner->blood_group) ? 'NA' : $partner->blood_group; ?></span></div>
                         </div> -->
                         <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Profile Pic</div>
+                           <div class="col-lg-4 lableTxt">Organization Logo</div>
                            <div class="col-lg-8">
                               <?php
-                              if(empty($partner->profile_pic))
+                              if(empty($partner->logo))
                               {
                                  ?>
                               <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/parrot.jpg'; ?>">
@@ -244,7 +244,7 @@
                               else
                               {
                                  ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/'.$partner->profile_pic; ?>">
+                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/'.$partner->logo; ?>">
                                  <?php
                               }
                               ?>

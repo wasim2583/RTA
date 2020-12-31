@@ -102,13 +102,13 @@ class User_model extends CI_Model
     {
         $this->db->select('
             user.*,
-            partner.address, partner.profile_pic,
-            org.organization_type,
+            partner.address, partner.logo,
+            org.organization_type_name,
             loc.location_name, loc.state_id,
             state.state_name
             ');
         $this->db->from('irsc_users user');
-        $this->db->join('irsc_partners partner', 'partner.partner_id = user.id', 'left');
+        $this->db->join('irsc_partners partner', 'partner.partner_id = user.id');
         $this->db->join('organizations org', 'org.id = user.organization_type');
         $this->db->join('locations loc', 'loc.id = user.location');
         $this->db->join('states state', 'state.id = loc.state_id');
