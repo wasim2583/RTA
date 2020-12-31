@@ -57,7 +57,9 @@ html {
     width: 100%;
     margin-bottom: 30px;font-size: 30px;
     text-transform: uppercase;}
-.carousel-caption h5{font-size:60px;}
+.carousel-caption h5{font-size: 40px;
+    text-shadow: 2px 4px 2px rgba(0,0,0,0.4);
+    letter-spacing: 2px;}
 .top-header{background:#00162b;min-height:40px;}
 .main-header{padding:10px 0;}
 .nav-wrapper{background: #ffea00;padding:10px;}
@@ -104,7 +106,7 @@ html {
 .abt_wrap{background: #000000; /*   background: #001a33 url("../images/pattern-blue.jpg") 0 0; */   padding:70px 0;}
 .abt_wrap .form__title{color:#ffffff;margin-bottom: 50px;}
 .abt_wrap .form__mark{color:#000000}
-header{position: fixed;top: 0;z-index:20;width: 100%;/*background: rgba(255, 234, 0,0.9);*/background-color:#000000;background: url("../images/road-texture.jpg");background-size: 50%;}
+header{background-color:#363636;position: fixed;top: 0;z-index:20;width: 100%;/*background: rgba(255, 234, 0,0.9);*/background: url("../images/road-texture.jpg");background-size: 50%;}
 .btn-primary{background:#ffea00; color:#000000;   border-color: #000000;}
 .nav-pills .nav-link{color:#000000;}
 .nav-pills .nav-link:hover{background: #000000;
@@ -326,8 +328,8 @@ header h1 a{font-weight:500;}
 }
 .Inn_wrap{display: inline-block;    max-width: 130px;}
 .Inn_wrap span{display: inline-block;width:100%;margin-top:10px;}
-.Inn_wrap img{border-radius:100px;    max-width:95px;border: 2px solid #363636;}
-.state_Loc_wrap{display:flex;width:100%;text-align: center;}
+.Inn_wrap img{border-radius:100%;    max-width:95px;border: 2px solid #363636;}
+.state_Loc_wrap{display:inline-block;width:100%;text-align: center;}
 .Inn_wrap:hover span{text-decoration: underline;cursor: pointer;}
 .Inn_wrap:hover img{border: 2px solid #ffea00;}
 @-webkit-keyframes bummer {

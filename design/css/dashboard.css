@@ -10527,6 +10527,7 @@ a:focus {
   }
   .sidebar .sidebar-brand .sidebar-brand-text {
     display: inline;
+    color:#ffffff;
   }
   .sidebar .sidebar-heading {
     text-align: left;
@@ -10673,11 +10674,11 @@ a:focus {
 }
 
 .sidebar-dark .nav-item.active .nav-link {
-  color: #000000;
+  color: #ffffff;
 }
 
 .sidebar-dark .nav-item.active .nav-link i {
-  color: #000000;
+  color: #ffffff;
 }
 
 .sidebar-dark #sidebarToggle {
@@ -10805,6 +10806,7 @@ a:focus {
   width: 100%;
 }
 /* custom css here *****/
+#accordionSidebar{background: url(../images/road-texture.jpg);background-size:100%;}
 .mem_prof .row.Member_labels{margin:10px 0;}
 .mem_prof .row.Member_labels span{font-weight:700;}
 
