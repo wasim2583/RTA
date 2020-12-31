@@ -7,8 +7,7 @@
       <i class="fa fa-bars"></i>
       </button>
       <!-- Topbar Search -->
-      <form
-         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
          <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                aria-label="Search" aria-describedby="basic-addon2">
@@ -110,7 +109,7 @@
                </h6>
                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                     <img class="rounded-circle" src="<?php echo base_url(); ?>design/img/undraw_profile_1.svg"
+                     <img class="rounded-circle" src="img/undraw_profile_1.svg"
                         alt="">
                      <div class="status-indicator bg-success"></div>
                   </div>
@@ -123,7 +122,7 @@
                </a>
                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                     <img class="rounded-circle" src="<?php echo base_url(); ?>design/img/undraw_profile_2.svg"
+                     <img class="rounded-circle" src="img/undraw_profile_2.svg"
                         alt="">
                      <div class="status-indicator"></div>
                   </div>
@@ -136,7 +135,7 @@
                </a>
                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                     <img class="rounded-circle" src="<?php echo base_url(); ?>design/img/undraw_profile_3.svg"
+                     <img class="rounded-circle" src="img/undraw_profile_3.svg"
                         alt="">
                      <div class="status-indicator bg-warning"></div>
                   </div>
@@ -173,7 +172,7 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                aria-labelledby="userDropdown">
-               <a class="dropdown-item" href="#">
+               <a class="dropdown-item" href="<?php echo base_url(); ?>user/Partner/profile">
                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                Profile
                </a>
@@ -201,7 +200,10 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
          <h1 class="h3 mb-0 text-gray-800">Profile</h1>
       </div>
-     
+      <?php
+      if($this->session->flashdata('partner_update_error'))
+         echo $this->session->flashdata('partner_update_error');
+      ?>
       <!-- Content Row -->
       <div class="row">
          <!-- Content Column -->
@@ -212,96 +214,68 @@
                   <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
                </div>
                <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-6">
-                     <div class="col-lg-12 col-md-12">
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Name</div>
-                           <div class="col-lg-8"><span><?php echo empty($partner->full_name) ? 'NA' : $partner->full_name; ?></span></div>
-                        </div>
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Ogranization Name</div>
-                           <div class="col-lg-8"><span><?php echo empty($partner->organization_name) ? 'NA' : $partner->organization_name; ?></span></div>
-                        </div>
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Organization Type</div>
-                           <div class="col-lg-8"><span><?php echo empty($partner->organization_type_name) ? 'NA' : $partner->organization_type_name; ?></span></div>
-                        </div>
-                        <!-- <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Blood group</div>
-                           <div class="col-lg-8"><span><?php // echo empty($partner->blood_group) ? 'NA' : $partner->blood_group; ?></span></div>
-                        </div> -->
-                        <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Organization Logo</div>
-                           <div class="col-lg-8">
-                              <?php
-                              if(empty($partner->logo))
-                              {
-                                 ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/parrot.jpg'; ?>">
-                                 <?php
-                              }
-                              else
-                              {
-                                 ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/'.$partner->logo; ?>">
-                                 <?php
-                              }
-                              ?>
+                  <form action="" method="POST" enctype="multipart/form-data">
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <div class="col-lg-12 col-md-12">
+                              <div class="row Member_labels">
+                                 <div class="col-lg-4 lableTxt">Name</div>
+                                 <div class="col-lg-8">
+                                    <input type="text" name="full_name" id="full_name" class="form-control" value="<?php echo $partner->full_name; ?>">
+                                 </div>
+                                 <?php echo form_error('full_name'); ?>
+                              </div>
+                              <div class="row Member_labels">
+                                 <div class="col-lg-4 lableTxt">Address</div>
+                                 <div class="col-lg-8">
+                                    <textarea class="form-control" name="address" id="address" placeholder="Address"><?php echo ( ! empty($partner->address)) ? $partner->address : set_value('address'); ?></textarea>
+                                 </div>
+                                 <?php echo form_error('address'); ?>
+                              </div>
                            </div>
                         </div>
-                        <?php //print_r($partner); ?>
-                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <!-- <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Gender</div>
-                        <div class="col-lg-8"><span><?php // echo empty($partner->gender) ? 'NA' : $partner->gender; ?></span></div>
-                     </div> -->
-                     <!-- <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Emergency contact</div>
-                        <div class="col-lg-8"><span><?php echo empty($partner->emergency_contact) ? 'NA' : $partner->emergency_contact; ?></span></div>
-                     </div> -->
-                     
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Mobile</div>
-                        <div class="col-lg-8"><span><?php echo $partner->mobile; ?></span></div>
-                     </div>
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Email</div>
-                        <div class="col-lg-8"><span><?php echo $partner->email; ?></span></div>
-                     </div>
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">Address</div>
-                        <div class="col-lg-8">
-                           <?php echo empty($partner->address) ? 'NA' : $partner->address; ?>
-                           <!-- <address>
-                              <strong>Pallaki Enclave, Plot No 44, </strong><br> 3rd Floor, Municipal Plots, <br>Bapuji Nagar, Udayagiri Road,<br>Kavali, Nellore Dist-524201<br>Andhra Pradesh.
-                              <div class="address-align"><abbr class="phone-icon" title="Phone">Ph:</abbr> 08626 - 251777</div>
-                              <div class="address-align"> <span class="mobile-icon"></span>+91 7036356760</div>
-                              <div class="address-align"> <span class="email-icon"></span>projects@mannschaftit.com</div>
-                              <abbr title="email"></abbr> 
-                           </address> -->
+                        <div class="col-lg-6">
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Organizatino Name</div>
+                              <div class="col-lg-8">
+                                 <input type="text" name="organization_name" id="organization_name" class="form-control" value="<?php echo ( !empty($partner->organization_name)) ? $partner->organization_name : set_value('organization_name'); ?>">
+                              </div>
+                              <?php echo form_error('organization_name'); ?>
+                           </div>
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Ogranization Type</div>
+                              <div class="col-lg-8">                                 
+                                 <select class="form-control" name="organization_type" id="organization_type">
+                                    <option value="">--Select Ogranization Type--</option>
+                                    <?php
+                                    foreach($organization_types as $organization_type)
+                                    {
+                                       ?>
+                                    <option value="<?php echo $organization_type->id; ?>" <?php echo ($partner->organization_type == $organization_type->id) ? 'selected' : ''; ?>><?php echo $organization_type->organization_type_name; ?></option>
+                                       <?php
+                                    }
+                                    ?>
+                                 </select>
+                              </div>
+                              <?php echo form_error('organization_type'); ?>
+                           </div> 
+                           <div class="row Member_labels">
+                              <div class="col-lg-4 lableTxt">Organization Logo</div>
+                              <div class="col-lg-8">
+                                 <input type="file" name="logo" id="logo">
+                              </div>
+                           </div>
+                           <button type="submit" class="btn btn-primary btn_submit">Update</button>                          
                         </div>
+
                      </div>
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">City/Town/Village</div>
-                        <div class="col-lg-8"><span><?php echo $partner->location_name; ?></span></div>
-                     </div>
-                     <div class="row Member_labels">
-                        <div class="col-lg-4 lableTxt">State</div>
-                        <div class="col-lg-8"><span><?php echo $partner->state_name; ?></span></div>
-                     </div>
-                     <button onclick="location.href='<?php echo base_url(); ?>user/Partner/profile_edit'" class="btn btn-primary btn_submit">Edit</button>
-                  </div>
-                  </div>
+                  </form>
                </div>
             </div>
             <!-- Color System -->
          </div>
       </div>
-       <!-- Content Row -->
-      
+      <!-- Content Row -->
    </div>
    <!-- /.container-fluid -->
 </div>

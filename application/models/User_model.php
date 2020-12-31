@@ -154,4 +154,14 @@ class User_model extends CI_Model
         else
             return false;
     }
+
+    public function update_partner($partner, $partner_id)
+    {
+        $this->db->where('partner_id', $partner_id);
+        $this->db->update('irsc_partners', $partner);
+        if($this->db->affected_rows() == 1)
+            return true;
+        else
+            return false;
+    }
 }

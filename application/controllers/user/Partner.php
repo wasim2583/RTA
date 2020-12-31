@@ -151,6 +151,66 @@ class Partner extends CI_Controller{
         $this->load->view('user/partner', $this->data);
     }
 
+    public function profile_edit()
+    {
+        if( ! $this->session->userdata('partner_id'))
+        {
+            redirect(base_url().'user/Partner/login');
+        }
+        $partner_id = $this->session->userdata('partner_id');
+        $this->data['title'] = 'Partner - Edit Profile';
+        $this->data['partner'] = $this->User_model->get_partner_by_id($partner_id);
+        $this->data['organization_types'] = $this->Base_model->get_organization_types();
+        // echo "<pre>";
+        // print_r($this->data['partner']);
+        // die;
+        $this->form_validation->set_rules('full_name', 'Full Name', 'required');
+        $this->form_validation->set_rules('organization_name', 'Organization Name', 'required');
+        $this->form_validation->set_rules('organization_type', 'Organization Type', 'required');
+        $this->form_validation->set_rules('address', 'Address', 'required');
+        if($this->form_validation->run() == TRUE)
+        {
+            $user['full_name'] = $this->input->post('full_name');
+            $user['organization_name'] = $this->input->post('organization_name');
+            $user['organization_type'] = $this->input->post('organization_type');
+            $partner['address'] = $this->input->post('address');
+
+            $config['upload_path'] = './rta_assets/logos/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = 4096;
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('logo'))
+            {
+                $fdata = $this->upload->data();                
+                $partner['logo'] = $fdata['file_name'];
+            }
+            else
+            {
+                $partner['logo'] = $this->data['partner']->logo;
+                $this->upload->display_errors();
+            }
+
+            $partner_update_result = $this->User_model->update_partner($partner, $partner_id);
+            $user_update_result = $this->User_model->update_user($user, $partner_id);
+            if($partner_update_result || $user_update_result)
+            {
+                $this->session->set_flashdata('partner_update_success', 'Details updated..');
+                redirect(base_url().'user/Partner/dashboard');
+            }
+            else
+            {
+                $this->session->set_flashdata('partner_update_error', 'Details NOT updated..');
+                redirect(current_url());
+            }
+        }
+        else
+        {
+            $this->load->view('user/partner_header', $this->data);
+            $this->load->view('user/partner_profile_edit', $this->data);
+            $this->load->view('user/partner_footer', $this->data);
+        }
+    }
+
     public function dashboard()
     {
         if( ! $this->session->userdata('partner_id'))
