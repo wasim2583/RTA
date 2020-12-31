@@ -23,6 +23,7 @@ class Member extends CI_Controller{
 	}
 	public function registration()
 	{
+		$this->data['title'] = 'Member - Registration';
 		$irsc_user_role = $this->Base_model->get_irsc_user_role_by_name('Member');
 		
 		$this->form_validation->set_rules('full_name', 'Full Name', 'required', array(
@@ -84,6 +85,7 @@ class Member extends CI_Controller{
 	}
 	public function login()
 	{
+		$this->data['title'] = 'IRSC Member Login';
 		if($this->session->userdata('member_id'))
 		{
 			redirect(base_url().'user/Member/dashboard');
@@ -123,13 +125,14 @@ class Member extends CI_Controller{
 		}
 		else
 		{
-			$this->load->view('user/member_login');
+			$this->load->view('user/member_login', $this->data);
 		}
 	}
 
 	public function profile()
 	{
 		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Profile';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		$this->load->view('user/member', $this->data);
 	}
@@ -141,11 +144,12 @@ class Member extends CI_Controller{
 			redirect(base_url().'user/Member/login');
 		}
 		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Edit Profile';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		$this->data['blood_groups'] = $this->Base_model->get_blood_groups();
 		// echo "<pre>";
-		// print_r($this->data['blood_groups']);
-		// print_r($this->config->item('profile_pic_path'));
+		// print_r($this->data['member']);
+		// // print_r($this->config->item('profile_pic_path'));
 		// die;
 		$this->form_validation->set_rules('full_name', 'Full Name', 'required');
 		$this->form_validation->set_rules('dob', 'DoB', 'required');
@@ -163,8 +167,8 @@ class Member extends CI_Controller{
 			$member['address'] = $this->input->post('address');
 			$member['dob'] = $this->input->post('dob');
 
-			// $config['upload_path'] = base_url().'rta_assets/profile_pics/';
-			$config['upload_path'] = $this->config->item('profile_pic_path');
+			$config['upload_path'] = './rta_assets/profile_pics/';
+			// $config['upload_path'] = $this->config->item('profile_pic_path');
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
             $this->load->library('upload', $config);
@@ -175,6 +179,7 @@ class Member extends CI_Controller{
             }
             else
             {
+            	$member['profile_pic'] = $this->data['member']->profile_pic;
                 $this->upload->display_errors();
             }
 
@@ -206,6 +211,7 @@ class Member extends CI_Controller{
 			redirect(base_url().'user/Member/login');
 		}
 		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Dashboard';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		// echo "<pre>";
 		// print_r($this->data['member']);
