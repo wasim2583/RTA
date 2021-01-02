@@ -264,6 +264,7 @@
                               <div class="col-lg-8">
                                  <input type="file" name="logo" id="logo">
                               </div>
+                              <img src="<?php echo base_url().'rta_assets/logos/'.$partner->logo; ?>" style="width:50px;"/>
                            </div>
                            <button type="submit" class="btn btn-primary btn_submit">Update</button>                          
                         </div>

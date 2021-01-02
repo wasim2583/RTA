@@ -244,7 +244,7 @@
                               else
                               {
                                  ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/profile_pics/'.$partner->logo; ?>">
+                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/logos/'.$partner->logo; ?>">
                                  <?php
                               }
                               ?>

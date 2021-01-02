@@ -232,39 +232,39 @@
                                  </div>
                                  <?php echo form_error('dob'); ?>
                               </div>
+                              <div class="row Member_labels">
+                                 <div class="col-lg-4 lableTxt">Gender</div>
+                                 <div class="col-lg-8">
+                                    <select class="form-control" name="gender" id="gender">
+                                       <option value="">--Select Gender--</option>
+                                       <option value="Male" <?php echo ($member->gender == 'Male') ? 'selected' : ''; ?>>Male</option>
+                                       <option value="Female" <?php echo ($member->gender == 'Female') ? 'selected' : ''; ?>>Female</option>
+                                       <option value="Transgender" <?php echo ($member->gender == 'Transgender') ? 'selected' : ''; ?>>Transgender</option>
+                                    </select>
+                                 </div>
+                                 <?php echo form_error('gender'); ?>
+                              </div>                        
+                              <div class="row Member_labels">
+                                 <div class="col-lg-4 lableTxt">Blood group</div>
+                                 <div class="col-lg-8">
+                                    
+                                    <select class="form-control" name="blood_group" id="blood_group">
+                                       <option value="">--Select Blood Group--</option>
+                                       <?php
+                                       foreach($blood_groups as $blood_group)
+                                       {
+                                          ?>
+                                       <option value="<?php echo $blood_group->id; ?>" <?php echo ($member->blood_group == $blood_group->id) ? 'selected' : ''; ?>><?php echo $blood_group->blood_group_name; ?></option>
+                                          <?php
+                                       }
+                                       ?>
+                                    </select>
+                                 </div>
+                                 <?php echo form_error('blood_group'); ?>
+                              </div>
                            </div>
                         </div>
                         <div class="col-lg-4">
-                           <div class="row Member_labels">
-                              <div class="col-lg-4 lableTxt">Gender</div>
-                              <div class="col-lg-8">
-                                 <select class="form-control" name="gender" id="gender">
-                                    <option value="">--Select Gender--</option>
-                                    <option value="Male" <?php echo ($member->gender == 'Male') ? 'selected' : ''; ?>>Male</option>
-                                    <option value="Female" <?php echo ($member->gender == 'Female') ? 'selected' : ''; ?>>Female</option>
-                                    <option value="Transgender" <?php echo ($member->gender == 'Transgender') ? 'selected' : ''; ?>>Transgender</option>
-                                 </select>
-                              </div>
-                              <?php echo form_error('gender'); ?>
-                           </div>                        
-                           <div class="row Member_labels">
-                              <div class="col-lg-4 lableTxt">Blood group</div>
-                              <div class="col-lg-8">
-                                 
-                                 <select class="form-control" name="blood_group" id="blood_group">
-                                    <option value="">--Select Blood Group--</option>
-                                    <?php
-                                    foreach($blood_groups as $blood_group)
-                                    {
-                                       ?>
-                                    <option value="<?php echo $blood_group->id; ?>" <?php echo ($member->blood_group == $blood_group->id) ? 'selected' : ''; ?>><?php echo $blood_group->blood_group_name; ?></option>
-                                       <?php
-                                    }
-                                    ?>
-                                 </select>
-                              </div>
-                              <?php echo form_error('blood_group'); ?>
-                           </div>
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Emergency contact</div>
                               <div class="col-lg-8">
@@ -272,8 +272,6 @@
                               </div>
                               <?php echo form_error('emergency_contact'); ?>
                            </div>
-                        </div>
-                        <div class="col-lg-4">
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
                               <div class="col-lg-8">
@@ -288,11 +286,14 @@
                               </div>
                               <?php echo form_error('address'); ?>
                            </div>
+                        </div>
+                        <div class="col-lg-4">                           
                            <div class="row Member_labels">
                               <div class="col-lg-4 lableTxt">Profile Pic</div>
                               <div class="col-lg-8">
                                  <input type="file" placeholder="Profile Pic" name="profile_pic" id="profile_pic">
                               </div>
+                              <img src="<?php echo base_url().'rta_assets/profile_pics/'.$member->profile_pic; ?>" style="width:50px;"/>
                            </div>
                            <button type="submit" class="btn btn-primary btn_submit">Update</button>
                         </div>
