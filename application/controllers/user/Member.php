@@ -167,7 +167,7 @@ class Member extends CI_Controller{
 			$member['address'] = $this->input->post('address');
 			$member['dob'] = $this->input->post('dob');
 
-			$config['upload_path'] = './rta_assets/profile_pics/';
+			$config['upload_path'] = './rta_assets/member/profile_pics/';
 			// $config['upload_path'] = $this->config->item('profile_pic_path');
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
@@ -219,6 +219,71 @@ class Member extends CI_Controller{
 		$this->load->view('user/member_header', $this->data);
 		$this->load->view('user/member_dashboard', $this->data);
 		$this->load->view('user/member_footer', $this->data);
+	}
+
+	public function member_dl()
+	{
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
+		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Driving Licence';
+		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
+
+		$this->load->view('user/member_header', $this->data);
+		$this->load->view('user/member_driving_licence', $this->data);
+		$this->load->view('user/member_footer', $this->data);
+	}
+
+	public function upload_dl()
+	{
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
+		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Driving Licence';
+		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
+
+		$this->form_validation->set_rules('dl_no', 'Driving Licence Number', 'required');
+		if($this->form_validation->run() == true)
+		{
+			$member['dl_no'] = $this->input->post('dl_no');
+			$config['upload_path'] = './rta_assets/member/driving_licence/';
+	        $config['allowed_types'] = 'jpg|jpeg|png|gif|docx|doc|pdf';
+	        $config['max_size'] = 4096;
+	        $this->load->library('upload', $config);
+	    	if($this->upload->do_upload('driving_licence'))
+	        {
+	            $fdata = $this->upload->data();                
+	            $member['driving_licence'] = $fdata['file_name'];
+	        }
+	        else
+	        {
+	        	$member['driving_licence'] = $this->data['member']->driving_licence;
+	            $this->upload->display_errors();
+	        }
+
+	        $member_update_result = $this->User_model->update_member($member, $member_id);
+	        // $user_update_result = $this->User_model->update_user($user, $member_id);
+			if($member_update_result)
+			{
+				$this->session->set_flashdata('member_update_success', 'Driving Licence uploaded..');
+				redirect(base_url().'user/Member/dashboard');
+			}
+			else
+			{
+				$this->session->set_flashdata('member_update_error', 'Driving Licence NOT uploaded..');
+				redirect(current_url());
+			}
+		}
+		else
+		{
+			$this->load->view('user/member_header', $this->data);
+			$this->load->view('user/member_driving_licence_upload', $this->data);
+			$this->load->view('user/member_footer', $this->data);
+		}
 	}
 
 	public function logout()
