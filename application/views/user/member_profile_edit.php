@@ -79,7 +79,7 @@
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
                            <div class="col-lg-8">
-                              <input type="text" name="aadhaar" id="aadhaar" class="form-control" placeholder="aadhar" value="<?php echo ( ! empty($member->aadhaar)) ? $member->aadhaar : set_value('aadhaar'); ?>">
+                              <input type="text" name="aadhaar" id="aadhaar" class="form-control" placeholder="Aadhaar Number" value="<?php echo ( ! empty($member->aadhaar)) ? $member->aadhaar : set_value('aadhaar'); ?>">
                            </div>
                            <?php echo form_error('aadhaar'); ?>
                         </div>                     
@@ -97,7 +97,7 @@
                            <div class="col-lg-8">
                               <input type="file" placeholder="Profile Pic" name="profile_pic" id="profile_pic">
                            </div>
-                           <img src="<?php echo base_url().'rta_assets/profile_pics/'.$member->profile_pic; ?>" style="width:50px;"/>
+                           <img src="<?php echo base_url().'rta_assets/member/profile_pics/'.$member->profile_pic; ?>" style="width:50px;"/>
                         </div>
                         <button type="submit" class="btn btn-primary btn_submit">Update</button>
                      </div>

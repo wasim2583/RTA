@@ -59,7 +59,7 @@ class User_model extends CI_Model
     {
         $this->db->select('
             user.*,
-            member.aadhaar, member.address, member.gender, member.dob, member.emergency_contact, member.blood_group, member.profile_pic,
+            member.aadhaar, member.address, member.gender, member.dob, member.emergency_contact, member.blood_group, member.profile_pic, member.dl_no, member.dl_doc, member.policy_no, member.insurance_doc, member.insurance_exp_date, member.puc_doc, member.puc_exp_date,
             group.blood_group_name,
             loc.location_name,
             state.state_name

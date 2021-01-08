@@ -3,7 +3,8 @@ class Member extends CI_Controller{
 	public function __construct()
 	{    
 		parent::__construct();
-		$this->load->model(['crud_model', 'Base_model', 'User_model']);	
+		$this->load->model(['crud_model', 'Base_model', 'User_model']);
+		$this->load->helper(['date']);
 
 		if(empty($this->session->userdata('state_id')))
 		{
@@ -236,7 +237,7 @@ class Member extends CI_Controller{
 		$this->load->view('user/member_footer', $this->data);
 	}
 
-	public function upload_dl()
+	public function update_dl()
 	{
 		if( ! $this->session->userdata('member_id'))
 		{
@@ -246,22 +247,24 @@ class Member extends CI_Controller{
 		$this->data['title'] = 'Member - Driving Licence';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 
-		$this->form_validation->set_rules('dl_no', 'Driving Licence Number', 'required');
-		if($this->form_validation->run() == true)
+		$this->form_validation->set_rules('dl_no', 'Driving Licence Number', 'required|alpha_numeric');
+		// 
+		if($this->input->post('submit') && ($this->form_validation->run() == true))
 		{
+			
 			$member['dl_no'] = $this->input->post('dl_no');
 			$config['upload_path'] = './rta_assets/member/driving_licence/';
 	        $config['allowed_types'] = 'jpg|jpeg|png|gif|docx|doc|pdf';
 	        $config['max_size'] = 4096;
 	        $this->load->library('upload', $config);
-	    	if($this->upload->do_upload('driving_licence'))
+	    	if($this->upload->do_upload('dl_doc'))
 	        {
 	            $fdata = $this->upload->data();                
-	            $member['driving_licence'] = $fdata['file_name'];
+	            $member['dl_doc'] = $fdata['file_name'];
 	        }
 	        else
 	        {
-	        	$member['driving_licence'] = $this->data['member']->driving_licence;
+	        	$member['dl_doc'] = $this->data['member']->dl_doc;
 	            $this->upload->display_errors();
 	        }
 
@@ -270,18 +273,87 @@ class Member extends CI_Controller{
 			if($member_update_result)
 			{
 				$this->session->set_flashdata('member_update_success', 'Driving Licence uploaded..');
-				redirect(base_url().'user/Member/dashboard');
+				redirect(base_url().'user/Member/member_dl');
 			}
 			else
 			{
 				$this->session->set_flashdata('member_update_error', 'Driving Licence NOT uploaded..');
-				redirect(current_url());
+				redirect(base_url().'user/Member/member_dl');
 			}
 		}
 		else
 		{
 			$this->load->view('user/member_header', $this->data);
-			$this->load->view('user/member_driving_licence_upload', $this->data);
+			$this->load->view('user/member_driving_licence_edit', $this->data);
+			$this->load->view('user/member_footer', $this->data);
+		}
+	}
+
+	public function member_insurance()
+	{
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
+		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Insurance';
+		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
+
+		$this->load->view('user/member_header', $this->data);
+		$this->load->view('user/member_insurance', $this->data);
+		$this->load->view('user/member_footer', $this->data);
+	}
+
+	public function update_insurance()
+	{
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
+		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Insurance';
+		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
+
+		$this->form_validation->set_rules('policy_no', 'Policy Number', 'required');
+		$this->form_validation->set_rules('insurance_exp_date', 'Policy Valid Upto', 'required');
+		// 
+		if($this->input->post('submit') && ($this->form_validation->run() == true))
+		{
+			
+			$member['policy_no'] = $this->input->post('policy_no');
+			$member['insurance_exp_date'] = $this->input->post('insurance_exp_date');
+			$config['upload_path'] = './rta_assets/member/insurance/';
+	        $config['allowed_types'] = 'jpg|jpeg|png|gif|docx|doc|pdf';
+	        $config['max_size'] = 4096;
+	        $this->load->library('upload', $config);
+	    	if($this->upload->do_upload('insurance_doc'))
+	        {
+	            $fdata = $this->upload->data();                
+	            $member['insurance_doc'] = $fdata['file_name'];
+	        }
+	        else
+	        {
+	        	$member['insurance_doc'] = $this->data['member']->insurance_doc;
+	            $this->upload->display_errors();
+	        }
+
+	        $member_update_result = $this->User_model->update_member($member, $member_id);
+	        // $user_update_result = $this->User_model->update_user($user, $member_id);
+			if($member_update_result)
+			{
+				$this->session->set_flashdata('member_update_success', 'Insurance updated..');
+				redirect(base_url().'user/Member/member_insurance');
+			}
+			else
+			{
+				$this->session->set_flashdata('member_update_error', 'Insurance details NOT updated..');
+				redirect(base_url().'user/Member/member_insurance');
+			}
+		}
+		else
+		{
+			$this->load->view('user/member_header', $this->data);
+			$this->load->view('user/member_insurance_edit', $this->data);
 			$this->load->view('user/member_footer', $this->data);
 		}
 	}

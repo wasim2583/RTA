@@ -31,6 +31,16 @@ $config['base_url'] ='http://'.$url_details;
 $config['profile_pic_path'] = 'localhost:8080/RTA/rta_assets/profile_pics/';
 $config['default_state_id'] = 2;
 
+$config['sms_user'] ='irsc';
+$config['sms_password'] ='959432';
+$config['sms_api_url'] ='http://sms.mannschaftit.com/api.php?';
+$config['sms_from'] ='IRSC';
+$config['sms_message'] ='Please use this 6 digit code to activate your account-';
+// $config['email_message'] ='Please use this 6 digit code to activate your account-';
+// $config['email_from'] ='info@seafoodsjob.com';
+// $config['email_from_name'] ='Indian Road Safety Club';
+// $config['email_subject'] ='IRSC Member Activation Code';
+// $config['email_enquiry'] ='abhilash.mannschaftit@gmail.com';
 /*
 |--------------------------------------------------------------------------
 | Index File

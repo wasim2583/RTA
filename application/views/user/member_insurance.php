@@ -2,7 +2,7 @@
 <div class="container-fluid">
    <!-- Page Heading -->
    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Memebr - Driving Licence</h1>
+      <h1 class="h3 mb-0 text-gray-800">Memebr - Insurance</h1>
       <?php
       if( ! empty($this->session->flashdata('member_update_success')))
       {
@@ -30,36 +30,42 @@
          <!-- Project Card Example -->
          <div class="card shadow mb-4">
             <div class="card-header py-3">
-               <h6 class="m-0 font-weight-bold text-primary">Driving Licence</h6>
+               <h6 class="m-0 font-weight-bold text-primary">Insurance</h6>
             </div>
             <div class="card-body">
                <div class="row">
                   <div class="col-lg-8">
                      <div class="col-lg-12 col-md-12">
                         <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Driving Licence Number</div>
-                           <div class="col-lg-8"><span><?php echo empty($member->dl_no) ? 'NA' : $member->dl_no; ?></span></div>
+                           <div class="col-lg-4 lableTxt">Policy Number</div>
+                           <div class="col-lg-8"><span><?php echo empty($member->policy_no) ? 'NA' : $member->policy_no; ?></span></div>
                         </div>
                         <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Driving Licence Pic</div>
+                           <div class="col-lg-4 lableTxt">Insurance Doc</div>
                            <div class="col-lg-8">
                               <?php
-                              if(empty($member->dl_doc))
+                              if(empty($member->insurance_doc))
                               {
                                  ?>
-                              <img style="max-width:200px;" class="img-profile" src="<?php echo base_url().'rta_assets/member/driving_licence/test_card.png'; ?>" alt="Test Image">
+                              <i class="fa fa-file-pdf" aria-hidden="true"></i>
                                  <?php
                               }
                               else
                               {
                                  ?>
-                              <img style="max-width:130px;" class="img-profile" src="<?php echo base_url().'rta_assets/member/driving_licence/'.$member->dl_doc; ?>">
+                              <iframe src="<?php echo base_url().'rta_assets/member/insurance/'.$member->insurance_doc; ?>" width="200px"></iframe>
                                  <?php
                               }
                               ?>
                            </div>
                         </div>
-                        <button onclick="location.href='<?php echo base_url(); ?>user/Member/update_dl'" class="btn btn-primary btn_submit float-right">Edit</button>
+                        <div class="row Member_labels">
+                           <div class="col-lg-4 lableTxt">Insurance Valid Upto</div>
+                           <div class="col-lg-8">
+                              <span><?php echo empty($member->insurance_exp_date) ? 'NA' : date_format(date_create($member->insurance_exp_date), 'd-M-Y'); ?></span>
+                           </div>
+                        </div>
+                        <button onclick="location.href='<?php echo base_url(); ?>user/Member/update_insurance'" class="btn btn-primary btn_submit float-right">Edit</button>
                      </div>
                   </div>
                </div>

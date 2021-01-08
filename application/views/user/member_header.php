@@ -43,13 +43,13 @@
             </li>
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item active">
-               <a class="nav-link" href="">
+               <a class="nav-link" href="<?php echo base_url().'user/Member/member_insurance'; ?>">
                <i class="fas fa-file"></i>
                <span>Insurance</span></a>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item active">
-               <a class="nav-link" href="">
+               <a class="nav-link" href="<?php echo base_url().'user/Member/member_puc'; ?>">
                <i class="fa fa-certificate"></i>
                <span>Pollution</span></a>
             </li>
