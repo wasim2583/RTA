@@ -358,6 +358,72 @@ class Member extends CI_Controller{
 		}
 	}
 
+	public function member_puc()
+    {
+        if( ! $this->session->userdata('member_id'))
+        {
+            redirect(base_url().'user/Member/login');
+        }
+        $member_id = $this->session->userdata('member_id');
+        $this->data['title'] = 'Member - Insurance';
+        $this->data['member'] = $this->User_model->get_member_by_id($member_id);
+
+        $this->load->view('user/member_header', $this->data);
+        $this->load->view('user/member_puc', $this->data);
+        $this->load->view('user/member_footer', $this->data);
+    }
+
+    public function update_puc()
+    {
+        if( ! $this->session->userdata('member_id'))
+        {
+            redirect(base_url().'user/Member/login');
+        }
+        $member_id = $this->session->userdata('member_id');
+        $this->data['title'] = 'Member - Insurance';
+        $this->data['member'] = $this->User_model->get_member_by_id($member_id);
+
+        $this->form_validation->set_rules('puc_exp_date', 'PUC Valid Upto', 'required');
+        // 
+        if($this->input->post('submit') && ($this->form_validation->run() == true))
+        {
+            $member['puc_exp_date'] = $this->input->post('puc_exp_date');
+            $config['upload_path'] = './rta_assets/member/puc/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif|docx|doc|pdf';
+            $config['max_size'] = 4096;
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('puc_doc'))
+            {
+                $fdata = $this->upload->data();                
+                $member['puc_doc'] = $fdata['file_name'];
+            }
+            else
+            {
+                $member['puc_doc'] = $this->data['member']->puc_doc;
+                $this->upload->display_errors();
+            }
+
+            $member_update_result = $this->User_model->update_member($member, $member_id);
+            // $user_update_result = $this->User_model->update_user($user, $member_id);
+            if($member_update_result)
+            {
+                $this->session->set_flashdata('member_update_success', 'PUC Details updated..');
+                redirect(base_url().'user/Member/member_puc');
+            }
+            else
+            {
+                $this->session->set_flashdata('member_update_error', 'PUC details NOT updated..');
+                redirect(base_url().'user/Member/member_puc');
+            }
+        }
+        else
+        {
+            $this->load->view('user/member_header', $this->data);
+            $this->load->view('user/member_puc_edit', $this->data);
+            $this->load->view('user/member_footer', $this->data);
+        }
+    }
+
 	public function logout()
 	{
 		$this->session->unset_userdata('member_id');
