@@ -67,6 +67,9 @@ class Member extends CI_Controller{
 			if($member_id)
 			{
 				$this->session->set_userdata('member_id', $member_id);
+
+				send_mobile_activation(MEMBER,$this->input->post('mobile'));
+				
 				$member_data['member_id'] = $member_id;
 				$member_data['blood_group'] = 9;
 				$this->User_model->insert_member($member_data);
@@ -199,10 +202,18 @@ class Member extends CI_Controller{
 		}
 		else
 		{
-			$this->load->view('user/member_header', $this->data);
-			$this->load->view('user/member_profile_edit', $this->data);
-			$this->load->view('user/member_footer', $this->data);
+			$this->template->load('member', 'user/member_profile_edit', $this->data);
 		}
+	}
+
+	public function events()
+	{
+		redirect(base_url().'user/Member/dashboard');
+	}
+	
+	public function offers()
+	{
+		redirect(base_url().'user/Member/dashboard');
 	}
 
 	public function dashboard()
@@ -214,12 +225,8 @@ class Member extends CI_Controller{
 		$member_id = $this->session->userdata('member_id');
 		$this->data['title'] = 'Member - Dashboard';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
-		// echo "<pre>";
-		// print_r($this->data['member']);
-		// die;
-		$this->load->view('user/member_header', $this->data);
-		$this->load->view('user/member_dashboard', $this->data);
-		$this->load->view('user/member_footer', $this->data);
+		
+		$this->template->load('member', 'user/member_dashboard', $this->data);
 	}
 
 	public function member_dl()
@@ -232,9 +239,7 @@ class Member extends CI_Controller{
 		$this->data['title'] = 'Member - Driving Licence';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 
-		$this->load->view('user/member_header', $this->data);
-		$this->load->view('user/member_driving_licence', $this->data);
-		$this->load->view('user/member_footer', $this->data);
+		$this->template->load('member', 'user/member_driving_licence', $this->data);
 	}
 
 	public function update_dl()
@@ -283,9 +288,7 @@ class Member extends CI_Controller{
 		}
 		else
 		{
-			$this->load->view('user/member_header', $this->data);
-			$this->load->view('user/member_driving_licence_edit', $this->data);
-			$this->load->view('user/member_footer', $this->data);
+			$this->template->load('member', 'user/member_driving_licence_edit', $this->data);
 		}
 	}
 
@@ -299,9 +302,7 @@ class Member extends CI_Controller{
 		$this->data['title'] = 'Member - Insurance';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 
-		$this->load->view('user/member_header', $this->data);
-		$this->load->view('user/member_insurance', $this->data);
-		$this->load->view('user/member_footer', $this->data);
+		$this->template->load('member', 'user/member_insurance', $this->data);
 	}
 
 	public function update_insurance()
@@ -352,9 +353,7 @@ class Member extends CI_Controller{
 		}
 		else
 		{
-			$this->load->view('user/member_header', $this->data);
-			$this->load->view('user/member_insurance_edit', $this->data);
-			$this->load->view('user/member_footer', $this->data);
+			$this->template->load('member', 'user/member_insurance_edit', $this->data);
 		}
 	}
 
@@ -368,9 +367,7 @@ class Member extends CI_Controller{
         $this->data['title'] = 'Member - Insurance';
         $this->data['member'] = $this->User_model->get_member_by_id($member_id);
 
-        $this->load->view('user/member_header', $this->data);
-        $this->load->view('user/member_puc', $this->data);
-        $this->load->view('user/member_footer', $this->data);
+        $this->template->load('member', 'user/member_puc', $this->data);
     }
 
     public function update_puc()
@@ -418,9 +415,7 @@ class Member extends CI_Controller{
         }
         else
         {
-            $this->load->view('user/member_header', $this->data);
-            $this->load->view('user/member_puc_edit', $this->data);
-            $this->load->view('user/member_footer', $this->data);
+            $this->template->load('member', 'user/member_puc_edit', $this->data);
         }
     }
 

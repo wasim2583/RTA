@@ -58,6 +58,46 @@ class Base extends CI_Controller
 	{
 		$this->load->view('base/terms_conditions');
 	}
+/* Abhilash Code for RTA starts */
+	public function verify_activation($mode,$user_type)
+	{
+		$this->data['mode'] = $mode;
+		$this->data['user_type'] = $user_type;
+		$user_id = $this->session->userdata('reg_id');
+		$this->form_validation->set_rules('verificationCode', 'Activation code', 'required|min_length[6]|numeric');
+				   
+       	if ($this->form_validation->run() === true)
+       	{
+		   	$code = $this->UserModel->get_activation_code($user_id);
+		   	if($code == $this->input->post('verificationCode'))
+		   	{
+				$user_data = ['activation_code'=>'','status'=>1];
+				$this->UserModel->update_user($user_id,$user_data);
+				redirect('auth/auto_login/'.$user_type);
+		   	}
+		   	else
+		   	{
+				$this->session->set_flashdata('activation_error', 'Incorrect activation code. Please try again.');
+				redirect('auth/verify_activation/'.$mode.'/'.$user_type);
+		   	}
+	   	} 
+	   	else
+	   	{
+			$this->data['verificationCode'] = [
+				'name' => 'verificationCode',
+				'id' => 'verificationCode',
+				'type' => 'text',
+				'class' => 'form-control',
+				'value' => $this->form_validation->set_value('verificationCode'),
+			];
+
+		$this->template->load('member','user/activation_code',$this->data);
+
+	   	} 
+
+	}
+/* Abhilash Code for RTA ends */
+
 /* Abhilash code starts */
 	public function ajax_get_states_by_country($country_id)
 	{

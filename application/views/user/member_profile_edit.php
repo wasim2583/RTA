@@ -77,7 +77,7 @@
                            <?php echo form_error('emergency_contact'); ?>
                         </div>
                         <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
+                           <div class="col-lg-4 lableTxt">Aadhaar</div>
                            <div class="col-lg-8">
                               <input type="text" name="aadhaar" id="aadhaar" class="form-control" placeholder="Aadhaar Number" value="<?php echo ( ! empty($member->aadhaar)) ? $member->aadhaar : set_value('aadhaar'); ?>">
                            </div>

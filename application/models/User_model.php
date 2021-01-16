@@ -54,6 +54,24 @@ class User_model extends CI_Model
         return $this->db->insert_id();
     }
 
+    public function set_activation_code($id,$user_data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('irsc_users', $user_data);
+        if ($this->db->affected_rows() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function get_activation_code($id)
+    {
+      
+        $this->db->select('activation_code');
+        $this->db->from('users');
+        $this->db->where('users.id',$id);
+        return ($this->db->get()->row()->activation_code) ?? 0;
+    }
 
     public function get_member_by_id($id)
     {

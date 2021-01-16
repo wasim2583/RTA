@@ -53,7 +53,7 @@
                            <div class="col-lg-8"><span><?php echo $member->email; ?></span></div>
                         </div>
                         <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Aadhar (optional)</div>
+                           <div class="col-lg-4 lableTxt">Aadhaar</div>
                            <div class="col-lg-8"><span><?php echo empty($member->aadhaar) ? 'NA' : $member->aadhaar; ?></span></div>
                         </div>
                         <div class="row Member_labels">
