@@ -24,20 +24,10 @@ class Base extends CI_Controller
 	public function __construct() {
 		parent::__construct();
 		$this->load->library(['form_validation', 'email']);
-		// $this->load->model(['BaseModel','JobseekerModel', 'UtilitiesModel', 'UserModel', 'AdminModel', 'ContractorModel', 'SupplierModel', 'HarvesterModel']);
-		$this->load->model(['Base_model']);
-		// for contactUs section
-		$roles = array('jobseeker', 'Employer', 'Supplier', 'Harvester', 'Contractor');
-		/*
-		$this->data['roles'] = $this->UtilitiesModel->get_roles($roles);
-		$access_permissions = $this->BaseModel->load_access_config();
-		$formattedAccess = [];
-		foreach($access_permissions as $access ){
-			$formattedAccess[$access->path] = $access;
-		}
-		$this->session->set_userdata('access', $formattedAccess);
-		check_access();
-		*/
+		
+		$this->load->model(['Base_model', 'User_model']);		
+		
+		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 	}
  
 
@@ -63,22 +53,22 @@ class Base extends CI_Controller
 	{
 		$this->data['mode'] = $mode;
 		$this->data['user_type'] = $user_type;
-		$user_id = $this->session->userdata('reg_id');
+		$user_id = $this->session->userdata('member_id');
 		$this->form_validation->set_rules('verificationCode', 'Activation code', 'required|min_length[6]|numeric');
 				   
        	if ($this->form_validation->run() === true)
        	{
-		   	$code = $this->UserModel->get_activation_code($user_id);
+		   	$code = $this->User_model->get_activation_code($user_id);
 		   	if($code == $this->input->post('verificationCode'))
 		   	{
 				$user_data = ['activation_code'=>'','status'=>1];
-				$this->UserModel->update_user($user_id,$user_data);
-				redirect('auth/auto_login/'.$user_type);
+				$this->User_model->update_user($user_data, $user_id);
+				redirect('base/auto_login/'.$user_type);
 		   	}
 		   	else
 		   	{
 				$this->session->set_flashdata('activation_error', 'Incorrect activation code. Please try again.');
-				redirect('auth/verify_activation/'.$mode.'/'.$user_type);
+				redirect('base/verify_activation/'.$mode.'/'.$user_type);
 		   	}
 	   	} 
 	   	else
@@ -91,10 +81,20 @@ class Base extends CI_Controller
 				'value' => $this->form_validation->set_value('verificationCode'),
 			];
 
-		$this->template->load('member','user/activation_code',$this->data);
+		$this->template->load('site','user/activation_code', $this->data);
 
 	   	} 
 
+	}
+
+	public function auto_login($user_type)
+	{
+		$member_id = $this->session->userdata('member_id');
+		$member_data['member_id'] = $member_id;
+		$member_data['blood_group'] = 9;
+		$this->User_model->insert_member($member_data);
+		$this->session->set_flashdata('member_register_success','Member registration successful!');
+		redirect(base_url().'user/Member/dashboard');
 	}
 /* Abhilash Code for RTA ends */
 
@@ -230,136 +230,136 @@ public function ajax_search_jobs(){
 }
 
 /* Abhilash Code Starts */
-
-public function ajax_search_jobseekers()
-{
-	$filtered_jobseekers = $this->BaseModel->get_filtered_jobseekers($_POST);
-	$user = $this->session->userdata('user');
-	$recruiter_jobseekers = $this->JobseekerModel->get_all_recruiter_jobseekers($user->id);
-	$jobseekers = array();
-	$formattedJobseekers = array();
-	if( ! empty($recruiter_jobseekers))
+/*
+	public function ajax_search_jobseekers()
 	{
-		foreach($recruiter_jobseekers as $rec_js)
+		$filtered_jobseekers = $this->BaseModel->get_filtered_jobseekers($_POST);
+		$user = $this->session->userdata('user');
+		$recruiter_jobseekers = $this->JobseekerModel->get_all_recruiter_jobseekers($user->id);
+		$jobseekers = array();
+		$formattedJobseekers = array();
+		if( ! empty($recruiter_jobseekers))
 		{
-			$formattedJobseekers[$rec_js->user_id] = $rec_js;
+			foreach($recruiter_jobseekers as $rec_js)
+			{
+				$formattedJobseekers[$rec_js->user_id] = $rec_js;
+			}
 		}
-	}
-	if( ! empty($filtered_jobseekers))
-	{
-		foreach($filtered_jobseekers as $filter_js)
+		if( ! empty($filtered_jobseekers))
 		{
-			$jobseekers[$filter_js->user_id] = $filter_js;
+			foreach($filtered_jobseekers as $filter_js)
+			{
+				$jobseekers[$filter_js->user_id] = $filter_js;
+			}
 		}
-	}
 
-	if( ! empty($jobseekers))
-	{
-		?>
-	<h3 class="head_margin">Matched</h3>
-	<div role="alert" class="alert alert-info alert-dismissible fade show" style="display: none;"></div>
-		<?php
-		echo '<h3 class="head_margin">'.count($jobseekers).' Profiles found..</h3>';
-		foreach($jobseekers as $jobseeker)
+		if( ! empty($jobseekers))
 		{
 			?>
-	<div class="tt-posted-jobwrap" id="jobid-<?php echo $jobseeker->user_id;?>">
-		<h3><?php echo $jobseeker->fullname; ?></h3>
-		<div class="tt-posted-j-exp">
-			<i class="fa fa-briefcase" aria-hidden="true"></i>
-			<?php echo ! empty($jobseeker->experience) ? $this->config->item('experience_range')[$jobseeker->experience] : 'Fresher'; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-map-marker" aria-hidden="true"></i>
-			<?php echo $jobseeker->location_name; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-			<?php echo $jobseeker->qualification_name; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-male" aria-hidden="true"></i>
-			<?php echo $jobseeker->gender; ?>
-		</div>
-		<div class="tt-posted-j-loca">
-			<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-			<?php echo !empty($jobseeker->dob) ? date_diff(date_create(date('d-M-Y',$jobseeker->dob)), date_create('today'))->y.' Years' : "N/A"; ?>
-		</div>
-		<div class="tt-posted-j-desc dispFull">
-			<span>Skills : </span> <?php echo $jobseeker->skills; ?>
-		</div>
-		<div class="tt-posted-btns-wrap" >
-			<span>Registered on :  <?php echo date('l d M Y h:m A  ',strtotime($jobseeker->created_on));?>  </span>
-			<div class="float-right" id="business_user_actions">
-				<?php
-				if( ! empty($formattedJobseekers))
-				{
-					if(array_key_exists($jobseeker->user_id, $formattedJobseekers))
+		<h3 class="head_margin">Matched</h3>
+		<div role="alert" class="alert alert-info alert-dismissible fade show" style="display: none;"></div>
+			<?php
+			echo '<h3 class="head_margin">'.count($jobseekers).' Profiles found..</h3>';
+			foreach($jobseekers as $jobseeker)
+			{
+				?>
+		<div class="tt-posted-jobwrap" id="jobid-<?php echo $jobseeker->user_id;?>">
+			<h3><?php echo $jobseeker->fullname; ?></h3>
+			<div class="tt-posted-j-exp">
+				<i class="fa fa-briefcase" aria-hidden="true"></i>
+				<?php echo ! empty($jobseeker->experience) ? $this->config->item('experience_range')[$jobseeker->experience] : 'Fresher'; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-map-marker" aria-hidden="true"></i>
+				<?php echo $jobseeker->location_name; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+				<?php echo $jobseeker->qualification_name; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-male" aria-hidden="true"></i>
+				<?php echo $jobseeker->gender; ?>
+			</div>
+			<div class="tt-posted-j-loca">
+				<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+				<?php echo !empty($jobseeker->dob) ? date_diff(date_create(date('d-M-Y',$jobseeker->dob)), date_create('today'))->y.' Years' : "N/A"; ?>
+			</div>
+			<div class="tt-posted-j-desc dispFull">
+				<span>Skills : </span> <?php echo $jobseeker->skills; ?>
+			</div>
+			<div class="tt-posted-btns-wrap" >
+				<span>Registered on :  <?php echo date('l d M Y h:m A  ',strtotime($jobseeker->created_on));?>  </span>
+				<div class="float-right" id="business_user_actions">
+					<?php
+					if( ! empty($formattedJobseekers))
 					{
-						if($formattedJobseekers[$jobseeker->user_id]->saved)
+						if(array_key_exists($jobseeker->user_id, $formattedJobseekers))
 						{
-							?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm active">Saved</button>
-							<?php
+							if($formattedJobseekers[$jobseeker->user_id]->saved)
+							{
+								?>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm active">Saved</button>
+								<?php
+							}
+							else
+							{
+								?>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
+								<?php
+							}
+							if($formattedJobseekers[$jobseeker->user_id]->replied)
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm active">Replied</button>
+								<?php
+							}
+							else
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
+								<?php
+							}
+							if($formattedJobseekers[$jobseeker->user_id]->downloaded)
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm active">Downloaded</button>
+								<?php
+							}
+							else
+							{
+								?>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
+								<?php
+							}
 						}
 						else
 						{
 							?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
-							<?php
-						}
-						if($formattedJobseekers[$jobseeker->user_id]->replied)
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm active">Replied</button>
-							<?php
-						}
-						else
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
-							<?php
-						}
-						if($formattedJobseekers[$jobseeker->user_id]->downloaded)
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm active">Downloaded</button>
-							<?php
-						}
-						else
-						{
-							?>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
 							<?php
 						}
 					}
 					else
 					{
 						?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
+					<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
+					<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
 						<?php
 					}
-				}
-				else
-				{
 					?>
-				<button type="button" id="<?php echo $jobseeker->user_id.'-saved';?>" class="btn btn-secondary btn-sm">Save</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-replied';?>" class="btn btn-secondary btn-sm">Reply</button>
-				<button type="button"id="<?php echo $jobseeker->user_id.'-downloaded';?>" class="btn btn-secondary btn-sm">Download</button>
-					<?php
-				}
-				?>
-				<button class="btn btn-success btn-sm" id="<?php echo $jobseeker->user_id.'-viewed';?>">View</button>
+					<button class="btn btn-success btn-sm" id="<?php echo $jobseeker->user_id.'-viewed';?>">View</button>
+				</div>
 			</div>
 		</div>
-	</div>
-			<?php
+				<?php
+			}
 		}
+		exit;
 	}
-	exit;
-}
 
 	public function ajax_set_jobseeker_action($jobseeker_id, $action)
 	{
@@ -859,7 +859,7 @@ public function ajax_search_jobseekers()
         <?php
     }
 
-/* Abhilash Code Ends */
+
 	public function ajax_render_departments_filters(){
 
 		if(isset($_POST['categories']) && count($_POST['categories']) >= 1){
@@ -877,7 +877,7 @@ public function ajax_search_jobseekers()
 		
 	}
 
-/* Abhilash code starts */
+*/
 	public function contactus()
 	{
 		$this->form_validation->set_rules('role', 'Role', 'required');

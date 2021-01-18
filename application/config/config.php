@@ -31,7 +31,8 @@ $config['base_url'] ='http://'.$url_details;
 $config['profile_pic_path'] = 'localhost:8080/RTA/rta_assets/profile_pics/';
 $config['default_state_id'] = 2;
 
-$config['sms_user'] ='irsc';
+$config['mobile_activation'] = TRUE;
+$config['sms_user'] ='seafoods';
 $config['sms_password'] ='959432';
 $config['sms_api_url'] ='http://sms.mannschaftit.com/api.php?';
 $config['sms_from'] ='IRSC';

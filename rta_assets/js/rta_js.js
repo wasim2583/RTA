@@ -55,7 +55,7 @@ $(document).ready(function(){
     		});
  		}
  	});
-
+/*
 	$('#jobseeker_filters #states_list input[type=checkbox]').on('change', function(){
 		$.post(site_url+'base/ajax_render_location_filters', $("#jobseeker_filters_form").serialize()).done(function(data){
 			if(data){
@@ -68,7 +68,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-
+*/
 /* Abhilash code for RTA starts */
 	$('#location_filters #states_list input[type=checkbox]').on('change', function(){
 		$.post(site_url+'ajax/ajax_render_location_filters', $("#location_filters_form").serialize()).done(function(data){
@@ -96,7 +96,7 @@ $(document).ready(function(){
 	});
 	
 /* Abhilash code for RTA ends */
-
+/*
 	$('#jobseeker_filters #categories_list input[type=checkbox]').on('change', function(){
 		$.post(site_url+'base/ajax_render_departments_filters', $("#jobseeker_filters_form").serialize()).done(function(data){
 			if(data){
@@ -109,7 +109,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-/*
+
 	$('#jobseeker_filters').on('change', 'input[type=checkbox]', function(){
 		$('#search_loader').show();
 		$.post(site_url+'base/ajax_search_contractors_team', $("#jobseeker_filters_form").serialize()).done(function(data){

@@ -97,7 +97,14 @@
                            <div class="col-lg-8">
                               <input type="file" placeholder="Profile Pic" name="profile_pic" id="profile_pic">
                            </div>
+                           <?php
+                           if( ! empty($member->profile_pic))
+                           {
+                              ?>
                            <img src="<?php echo base_url().'rta_assets/member/profile_pics/'.$member->profile_pic; ?>" style="width:50px;"/>
+                              <?php
+                           }
+                           ?>
                         </div>
                         <button type="submit" class="btn btn-primary btn_submit">Update</button>
                      </div>

@@ -1,5 +1,5 @@
-<section class="main-wrapper" >
-      <div class="container">
+<section class="GallryWrap" >
+      <div class="container-fluid">
 <div class="row">
 <div class="col-lg-4 col-md-4 offset-lg-4 offset-md-4 card-box-bg text-center">
             <h2 class="dispFull">Account activation</h2>
@@ -13,7 +13,7 @@
 
 <?php } ?>
 
-<?php echo form_open("auth/verify_activation/".$mode.'/'.$user_type);?>
+<?php echo form_open("base/verify_activation/".$mode.'/'.$user_type);?>
           
 
             <div class="form-group">

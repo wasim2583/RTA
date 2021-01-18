@@ -67,14 +67,8 @@ class Member extends CI_Controller{
 			if($member_id)
 			{
 				$this->session->set_userdata('member_id', $member_id);
-
-				send_mobile_activation(MEMBER,$this->input->post('mobile'));
-				
-				$member_data['member_id'] = $member_id;
-				$member_data['blood_group'] = 9;
-				$this->User_model->insert_member($member_data);
-				$this->session->set_flashdata('member_register_success','Member registration successful!');
-				redirect(base_url().'user/Member/dashboard');
+				$activation_method = 'send_mobile_activation';
+				$activation_method(MEMBER, $this->input->post('mobile'));
 			}
 			else
 			{

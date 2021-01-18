@@ -34,9 +34,8 @@ class Home extends CI_Controller {
 		
 		$this->data['state'] = $this->Base_model->get_state_by_id($state_id);
 		$this->data['slides'] = $this->Base_model->get_slides_by_state($state_id);
-		$this->load->view('front_view/header', $this->data);
-		$this->load->view('front_view/home', $this->data);
-		$this->load->view('front_view/footer', $this->data);
+
+		$this->template->load('site', 'front_view/home', $this->data);
 	}
 
 	public function gallery(){
@@ -51,17 +50,15 @@ class Home extends CI_Controller {
 		// $this->data['photos']=$this->Base_model->get_photos_by_state();
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		$this->data['photos']=$this->Base_model->get_all_photos();
-		$this->load->view('front_view/header',$this->data);
-		$this->load->view('front_view/gallery/gallery_photos',$this->data);
-		$this->load->view('front_view/footer',$this->data);
+
+		$this->template->load('site', 'front_view/gallery/gallery_photos', $this->data);
 	}
 	public function gallery_videos()
 	{
 		// $this->data['videos']=$this->Base_model->get_videos_by_state();
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		$this->data['videos']=$this->Base_model->get_all_videos();
-		$this->load->view('front_view/header',$this->data);
-		$this->load->view('front_view/gallery/gallery_videos',$this->data);
-		$this->load->view('front_view/footer',$this->data);
+
+		$this->template->load('site', 'front_view/gallery/gallery_videos', $this->data);
 	}
 }

@@ -25,7 +25,7 @@ class User_model extends CI_Model
         $this->db->join('irsc_user_roles role', 'role.id = user.role');
         $this->db->join('locations loc', 'loc.id = user.location');
         $this->db->join('states state', 'state.id = location.state_id');
-        $this->db->where('id', $id);
+        $this->db->where('user.id', $id);
         $result = $this->db->get('irsc_users');
         return $result->row_object();
     }
@@ -54,7 +54,7 @@ class User_model extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function set_activation_code($id,$user_data)
+    public function set_activation_code($id, $user_data)
     {
         $this->db->where('id', $id);
         $this->db->update('irsc_users', $user_data);
@@ -66,10 +66,9 @@ class User_model extends CI_Model
     }
     public function get_activation_code($id)
     {
-      
         $this->db->select('activation_code');
-        $this->db->from('users');
-        $this->db->where('users.id',$id);
+        $this->db->from('irsc_users');
+        $this->db->where('id',$id);
         return ($this->db->get()->row()->activation_code) ?? 0;
     }
 

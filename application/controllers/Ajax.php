@@ -21,7 +21,6 @@ class Ajax extends CI_Controller
 		{
 			foreach($filtered_photos as $photo)
 			{
-				// print_r($photo);
 				?>
 		<div class="photo_wrap">
 			<a href="<?php echo base_url().'uploads/files/'.$photo->file_name; ?>" data-lightbox="gallery" target="_blank">
@@ -73,7 +72,6 @@ class Ajax extends CI_Controller
 				$output='';
 				foreach($locations as $location)
 				{
-					// $output.='<div class="tt-colapse-Inwrap"><input type="checkbox" name="locations[]" value="'.$location->id.'"><label>'.$location->location_name.'</label></div>';
 					$output .= '<li class="list-group-item"><input class="form-check-input me-1" type="checkbox" name="locations[]" value="'.$location->id.'" aria-label="...">'.$location->location_name.'</li>';
 				}
 				echo $output;
@@ -81,7 +79,6 @@ class Ajax extends CI_Controller
 			}
 		}		
 	}
-
 }
 
 /* End of file Ajax.php */
