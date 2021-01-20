@@ -22,7 +22,7 @@
             
             <div class="col-lg-10 col-md-10  offset-lg-1">
                <div class="popOver"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></div>
-               <span class="btm_text blinking">Loading...</span>
+               <span class="btm_text blinking">Welcome...</span>
                
                <div class="state_Loc_wrap">
                   <?php

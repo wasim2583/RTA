@@ -206,7 +206,8 @@ class Partner extends CI_Controller{
             else
             {
                 $this->session->set_flashdata('partner_update_error', 'Details NOT updated..');
-                redirect(current_url());
+                redirect(base_url().'user/Partner/dashboard');
+                // redirect(current_url());
             }
         }
         else
