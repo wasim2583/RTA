@@ -65,7 +65,8 @@
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">PUC Certificate Valid Upto</div>
                            <div class="col-lg-8">
-                              <span><?php echo empty($member->puc_exp_date) ? 'NA' : date_format(date_create($member->puc_exp_date), 'd-M-Y'); ?></span>
+                              <span><?php echo ($member->puc_exp_date == '0000-00-00' OR $member->puc_exp_date == null) ? 'NA' : date_format(date_create($member->puc_exp_date), 'd-M-Y'); ?>
+                                 </span>
                            </div>
                         </div>
                         <button onclick="location.href='<?php echo base_url(); ?>user/Member/update_puc'" class="btn btn-primary btn_submit float-right">Edit</button>

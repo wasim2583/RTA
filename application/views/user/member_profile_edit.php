@@ -30,9 +30,9 @@
                               <?php echo form_error('full_name'); ?>
                            </div>
                            <div class="row Member_labels">
-                              <div class="col-lg-4 lableTxt">Date of Birth</div>
+                              <div class="col-lg-4 lableTxt">Date of Birth (mm/dd/YYYY)</div>
                               <div class="col-lg-8">
-                                 <input type="date" name="dob" id="dob" class="form-control" value="<?php echo ( !empty($member->dob)) ? $member->dob : set_value('dob'); ?>">
+                                 <input type="date" name="dob" id="dob" class="form-control" value="<?php echo $member->dob ? $member->dob : set_value('dob'); ?>">
                               </div>
                               <?php echo form_error('dob'); ?>
                            </div>
@@ -43,7 +43,7 @@
                                     <option value="">--Select Gender--</option>
                                     <option value="Male" <?php echo ($member->gender == 'Male') ? 'selected' : ''; ?>>Male</option>
                                     <option value="Female" <?php echo ($member->gender == 'Female') ? 'selected' : ''; ?>>Female</option>
-                                    <option value="Transgender" <?php echo ($member->gender == 'Transgender') ? 'selected' : ''; ?>>Transgender</option>
+                                    <!-- <option value="Transgender" <?php // echo ($member->gender == 'Transgender') ? 'selected' : ''; ?>>Transgender</option> -->
                                  </select>
                               </div>
                               <?php echo form_error('gender'); ?>

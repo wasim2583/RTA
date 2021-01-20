@@ -33,18 +33,12 @@ class Member extends CI_Controller{
 		$this->form_validation->set_rules('location', 'Location', 'required', array(
 			'required' => 'Please select your %s.'
 		));
-		$this->form_validation->set_rules('email', 'E-mail ID', 'required|valid_email|is_unique[irsc_users.email]',
+		// $this->form_validation->set_rules('email', 'E-mail ID', 'required|valid_email|is_unique[irsc_users.email]', array('required' => 'Please provide your valid %s', 'is_unique' => 'This %s already exists.'));
+		$this->form_validation->set_rules('mobile', 'Mobile Phone Number', 'required|numeric|exact_length[10]|is_unique[irsc_users.mobile]',
 			array(
-				'required'      => 'Please provide your valid %s',
-                'is_unique'     => 'This %s already exists.'
-			)
-        );
-		$this->form_validation->set_rules('mobile', 'Mobile Phone Number', 'required|exact_length[10]|is_unique[irsc_users.mobile]',
-			array(
-				'required'      => 'Please provide your valid %s',
-                'is_unique'     => 'This %s already exists.'
-			)
-		);
+				'required' => 'Please provide your valid %s',
+				'numeric' => 'Mobile number should be numeric',
+				'is_unique' => 'This %s already exists.'));
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[12]', array(
 			'required' => 'Please provide your %s.'
 		));
@@ -55,7 +49,7 @@ class Member extends CI_Controller{
 		{
 			$member = [];
 			$member['full_name'] = $this->input->post('full_name');
-			$member['email'] = $this->input->post('email');
+			// $member['email'] = $this->input->post('email');
 			$member['mobile'] = $this->input->post('mobile');
 			$member['state'] = $this->input->post('state');
 			$member['location'] = $this->input->post('location');
@@ -129,10 +123,15 @@ class Member extends CI_Controller{
 
 	public function profile()
 	{
+		// $this->load->view('user/member', $this->data);
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
 		$member_id = $this->session->userdata('member_id');
 		$this->data['title'] = 'Member - Profile';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
-		$this->load->view('user/member', $this->data);
+		$this->template->load('member', 'user/member_profile', $this->data);
 	}
 
 	public function profile_edit()
@@ -145,16 +144,14 @@ class Member extends CI_Controller{
 		$this->data['title'] = 'Member - Edit Profile';
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		$this->data['blood_groups'] = $this->Base_model->get_blood_groups();
-		// echo "<pre>";
-		// print_r($this->data['member']);
-		// // print_r($this->config->item('profile_pic_path'));
-		// die;
+		
 		$this->form_validation->set_rules('full_name', 'Full Name', 'required');
 		$this->form_validation->set_rules('dob', 'DoB', 'required');
-		$this->form_validation->set_rules('gender', 'Gender', 'required');
-		$this->form_validation->set_rules('blood_group', 'Blood Group', 'required');
-		$this->form_validation->set_rules('emergency_contact', 'Emergency Contact Number', 'required|numeric|exact_length[10]');
-		$this->form_validation->set_rules('address', 'Address', 'required');
+		// $this->form_validation->set_rules('gender', 'Gender', 'required');
+		// $this->form_validation->set_rules('blood_group', 'Blood Group', 'required');
+		// $this->form_validation->set_rules('emergency_contact', 'Emergency Contact Number', 'required|numeric|exact_length[10]');
+		// $this->form_validation->set_rules('aadhaar', 'Aadhaar Number', 'numeric|exact_length[12]');
+		// $this->form_validation->set_rules('address', 'Address', 'required');
 		if($this->form_validation->run() == TRUE)
 		{
 			$user['full_name'] = $this->input->post('full_name');
@@ -162,8 +159,9 @@ class Member extends CI_Controller{
 			$member['gender'] = $this->input->post('gender');
 			$member['blood_group'] = $this->input->post('blood_group');
 			$member['emergency_contact'] = $this->input->post('emergency_contact');
+			$member['aadhaar'] = $this->input->post('aadhaar');
 			$member['address'] = $this->input->post('address');
-			$member['dob'] = $this->input->post('dob');
+			$member['dob'] = $this->input->post('dob') ?? null;
 
 			$config['upload_path'] = './rta_assets/member/profile_pics/';
 			// $config['upload_path'] = $this->config->item('profile_pic_path');
@@ -186,12 +184,13 @@ class Member extends CI_Controller{
 			if($member_update_result || $user_update_result)
 			{
 				$this->session->set_flashdata('member_update_success', 'Details updated..');
-				redirect(base_url().'user/Member/dashboard');
+				redirect(base_url().'user/Member/profile');
 			}
 			else
 			{
 				$this->session->set_flashdata('member_update_error', 'Details NOT updated..');
-				redirect(current_url());
+				// redirect(current_url());
+				redirect(base_url().'user/Member/profile');
 			}
 		}
 		else
@@ -202,16 +201,30 @@ class Member extends CI_Controller{
 
 	public function events()
 	{
-		redirect(base_url().'user/Member/dashboard');
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
+		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Events';
+		$this->template->load('member', 'coming_soon', $this->data);
 	}
 	
 	public function offers()
 	{
-		redirect(base_url().'user/Member/dashboard');
+		if( ! $this->session->userdata('member_id'))
+		{
+			redirect(base_url().'user/Member/login');
+		}
+		$member_id = $this->session->userdata('member_id');
+		$this->data['title'] = 'Member - Offers';
+		$this->template->load('member', 'coming_soon', $this->data);
 	}
 
 	public function dashboard()
 	{
+		redirect(base_url().'user/Member/profile');
+		/*
 		if( ! $this->session->userdata('member_id'))
 		{
 			redirect(base_url().'user/Member/login');
@@ -221,6 +234,7 @@ class Member extends CI_Controller{
 		$this->data['member'] = $this->User_model->get_member_by_id($member_id);
 		
 		$this->template->load('member', 'user/member_dashboard', $this->data);
+		*/
 	}
 
 	public function member_dl()

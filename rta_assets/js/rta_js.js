@@ -94,7 +94,16 @@ $(document).ready(function(){
 			$('#Matched_videos').html(data);
 		});
 	});
-	
+
+	$(function(){
+		$("#dob123").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "1950:2020",
+			maxDate: "-18Y",
+			dateFormat: "dd/mm/yyyy"
+		});
+	});
 /* Abhilash code for RTA ends */
 /*
 	$('#jobseeker_filters #categories_list input[type=checkbox]').on('change', function(){

@@ -62,7 +62,7 @@
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Insurance Valid Upto</div>
                            <div class="col-lg-8">
-                              <span><?php echo empty($member->insurance_exp_date) ? 'NA' : date_format(date_create($member->insurance_exp_date), 'd-M-Y'); ?></span>
+                              <span><span><?php echo ($member->insurance_exp_date == '0000-00-00' OR $member->insurance_exp_date == null) ? 'NA' : date_format(date_create($member->insurance_exp_date), 'd-M-Y'); ?></span>
                            </div>
                         </div>
                         <button onclick="location.href='<?php echo base_url(); ?>user/Member/update_insurance'" class="btn btn-primary btn_submit float-right">Edit</button>

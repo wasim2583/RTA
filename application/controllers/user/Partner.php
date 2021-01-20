@@ -146,9 +146,15 @@ class Partner extends CI_Controller{
 
     public function profile()
     {
+        if( ! $this->session->userdata('partner_id'))
+        {
+            redirect(base_url().'user/Partner/login');
+        }
         $partner_id = $this->session->userdata('partner_id');
+        $this->data['title'] = 'Partner - Profile';
         $this->data['partner'] = $this->User_model->get_partner_by_id($partner_id);
-        $this->load->view('user/partner', $this->data);
+
+        $this->template->load('partner', 'user/partner_profile', $this->data);
     }
 
     public function profile_edit()
@@ -205,14 +211,14 @@ class Partner extends CI_Controller{
         }
         else
         {
-            $this->load->view('user/partner_header', $this->data);
-            $this->load->view('user/partner_profile_edit', $this->data);
-            $this->load->view('user/partner_footer', $this->data);
+            $this->template->load('partner', 'user/partner_profile_edit', $this->data);
         }
     }
 
     public function dashboard()
     {
+        redirect(base_url().'user/Partner/profile');
+        /*
         if( ! $this->session->userdata('partner_id'))
 		{
 			redirect(base_url().'user/Partner/login');
@@ -221,9 +227,18 @@ class Partner extends CI_Controller{
 		$this->data['title'] = 'Partner - Dashboard';
 		$this->data['partner'] = $this->User_model->get_partner_by_id($partner_id);
 
-        $this->load->view('user/partner_header', $this->data);
-        $this->load->view('user/partner_dashboard', $this->data);
-        $this->load->view('user/partner_footer', $this->data);
+        $this->template->load('partner', 'user/partner_profile', $this->data);
+        */
+    }
+
+    public function events()
+    {
+        $this->template->load('partner', 'coming_soon', $this->data);
+    }
+
+    public function offers()
+    {
+        $this->template->load('partner', 'coming_soon', $this->data);
     }
 
     public function logout()

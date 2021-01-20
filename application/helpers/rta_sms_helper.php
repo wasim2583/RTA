@@ -47,7 +47,7 @@ use PHPMailer\PHPMailer\Exception;
 			return false;
 		}
 	}
-
+/*
     function send_email_activation($user_type,$email_id,$userId='')
     {
         $ci = get_instance();
@@ -137,5 +137,4 @@ use PHPMailer\PHPMailer\Exception;
 			
 		}
 	}
-
-   
+*/   

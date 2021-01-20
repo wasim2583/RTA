@@ -29,9 +29,9 @@
                   <form action="" method="POST">
                      <div class="col-lg-12 col-md-12">
                         <div class="row Member_labels">
-                           <div class="col-lg-4 lableTxt">Partner ID</div>
+                           <div class="col-lg-4 lableTxt">User ID</div>
                            <div class="col-lg-8">
-                              <input type="text" class="form-control" name="loginId" id="loginId" placeholder="email/mobile">
+                              <input type="text" class="form-control" name="loginId" id="loginId" placeholder="Mobile Number">
                            </div>
                         </div>
                         

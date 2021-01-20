@@ -75,15 +75,15 @@
                               <?php echo form_error('mobile'); ?>
                            </div>
                         </div>
-                        <div class="row Member_labels">
+                        <!-- <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Email Id</div>
                            <div class="col-lg-8">
-                              <input type="text" class="form-control" name="email" id="email" placeholder="Email ID" value="<?php echo set_value('email'); ?>">
+                              <input type="text" class="form-control" name="email" id="email" placeholder="Email ID" value="<?php //echo set_value('email'); ?>">
                            </div>
                            <div>
-                              <?php echo form_error('email'); ?>
+                              <?php //echo form_error('email'); ?>
                            </div>
-                        </div>
+                        </div> -->
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">Password</div>
                            <div class="col-lg-8">
