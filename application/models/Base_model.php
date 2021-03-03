@@ -116,7 +116,7 @@ class Base_model extends CI_Model
         $this->db->from('files');
         $this->db->order_by('uploaded_on', 'DESC');
         $result = $this->db->get();
-        return $result->result();
+        return $result;
     }
 
     public function get_photos_by_state()

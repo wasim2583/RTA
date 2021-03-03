@@ -53,7 +53,7 @@ class Home extends CI_Controller {
 		}
 		// $this->data['photos']=$this->Base_model->get_photos_by_state();
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
-		$this->data['photos']=$this->Base_model->get_all_photos();
+		$this->data['photos']=$this->Base_model->get_all_photos()->result();
 		$this->template->load('site', 'front_view/gallery/gallery_photos', $this->data);
 	}
 
