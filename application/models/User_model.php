@@ -24,7 +24,7 @@ class User_model extends CI_Model
         $this->db->from('irsc_users user');
         $this->db->join('irsc_user_roles role', 'role.id = user.role');
         $this->db->join('locations loc', 'loc.id = user.location');
-        $this->db->join('states state', 'state.id = location.state_id');
+        $this->db->join('states state', 'state.id = loc.state_id');
         $this->db->where('user.id', $id);
         $result = $this->db->get('irsc_users');
         return $result->row_object();
@@ -41,6 +41,7 @@ class User_model extends CI_Model
             $this->db->where('email', $loginId);
         }       
         $this->db->where('role', $role);
+        $this->db->where('activation_code', '');
         $result = $this->db->get('irsc_users');
         if($result->num_rows() == 1)
             return $result->row_object();

@@ -61,8 +61,9 @@ class Member extends CI_Controller{
 			if($member_id)
 			{
 				$this->session->set_userdata('member_id', $member_id);
-				$activation_method = 'send_mobile_activation';
-				$activation_method(MEMBER, $this->input->post('mobile'));
+				// $activation_method = 'send_mobile_activation';
+				// $activation_method(MEMBER, $this->input->post('mobile'));
+				send_mobile_activation(MEMBER, $this->input->post('mobile'));
 			}
 			else
 			{

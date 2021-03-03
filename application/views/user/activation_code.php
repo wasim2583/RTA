@@ -19,7 +19,7 @@
             </div>
             <p><?php echo form_submit('submit', 'Activate',['value'=>'Activate','class'=>'btn btn-primary']);?></p>
             <?php echo form_close();?>
-            <p class="not_recived">Not recieved ? <a href="<?php echo $this->config->item('base_url');?>/auth/resend_activation_code"> Resend activation code</a></p>
+            <p class="not_recived">Not recieved ? <a href="<?php echo $this->config->item('base_url');?>base/resend_activation_code"> Resend activation code</a></p>
          </div>
       </div>
    </div>

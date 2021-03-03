@@ -96,6 +96,20 @@ class Base extends CI_Controller
 		$this->session->set_flashdata('member_register_success','Member registration successful!');
 		redirect(base_url().'user/Member/dashboard');
 	}
+
+	public function resend_activation_code()
+	{
+		$user_id = $this->session->userdata('member_id');
+		$user = $this->User_model->get_user_by_id($user_id);
+
+		$random_number = rand(100000, 999999);
+		$user_data = ['activation_code'=>$random_number];
+		$insert_activation = $this->User_model->set_activation_code($user_id,$user_data);
+		if($insert_activation)
+		{
+			send_mobile_activation(MEMBER, $user->mobile);
+		}
+	}
 /* Abhilash Code for RTA ends */
 
 /* Abhilash code starts */

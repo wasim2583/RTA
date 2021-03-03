@@ -95,6 +95,11 @@ define('AM_CSS',$config['base_url'].'admin_assets/css/');
 define('AM_IMG',$config['base_url'].'admin_assets/img/');
 define('AM_JS',$config['base_url'].'admin_assets/js/');
 
+//RTA constants
+
+define('MEMBER','member');
+define('PARTNER','partner');
+
 /*
 |--------------------------------------------------------------------------
 | RESPONSE Codes(for Developer Purpose)
