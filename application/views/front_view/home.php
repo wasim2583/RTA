@@ -279,7 +279,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center">
+               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center" style="display: none;">
                   <div class="card" style="width: 18rem;margin:0 auto;">
                      <img src="https://irsc.road-safety.co.in/static/home/img/people/nitin.png" class="card-img-top" alt="...">
                      <div class="card-body">
@@ -291,6 +291,28 @@
                </div>
                <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center">
                   <div class="card" style="width: 18rem;margin:0 auto;">
+                     <!-- <img src="https://irsc.road-safety.co.in/static/home/img/people/Venkaiah.jpg" class="card-img-top" alt="..."> -->
+                     <img src="<?php echo base_url(); ?>rta_assets/ministers/jagan.jpg">
+                     <div class="card-body">
+                        <h4>
+                        Shri Y.S. Jaganmohan Reddy, Hon’ble Chief Minister, Andhra Pradesh</h3>
+                        <p class="card-text" style="display: none;">“ I am happy to know that Indian Road Safety Campaign, Solve has launched iSAFE - The Safer India Challenge 2019 to reduce road traffic injuries.”</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center">
+                  <div class="card" style="width: 18rem;margin:0 auto;">
+                     <!-- <img src="https://irsc.road-safety.co.in/static/home/img/people/Venkaiah.jpg" class="card-img-top" alt="..."> -->
+                     <img src="<?php echo base_url(); ?>rta_assets/ministers/perni_nani.jpg">
+                     <div class="card-body">
+                        <h4>
+                        Shri Perni Venkataramaiah, Hon’ble Transport Minister, Andhra Pradesh</h3>
+                        <p class="card-text" style="display: none;">“ I am happy to know that Indian Road Safety Campaign, Solve has launched iSAFE - The Safer India Challenge 2019 to reduce road traffic injuries.”</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center" style="display: none;">
+                  <div class="card" style="width: 18rem;margin:0 auto;">
                      <img src="https://irsc.road-safety.co.in/static/home/img/people/pramod.jpg" class="card-img-top" alt="...">
                      <div class="card-body">
                         <h4>
@@ -299,6 +321,9 @@
                      </div>
                   </div>
                </div>
+            </div>
+            <div class="row">
+               
             </div>
          </div>
       </section>
