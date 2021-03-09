@@ -33,8 +33,7 @@
                      </div>
                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <h1 class="animateHead">
-                           <!-- <a href="" class="typewrite" data-period="2000" data-type='[ "Fast drive could be last drive", "Wrong driving may stop your breathe and cause death", "Be sure to tie seat belt before driving the car", "Be sure to wear helmet before driving bike", "Roads are made to drive but not fly", "Be a driver not clever while driving" ]'> -->
-                           <a href="" class="typewrite" data-period="2000" data-type='["Welcome to Indian Road Safety Club"]'>
+                           <a href="" class="typewrite" data-period="2000" data-type='["Welcome to Indian Road Safety Club", "Fast drive could be last drive", "Wrong driving may stop your breathe and cause death", "Be sure to tie seat belt before driving the car", "Be sure to wear helmet before driving bike", "Roads are made to drive but not fly", "Be a driver not clever while driving"]'>
                            <span class="wrap"></span>
                            </a>
                         </h1>
