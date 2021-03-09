@@ -2,6 +2,7 @@
 <html>
    <head>
       <title><?php echo empty($title) ? 'IRSC' : $title; ?></title>
+      <link rel="icon" href="<?php echo $this->config->item('base_url');?>/design/images/IRS.png" type="image/gif" sizes="16x16">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/font-awesome.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/style.css">
@@ -20,7 +21,7 @@
          <div class="row text-center">
             <div class="col-lg-4 col-md-4  offset-lg-4">
                <a href="<?php echo base_url(); ?>Home/home"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></a>
-               <span class="btm_text">Road safety Membership</span>
+               <span class="btm_text">Indian Road Safety Membership</span>
                <div class="find-location">
                   <form action="<?php echo base_url(); ?>user/Member/registration" method="POST" enctype="multipart/form-data">
                      <div class="col-lg-12 col-md-12">

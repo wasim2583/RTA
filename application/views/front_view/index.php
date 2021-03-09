@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>RTA</title>
+      <title>IRS</title>
+      <link rel="icon" href="<?php echo $this->config->item('base_url');?>/design/images/IRS.png" type="image/gif" sizes="16x16">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/font-awesome.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/style.css">
@@ -22,7 +23,7 @@
             
             <div class="col-lg-10 col-md-10  offset-lg-1">
                <div class="popOver"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></div>
-               <span class="btm_text blinking">Loading...</span>
+               <span class="btm_text blinking">WELCOME TO INDIAN ROAD SAFETY CLUB</span>
                
                <div class="state_Loc_wrap">
                   <?php

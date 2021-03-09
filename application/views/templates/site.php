@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>RTA</title>
+      <link rel="icon" href="<?php echo $this->config->item('base_url');?>/design/images/IRS.png" type="image/gif" sizes="16x16">
+      <title>IRS</title>
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/font-awesome.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/style.css">
-      <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>rta_assets/css/lightbox.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>rta_assets/css/lightbox.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
       
@@ -26,11 +27,14 @@
                <div class="container">
                   <div class="row">
                      <div class="logo-wrp col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                        <img src="<?php echo base_url(); ?>design/images/IRS.png">
+                        <a href="<?php echo base_url(); ?>">
+                           <img src="<?php echo base_url(); ?>design/images/IRS.png">
+                        </a>
                      </div>
                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <h1 class="animateHead">
-                           <a href="" class="typewrite" data-period="2000" data-type='[ "Fast drive could be last drive", "Wrong driving may stop your breathe and cause death", "Be sure to tie seat belt before driving the car", "Be sure to wear helmet before driving bike", "Roads are made to drive but not fly", "Be a driver not clever while driving" ]'>
+                           <!-- <a href="" class="typewrite" data-period="2000" data-type='[ "Fast drive could be last drive", "Wrong driving may stop your breathe and cause death", "Be sure to tie seat belt before driving the car", "Be sure to wear helmet before driving bike", "Roads are made to drive but not fly", "Be a driver not clever while driving" ]'> -->
+                           <a href="" class="typewrite" data-period="2000" data-type='["Welcome to Indian Road Safety Club"]'>
                            <span class="wrap"></span>
                            </a>
                         </h1>
@@ -60,12 +64,12 @@
                            Events
                            </a>
                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <li><a class="dropdown-item" href="" target="_blank">Departmental</a></li>
-                              <li><a class="dropdown-item" href="" target="_blank">Educational </a></li>
-                              <li><a class="dropdown-item" href="" target="_blank">Institutions </a></li>
-                              <li><a class="dropdown-item" href="" target="_blank">Corporates  </a></li>
-                              <li><a class="dropdown-item" href="" target="_blank">Companies  </a></li>
-                              <li><a class="dropdown-item" href="" target="_blank">Webinar’s  </a></li>
+                              <li><a class="dropdown-item" href="#" target="_blank">Departmental</a></li>
+                              <li><a class="dropdown-item" href="#" target="_blank">Educational </a></li>
+                              <li><a class="dropdown-item" href="#" target="_blank">Institutions </a></li>
+                              <li><a class="dropdown-item" href="#" target="_blank">Corporates  </a></li>
+                              <li><a class="dropdown-item" href="#" target="_blank">Companies  </a></li>
+                              <li><a class="dropdown-item" href="#" target="_blank">Webinar’s  </a></li>
                            </ul>
                         </li>
                         <li class="nav-item dropdown">

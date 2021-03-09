@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RTA</title>
+    <title>IRS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?php echo base_url();?>rta_assets/css/style.css" rel="stylesheet" type="text/css">

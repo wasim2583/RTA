@@ -20,7 +20,7 @@
          <div class="row text-center">
             <div class="col-lg-4 col-md-4  offset-lg-4">
                <a href="<?php echo base_url().'Home/home'; ?>"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></a>
-               <span class="btm_text">Road safety Partner Login</span>
+               <span class="btm_text">Indian Road safety Partner Login</span>
                <div class="find-location">
                   <?php
                   if( ! empty($this->session->flashdata('login_error')))
@@ -40,7 +40,8 @@
                            <div class="col-lg-8">
                               <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                            </div>
-                        </div>                     
+                        </div>
+                        <div class="Reg_link"><a href="<?php echo base_url().'user/Partner/login'; ?>"><span>Forgot Password ? </span></a></div>
                         <button type="submit" class="btn btn-primary btn_submit">Submit</button>
                         <!-- <a href="member_profile.html"><button class="btn btn-primary btn_submit">Submit</button></a> -->
 
