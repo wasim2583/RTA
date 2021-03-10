@@ -43,7 +43,7 @@
                               if(empty($partner->logo))
                               {
                                  ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/logos/photo-1.jpg'; ?>">
+                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/logos/default_logo.jpg'; ?>">
                                  <?php
                               }
                               else
