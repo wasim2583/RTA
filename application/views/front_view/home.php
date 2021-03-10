@@ -269,7 +269,7 @@
                <div class="col-lg-8 col-md-8"></div>
             </div>
             <div class="row">
-               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center">
+               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center" style="display: none;">
                   <div class="card" style="width: 18rem;margin:0 auto;">
                      <img src="https://irsc.road-safety.co.in/static/home/img/people/Venkaiah.jpg" class="card-img-top" alt="...">
                      <div class="card-body">
@@ -279,7 +279,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center" style="display: none;">
+               <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center">
                   <div class="card" style="width: 18rem;margin:0 auto;">
                      <img src="https://irsc.road-safety.co.in/static/home/img/people/nitin.png" class="card-img-top" alt="...">
                      <div class="card-body">
@@ -289,6 +289,7 @@
                      </div>
                   </div>
                </div>
+               <!-- added ministers start -->
                <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center">
                   <div class="card" style="width: 18rem;margin:0 auto;">
                      <!-- <img src="https://irsc.road-safety.co.in/static/home/img/people/Venkaiah.jpg" class="card-img-top" alt="..."> -->
@@ -311,6 +312,7 @@
                      </div>
                   </div>
                </div>
+               <!-- added ministers end -->
                <div class="col-lg-4 col-md-4 xol-sm-12 col-xs-12 text-center" style="display: none;">
                   <div class="card" style="width: 18rem;margin:0 auto;">
                      <img src="https://irsc.road-safety.co.in/static/home/img/people/pramod.jpg" class="card-img-top" alt="...">
@@ -321,9 +323,6 @@
                      </div>
                   </div>
                </div>
-            </div>
-            <div class="row">
-               
             </div>
          </div>
       </section>
