@@ -8,7 +8,7 @@
   <head>
     <!--Designed By Khaja-->
     <meta charset="utf-8">
-    <title>I.R.S</title>
+    <title>IRS</title>
     <meta name="viewport" content="width=device-width , initial-scale =1">
     <!-- Style.Css Link-->
     <!--Bootstrap CDN-->
@@ -68,7 +68,7 @@
                     <h1><a href="<?php echo base_url();?>">I.R.S</a></h1>
                   
                 </div>
-                <form method="post" action="<?php echo HTTP_BASE_PATH;?>admin/login_validation" onsubmit="return validate_form();" >
+                <form method="post" action="<?php echo base_url();?>admin/login_validation" onsubmit="return validate_form();" >
                   <div style="padding:0px 2px">
                     <div class="form-group col-sm-12">
                       <div class="input-group">
