@@ -42,7 +42,7 @@
                               <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                            </div>
                         </div>
-                        <div class="Reg_link"><a href="<?php echo base_url().'user/Member/login'; ?>"><span>Forgot Password ? </span></a></div>
+                        <div class="Reg_link"><a href="<?php echo base_url().'user/Member/forgot_password'; ?>"><span>Forgot Password ? </span></a></div>
                         <button type="submit" class="btn btn-primary btn_submit">Submit</button>
                         <div class="Reg_link"><span>Not Yet Registered? </span><a href="<?php echo base_url().'user/Member/registration'; ?>">Register</a></div>
                      </div>

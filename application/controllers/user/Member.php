@@ -200,6 +200,11 @@ class Member extends CI_Controller{
 		}
 	}
 
+	public function forgot_password()
+	{
+		
+	}
+
 	public function events()
 	{
 		if( ! $this->session->userdata('member_id'))
