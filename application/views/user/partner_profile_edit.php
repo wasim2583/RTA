@@ -71,16 +71,16 @@
                                  <input type="file" name="logo" id="logo">
                               </div>
                               <?php
-                              if( ! empty($partner->logo))
+                              if(empty($partner->logo))
                               {
                                  ?>
-                              <img src="<?php echo base_url().'rta_assets/logos/'.$partner->logo; ?>" style="width:50px;"/>
+                              <img src="<?php echo base_url().'rta_assets/logos/photo-1.jpg'; ?>" style="width:50px;"/>
                                  <?php
                               }
                               else
                               {
                                  ?>
-                              <img src="<?php echo base_url().'rta_assets/logos/photo-1.jpg'; ?>" style="width:50px;"/>
+                              <img src="<?php echo base_url().'rta_assets/logos/'.$partner->logo; ?>" style="width:50px;"/>
                                  <?php
                               }
                               ?>
