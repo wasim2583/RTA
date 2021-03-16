@@ -76,4 +76,13 @@ class Home extends CI_Controller {
 		$this->data['videos']=$this->Base_model->get_all_videos();
 		$this->template->load('site', 'front_view/gallery/gallery_videos', $this->data);
 	}
+
+	public function contact_us()
+	{
+		if(empty($this->session->userdata('state_id')))
+		{
+			redirect(base_url());
+		}
+		$this->template->load('site', 'front_view/contactus',$this->data);
+	}
 }
