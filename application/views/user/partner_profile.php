@@ -6,6 +6,14 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
          <h1 class="h3 mb-0 text-gray-800">Profile</h1>
       </div>
+      <div class="alert">
+         <?php
+         if( ! empty($this->session->flashdata('partner_update_success')))
+            echo $this->session->flashdata('partner_update_success');
+         if( ! empty($this->session->flashdata('partner_update_error')))
+            echo $this->session->flashdata('partner_update_error');
+         ?>
+      </div>
      
       <!-- Content Row -->
       <div class="row">
@@ -43,13 +51,13 @@
                               if(empty($partner->logo))
                               {
                                  ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/logos/default_logo.jpg'; ?>">
+                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'uploads/logos/default_logo.jpg'; ?>">
                                  <?php
                               }
                               else
                               {
                                  ?>
-                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/logos/'.$partner->logo; ?>">
+                              <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'uploads/logos/'.$partner->logo; ?>">
                                  <?php
                               }
                               ?>

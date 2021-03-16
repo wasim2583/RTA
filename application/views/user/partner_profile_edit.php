@@ -74,20 +74,19 @@
                               if(empty($partner->logo))
                               {
                                  ?>
-                              <img src="<?php echo base_url().'rta_assets/logos/default_logo.jpg'; ?>" style="width:50px;"/>
+                              <img src="<?php echo base_url().'uploads/logos/default_logo.jpg'; ?>" style="width:50px;"/>
                                  <?php
                               }
                               else
                               {
                                  ?>
-                              <img src="<?php echo base_url().'rta_assets/logos/'.$partner->logo; ?>" style="width:50px;"/>
+                              <img src="<?php echo base_url().'uploads/logos/'.$partner->logo; ?>" style="width:50px;"/>
                                  <?php
                               }
                               ?>
                            </div>
-                           <button type="submit" class="btn btn-primary btn_submit">Update</button>                          
+                           <button type="submit" class="btn btn-primary btn_submit">Update</button>
                         </div>
-
                      </div>
                   </form>
                </div>

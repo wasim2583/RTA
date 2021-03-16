@@ -62,22 +62,7 @@ class Partner extends CI_Controller{
 			$partner['role'] = $irsc_user_role->id;
 			$partner['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			$partner['status'] = 1;
-			/*
-			$config['upload_path'] = './assets/logos/';
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
-            $config['max_size'] = 4096;
-            $this->load->library('upload', $config);
-        	if($this->upload->do_upload('logo'))
-            {
-                $fdata = $this->upload->data();
-                $partner['logo'] = $fdata['file_name'];
-            }
-            else
-            {
-                $partner['logo'] = 'parrot.jpg';
-                $this->upload->display_errors();
-            }
-			*/
+			
             $partner_id = $this->User_model->insert_user($partner);
 
 			if($partner_id)
@@ -181,13 +166,16 @@ class Partner extends CI_Controller{
             $user['organization_type'] = $this->input->post('organization_type');
             $partner['address'] = $this->input->post('address');
 
-            $config['upload_path'] = './rta_assets/logos/';
+            $config['upload_path'] = './uploads/logos/';
+            // $config['upload_path'] = $this->config->item('logo_path');
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
             $this->load->library('upload', $config);
             if($this->upload->do_upload('logo'))
             {
-                $fdata = $this->upload->data();                
+                $fdata = $this->upload->data();
+                // print_r($fdata);
+                // die;
                 $partner['logo'] = $fdata['file_name'];
             }
             else
@@ -201,12 +189,12 @@ class Partner extends CI_Controller{
             if($partner_update_result || $user_update_result)
             {
                 $this->session->set_flashdata('partner_update_success', 'Details updated..');
-                redirect(base_url().'user/Partner/dashboard');
+                redirect(base_url().'user/Partner/profile');
             }
             else
             {
                 $this->session->set_flashdata('partner_update_error', 'Details NOT updated..');
-                redirect(base_url().'user/Partner/dashboard');
+                redirect(base_url().'user/Partner/profile');
                 // redirect(current_url());
             }
         }
