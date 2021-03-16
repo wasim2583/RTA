@@ -30,7 +30,7 @@
                            <div class="col-lg-8">
                               <input type="text" class="form-control" name="full_name" placeholder="Full Name" value="<?php echo set_value('full_name'); ?>">
                            </div>
-                           <div>
+                           <div class="error_alert">
                               <?php echo form_error('full_name'); ?>
                            </div>
                         </div>
@@ -52,7 +52,7 @@
                                  ?>
                               </select>
                            </div>
-                           <div>
+                           <div class="error_alert">
                               <?php echo form_error('state'); ?>
                            </div>
                         </div>
@@ -63,7 +63,7 @@
                                  <option value="">Select Your Location</option>
                               </select>
                            </div>
-                           <div>
+                           <div class="error_alert">
                               <?php echo form_error('location'); ?>
                            </div>
                         </div>
@@ -72,7 +72,7 @@
                            <div class="col-lg-8">
                               <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile No" value="<?php echo set_value('mobile'); ?>">
                            </div>
-                           <div>
+                           <div class="error_alert">
                               <?php echo form_error('mobile'); ?>
                            </div>
                         </div>
@@ -90,7 +90,7 @@
                            <div class="col-lg-8">
                               <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                            </div>
-                           <div>
+                           <div class="error_alert">
                               <?php echo form_error('password'); ?>
                            </div>
                         </div>
@@ -99,7 +99,7 @@
                            <div class="col-lg-8">
                               <input type="password" class="form-control" name="cnfpwd" id="cnfpwd" placeholder="Confirm Password">
                            </div>
-                           <div>
+                           <div class="error_alert">
                               <?php echo form_error('cnfpwd'); ?>
                            </div>
                         </div>

@@ -158,7 +158,7 @@
             <p>The <span class="Title_name">IRS CLUB</span> team delivers Professional and conscientious services to the people of the country, and remain committed to reducing the human cost on road crashes.</p>
          </div>
       </section>
-      <section class="abt_wrap">
+      <section class="abt_wrap" style="display:none;">
          <div class="container">
             <h3 class="form__title" style="display: none;">Our 
                <span class="form__mark">
@@ -233,22 +233,22 @@
       <section class="testimonials" onscroll="myFunction()">
          <!-- Slideshow container -->
          <div class="slideshow-container">
-            <h2 style="display: inline-block;width:100%;text-align: center;margin-bottom: 30px;">Testmonials</h2>
+          
             <!-- Full-width slides/quotes -->
             <div class="mySlides">
-               <div class="testimo"><img src="<?php echo base_url(); ?>design/images/r1.jpg"></div>
-               <q>I love you the more in that I believe you had liked me for my own sake and for nothing else</q>
-               <p class="author">- John Keats</p>
+               <div class="testimo"><img src="<?php echo base_url(); ?>design/images/IAS.jpg"></div>
+               <p class="testi-textCenter">I am glad to note that the Andhra Pradesh Transport Department Technical Officer's Association are bringing out a IRSCLUB, The website key statistical and other information which will be very useful to the Members and Partners. I wish that the executive officers of the Transport Department discharge their duties efficiently through their enforcement performance and Road safety activities and to enhance the image of the Department.</p>
+               <p class="author">- <b>Sri. M.T.Krishna Babu, I.A.S.</b><br>( Principal Secretary to Government )</p>
             </div>
             <div class="mySlides">
-               <div class="testimo"><img src="<?php echo base_url(); ?>design/images/r1.jpg"></div>
-               <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
-               <p class="author">- Ernest Hemingway</p>
+               <div class="testimo"><img src="<?php echo base_url(); ?>design/images/IPS.jpg"></div>
+               <p class="testi-textCenter">I am glad to note that Association of Andhra Pradesh Transport Department Technical Officers Association is bringing out IRS CLUB containing the information relating to important Circulars, G.O's and other important matters issued in the Transport Department which will be useful to all the Staff and Ofiicers, I appreciate the efforts of the Association in compiling the information for the benefit of the Club Members and Partners <br> I hope all of us will put in our best efforts to improve the image and performance of the Department and work hard to provide better Online services to citizens and Road Safety activities I wish all success in all their endeavors.</p>
+               <p class="author">- <b>Sri. P.S.R. Anjaneyalu, I.P.S.</b><br>( Transport Commissioner Andhra Pradesh )</p>
             </div>
             <div class="mySlides">
-               <div class="testimo"><img src="<?php echo base_url(); ?>design/images/r1.jpg"></div>
-               <q>I have not failed. I've just found 10,000 ways that won't work.</q>
-               <p class="author">- Thomas A. Edison</p>
+               <div class="testimo"><img src="<?php echo base_url(); ?>design/images/TransportDept.jpg"></div>
+               <p class="testi-textCenter">The role of technical officers is very important to the Department in terms of enforcing the provisions of Motor Vehicles Act and the Andhra Pradesh Motot vehicles Taxation Act. I request all the members of IRS CLUB to put forth their efforts to improve the image of Transport Department in the state.</p>
+               <p class="author">- <b>Sri. S.A.V. Prasada Rao</b><br>( Additional Transport Commissioner Transport Department, Andhra Pradesh )</p>
             </div>
             <!-- Next/prev buttons -->
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -286,6 +286,7 @@
                         <h4>
                         Shri Nitin Gadkari, Hon’ble Minister of Road Transport and Highways of India</h3>
                         <p class="card-text">“ Glad to know that Indian Road Safety Campaign, Solve is working towards road safety awareness all over the India by involving IIT students”.</p>
+
                      </div>
                   </div>
                </div>
@@ -297,7 +298,8 @@
                      <div class="card-body">
                         <h4>
                         Shri Y.S. Jaganmohan Reddy, Hon’ble Chief Minister, Andhra Pradesh</h3>
-                        <p class="card-text" style="display: none;">“ I am happy to know that Indian Road Safety Campaign, Solve has launched iSAFE - The Safer India Challenge 2019 to reduce road traffic injuries.”</p>
+                       
+                        <p class="card-text">“ I am happy to note that the Association of Transport Department Technical Officers is bringing out a IRS CLUB I am told that the IRS will have useful information about the important circulars, GO's and other matters related to the Transport Department and key statistical information on Road Safety. I hope the IRS and information will serve the intended purpose and will be useful to the Association members and others.”</p>
                      </div>
                   </div>
                </div>
@@ -308,7 +310,7 @@
                      <div class="card-body">
                         <h4>
                         Shri Perni Venkataramaiah, Hon’ble Transport Minister, Andhra Pradesh</h3>
-                        <p class="card-text" style="display: none;">“ I am happy to know that Indian Road Safety Campaign, Solve has launched iSAFE - The Safer India Challenge 2019 to reduce road traffic injuries.”</p>
+                        <p class="card-text">“ I am happy to know that the A.P. Transport Department Technical Officers Association bringing out IRS CLUB in the public containing all the information which will be useful to all the officers of Transport Department. I wish this IRS CLUB in a ready reckoner. I sincerely congratulate every member of the IRS CLUB for their tremendous service to improve road safety. I wish all the best to all the IRS CLUB members and partners.”</p>
                      </div>
                   </div>
                </div>
@@ -399,13 +401,13 @@
                         <div class="card-header" id="headingOne">
                            <h2 class="mb-0">
                               <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Precaution #1
+                              Video Of The Day
                               </button>
                            </h2>
                         </div>
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                            <div class="card-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                              <iframe width="100%" height="315" src="https://www.youtube.com/embed/MeT7WJVz5C4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                            </div>
                         </div>
                      </div>
@@ -413,13 +415,13 @@
                         <div class="card-header" id="headingTwo">
                            <h2 class="mb-0">
                               <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              Precaution #2
+                              Photo Of The Day
                               </button>
                            </h2>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                            <div class="card-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                             <img src="<?php echo base_url(); ?>design/images/2.jpg" alt="" style="max-width:100%">
                            </div>
                         </div>
                      </div>
@@ -427,13 +429,20 @@
                         <div class="card-header" id="headingThree">
                            <h2 class="mb-0">
                               <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                              Precaution #3
+                              News Of The Day
                               </button>
                            </h2>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                            <div class="card-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                              <div class="row">
+                              <div class="col-lg-4">
+                                 <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202103/yuvrajsinghroadsafety_1200x768.jpeg" alt="" style="max-width:100%">
+                              </div>
+                              <div class="col-lg-6">
+                                 Road Safety World Series: Yuvraj Singh smashes 4 sixes in a row after Sachin Tendulkar's 37-ball 60
+                              </div>
+                              </div>
                            </div>
                         </div>
                      </div>
