@@ -20,7 +20,7 @@
          <div class="row text-center">
             <div class="col-lg-4 col-md-4  offset-lg-4">
                <a href="<?php echo base_url().'Home/home'; ?>"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></a>
-               <span class="btm_text">Indian Road safety Partner Login</span>
+               <span class="btm_text">Indian Road safety Club Partner Login</span>
                <div class="find-location">
                   <?php
                   if( ! empty($this->session->flashdata('login_error')))

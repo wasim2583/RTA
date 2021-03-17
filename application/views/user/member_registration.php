@@ -21,7 +21,7 @@
          <div class="row text-center">
             <div class="col-lg-4 col-md-4  offset-lg-4">
                <a href="<?php echo base_url(); ?>Home/home"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></a>
-               <span class="btm_text">Indian Road Safety Membership</span>
+               <span class="btm_text">Indian Road Safety Club Membership</span>
                <div class="find-location">
                   <form action="<?php echo base_url(); ?>user/Member/registration" method="POST" enctype="multipart/form-data">
                      <div class="col-lg-12 col-md-12">
