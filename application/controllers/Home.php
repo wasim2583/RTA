@@ -83,6 +83,7 @@ class Home extends CI_Controller {
 		{
 			redirect(base_url());
 		}
+		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		$this->template->load('site', 'front_view/contactus',$this->data);
 	}
 }
