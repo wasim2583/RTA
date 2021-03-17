@@ -66,9 +66,9 @@
           <div class="dropdown mr-auto">
             <button type="button" class="bg-secondary dropdown-toggle col-wh" data-toggle="dropdown">Admin<?php echo " - ".$state->state_name; ?></button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="<?php echo HTTP_BASE_PATH;?>admin/change_password">Change Password</a>
+              <a class="dropdown-item" href="<?php echo base_url();?>admin/change_password">Change Password</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="<?php echo HTTP_BASE_PATH;?>admin/logout"></i>Logout</a>
+              <a class="dropdown-item" href="<?php echo base_url();?>admin/logout"></i>Logout</a>
             </div>
           </div>
         </div>

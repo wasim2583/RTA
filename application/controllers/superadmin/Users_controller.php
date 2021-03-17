@@ -281,7 +281,7 @@ class Users_controller extends CI_Controller{
 	public function user_information()
 	{
 		$si=$this->uri->segment(4,0);
-		$base_url= HTTP_BASE_PATH."admin/users/user_information";
+		$base_url= base_url().'admin/users/user_information';
 		$tr=$this->crud_model->count_num_recs('da_users_tbl');
 		$pp=20;
 		$config = $this->pagination1($base_url,$tr, $pp);
