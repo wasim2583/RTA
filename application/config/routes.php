@@ -65,7 +65,7 @@ $route['front/about_us'] = 'front/front_controller/about_us';
 $route['front/Events'] = 'front/front_controller/Events';
 $route['front/Contact_us'] = 'front/front_controller/Contact_us';
 
-$route['Home/(:any)'] = 'Home/home';
+// $route['Home/(:any)'] = 'Home/home';
 
 
 

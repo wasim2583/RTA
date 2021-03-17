@@ -30,7 +30,7 @@
                   foreach($states as $state)
                   {
                      ?>
-                  <a href="<?php echo base_url().'Home/'.$state->id; ?>">
+                  <a href="<?php echo base_url().'Home/home/'.$state->id; ?>">
                      <div class="Inn_wrap">
                         <img src="<?php echo base_url().'rta_assets/state_images/'.$state->image; ?>">
                         <span><?php echo $state->state_name; ?></span>
