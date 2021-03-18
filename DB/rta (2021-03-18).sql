@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2020 at 03:29 PM
+-- Generation Time: Mar 18, 2021 at 04:43 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -543,7 +543,7 @@ CREATE TABLE `da_admin_tbl` (
 --
 
 INSERT INTO `da_admin_tbl` (`admin_id`, `admin_name`, `admin_email`, `admin_mobile`, `admin_password`, `admin_state`, `admin_last_login_date`, `admin_last_login_ip`, `admin_status`, `admin_verification_code`, `otp`) VALUES
-(1, 'AP Admin', 'apadmin@gmail.com', '9696969696', 'e10adc3949ba59abbe56e057f20f883e', 2, '2020-12-31 17:31:35', '::1', 1, '', 0),
+(1, 'AP Admin', 'apadmin@gmail.com', '9696969696', 'e10adc3949ba59abbe56e057f20f883e', 2, '2021-03-18 10:35:12', '::1', 1, '', 0),
 (2, 'TN Admin', 'tnadmin@gmail.com', '9493384048', 'e10adc3949ba59abbe56e057f20f883e', 35, '2020-12-22 11:15:59', '::1', 1, '', 0);
 
 -- --------------------------------------------------------
@@ -2740,7 +2740,7 @@ CREATE TABLE `da_slider_tbl` (
 INSERT INTO `da_slider_tbl` (`slider_id`, `slider_title`, `slider_img`, `slider_location`, `slider_caption`, `added_by`, `added_on`, `state_id`, `slider_status`) VALUES
 (3, 'Meeting', 'slide02.jpeg', '', 'Generalbody meeting', 2, '2019-01-02', 35, 1),
 (6, 'Happy', 'slide05.jpeg', '', 'Cricket Match', 2, '2019-01-02', 35, 1),
-(10, 'S A V PRASADARAO GARU ', 'slide1.jpg', 'VAHANA MITRA', 'ADDITIONAL TRANSPORT COMMISSIONER', 1, '2020-06-04', 2, 1),
+(10, 'S A V PRASADARAO GARU ', 'slide1.jpg', 'VAHANA MITRA', 'Additional Transport Commissioner', 1, '2020-06-04', 2, 1),
 (11, '', 'slide2.jpg', '', 'Facilitating to Joint Transport commissioner Ramasri garu', 1, '2020-12-31', 2, 1),
 (12, 'VAHANA MITRA 3', 'slide3.jpg', '', 'Vahana Mitra 3', 1, '2020-06-04', 2, 1),
 (16, '', 'slide4.jpg', '', '', 1, '2020-12-31', 2, 1),
@@ -4282,20 +4282,27 @@ CREATE TABLE `irsc_members` (
   `id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `address` text NOT NULL,
-  `aadhaar` varchar(15) NOT NULL,
+  `aadhaar` varchar(15) DEFAULT NULL,
   `gender` varchar(20) NOT NULL,
   `dob` date DEFAULT NULL,
   `emergency_contact` varchar(15) NOT NULL,
   `blood_group` varchar(50) NOT NULL,
-  `profile_pic` varchar(255) NOT NULL
+  `profile_pic` varchar(255) NOT NULL,
+  `dl_no` varchar(50) NOT NULL,
+  `dl_doc` varchar(255) NOT NULL,
+  `policy_no` varchar(100) NOT NULL,
+  `insurance_doc` varchar(255) NOT NULL,
+  `insurance_exp_date` date NOT NULL,
+  `puc_doc` varchar(255) NOT NULL,
+  `puc_exp_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `irsc_members`
 --
 
-INSERT INTO `irsc_members` (`id`, `member_id`, `address`, `aadhaar`, `gender`, `dob`, `emergency_contact`, `blood_group`, `profile_pic`) VALUES
-(1, 1, 'Bapuji Nagar', '', 'Male', '1983-08-28', '9885394463', '3', 'photo-11.jpg');
+INSERT INTO `irsc_members` (`id`, `member_id`, `address`, `aadhaar`, `gender`, `dob`, `emergency_contact`, `blood_group`, `profile_pic`, `dl_no`, `dl_doc`, `policy_no`, `insurance_doc`, `insurance_exp_date`, `puc_doc`, `puc_exp_date`) VALUES
+(7, 9, '', '', 'Female', '1983-08-28', '', '4', 'parrot1.jpg', '', '', '', '', '0000-00-00', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -4315,7 +4322,7 @@ CREATE TABLE `irsc_partners` (
 --
 
 INSERT INTO `irsc_partners` (`id`, `partner_id`, `address`, `logo`) VALUES
-(1, 2, 'Rajiv Nagar', '51yV+-SjXVL__UL1300_.jpg');
+(2, 15, '# 10-12-14,\r\nVennela Apartments', 'parrot1.jpg');
 
 -- --------------------------------------------------------
 
@@ -4334,6 +4341,7 @@ CREATE TABLE `irsc_users` (
   `role` int(11) NOT NULL,
   `organization_type` int(11) DEFAULT NULL,
   `organization_name` varchar(255) DEFAULT NULL,
+  `activation_code` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -4341,9 +4349,9 @@ CREATE TABLE `irsc_users` (
 -- Dumping data for table `irsc_users`
 --
 
-INSERT INTO `irsc_users` (`id`, `full_name`, `mobile`, `email`, `password`, `state`, `location`, `role`, `organization_type`, `organization_name`, `status`) VALUES
-(1, 'Abhilash', '9493384048', 'test_member1@mail.com', '$2y$10$HSxVACL45TUmqzYjL0iy..8F.ufTOkBE0MitBdnC9.uDirD2xd19G', 2, 20, 2, NULL, NULL, 1),
-(2, 'Rama Krishna', '9885394463', 'test_partner1@mail.com', '$2y$10$.r4BjHWqyaaq1UhLlqDKc.yprWA5w706KRZ9E2wBq015wEhWx1vha', 35, 3551, 1, 4, 'Rainbow Technologies', 1);
+INSERT INTO `irsc_users` (`id`, `full_name`, `mobile`, `email`, `password`, `state`, `location`, `role`, `organization_type`, `organization_name`, `activation_code`, `status`) VALUES
+(9, 'Rani', '9885394463', '', '$2y$10$9K8WPvcWE/U0QxIbtNc9XeaN0JO0XLDBHZvyjxZex7AXnKawTr3TS', 35, 3565, 2, NULL, NULL, '', 1),
+(15, 'Abhilash', '9493384048', 'test_partner@mail.com', '$2y$10$BflXsAgi9qdBnpoOPAJ0quiKTrbSuMpOdnkxpY1W/aqAvDUxYc1TK', 2, 6, 1, 4, 'Mannschaft Infotech', '', 1);
 
 -- --------------------------------------------------------
 
@@ -10804,7 +10812,7 @@ ALTER TABLE `da_slider_tbl`
 -- AUTO_INCREMENT for table `da_users_tbl`
 --
 ALTER TABLE `da_users_tbl`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=892;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=893;
 
 --
 -- AUTO_INCREMENT for table `da_videos_tbl`
@@ -10834,19 +10842,19 @@ ALTER TABLE `groups_members_tbl`
 -- AUTO_INCREMENT for table `irsc_members`
 --
 ALTER TABLE `irsc_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `irsc_partners`
 --
 ALTER TABLE `irsc_partners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `irsc_users`
 --
 ALTER TABLE `irsc_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `irsc_user_roles`
