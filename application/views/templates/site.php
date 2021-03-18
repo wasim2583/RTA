@@ -11,6 +11,7 @@
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>rta_assets/css/lightbox.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
       
    </head>
    <body>
@@ -215,20 +216,20 @@
                      </a>
                   </ul>
                </div>
-               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                  <h3>Links</h3>
+               <div class="foot-soc-links col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <h3>Social Links</h3>
                   <ul>
                      <a href="">
-                        <li>About Us</li>
+                        <li><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</li>
                      </a>
                      <a href="">
-                        <li>Events</li>
+                        <li><i class="fa fa-youtube-square" aria-hidden="true"></i> YouTube</li>
                      </a>
                      <a href="">
-                        <li>Gallery</li>
+                        <li><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</li>
                      </a>
                      <a href="">
-                        <li>Promotions</li>
+                        <li><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn</li>
                      </a>
                   </ul>
                </div>
