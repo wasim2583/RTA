@@ -21,20 +21,20 @@
                      </a>
                   </ul>
                </div>
-               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                  <h3>Links</h3>
+               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <h3>Social Links</h3>
                   <ul>
                      <a href="">
-                        <li>About Us</li>
+                        <li><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</li>
                      </a>
                      <a href="">
-                        <li>Events</li>
+                        <li><i class="fa fa-youtube-square" aria-hidden="true"></i> YouTube</li>
                      </a>
                      <a href="">
-                        <li>Gallery</li>
+                        <li><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</li>
                      </a>
                      <a href="">
-                        <li>Promotions</li>
+                        <li><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn</li>
                      </a>
                   </ul>
                </div>
