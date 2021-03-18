@@ -7,7 +7,7 @@
       if( ! empty($this->session->flashdata('member_update_success')))
       {
          ?>
-      <div class="fadeout_alert">
+      <div class="error_alert">
          <?php echo $this->session->flashdata('member_update_success'); ?>
       </div>
          <?php
@@ -15,14 +15,14 @@
       if( ! empty($this->session->flashdata('member_update_error')))
       {
          ?>
-      <div class="fadeout_alert">
+      <div class="error_alert">
          <?php echo $this->session->flashdata('member_update_error'); ?>
       </div>
          <?php
       }
       ?>
    </div>
-  
+   
    <!-- Content Row -->
    <div class="row">
       <!-- Content Column -->

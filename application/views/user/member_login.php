@@ -23,16 +23,26 @@
                <a href="<?php echo base_url().'Home/home'; ?>"><img src="<?php echo base_url(); ?>design/images/IRS.png" class="imgWrap1"></a>
                <span class="btm_text">Indian Road safety Club Member Login</span>
                <div class="find-location">
-                  <?php
-                  if( ! empty($this->session->flashdata('login_error')))
-                     echo $this->session->flashdata('login_error');
-                  ?>
+                  
                   <form action="" method="POST">
                      <div class="col-lg-12 col-md-12">
+                        <?php
+                        if( ! empty($this->session->flashdata('login_error')))
+                        {
+                           ?>
+                        <div class="error_alert">
+                           <?php echo $this->session->flashdata('login_error'); ?>
+                        </div>
+                           <?php
+                        }
+                        ?>
                         <div class="row Member_labels">
                            <div class="col-lg-4 lableTxt">User ID</div>
                            <div class="col-lg-8">
                               <input type="text" class="form-control" name="loginId" id="loginId" placeholder="Mobile Number">
+                           </div>
+                           <div class="error_alert">
+                              <?php echo form_error('loginId'); ?>
                            </div>
                         </div>
                         
@@ -40,6 +50,9 @@
                            <div class="col-lg-4 lableTxt">Password</div>
                            <div class="col-lg-8">
                               <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                           </div>
+                           <div class="error_alert">
+                              <?php echo form_error('password'); ?>
                            </div>
                         </div>
                         <div class="Reg_link"><a href="<?php echo base_url().'user/Member/forgot_password'; ?>"><span>Forgot Password ? </span></a></div>

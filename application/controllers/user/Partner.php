@@ -222,7 +222,12 @@ class Partner extends CI_Controller{
 
     public function events()
     {
-        $this->template->load('partner', 'coming_soon', $this->data);
+        $this->template->load('partner', 'user/events', $this->data);
+    }
+
+    public function create_event()
+    {
+        $this->template->load('partner', 'user/create_event', $this->data);
     }
 
     public function offers()
