@@ -53,7 +53,7 @@
           <?php
         }
         ?>
-
+<!--
         <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
@@ -191,7 +191,7 @@
             </div>
           </div>
         </div>
-
+-->
       </div>
     </div>
   </div>
