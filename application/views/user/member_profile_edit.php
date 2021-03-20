@@ -101,7 +101,7 @@
                            if( ! empty($member->profile_pic))
                            {
                               ?>
-                           <img src="<?php echo base_url().'rta_assets/member/profile_pics/'.$member->profile_pic; ?>" style="width:50px;"/>
+                           <img src="<?php echo base_url().'uploads/member/profile_pics/'.$member->profile_pic; ?>" style="width:50px;"/>
                               <?php
                            }
                            ?>

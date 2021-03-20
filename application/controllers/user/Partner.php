@@ -167,7 +167,6 @@ class Partner extends CI_Controller{
             $partner['address'] = $this->input->post('address');
 
             $config['upload_path'] = './uploads/logos/';
-            // $config['upload_path'] = $this->config->item('logo_path');
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
             $this->load->library('upload', $config);

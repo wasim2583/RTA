@@ -59,7 +59,7 @@
                               <div class="col-lg-4 lableTxt">State</div>
                               <div class="col-lg-8">                                 
                                  <select class="form-control" name="state" id="state">
-                                    <option value="">--Select State--</option>
+                                    <option value="0">--Select State--</option>
                                     <?php
                                     foreach($states as $state)
                                     {

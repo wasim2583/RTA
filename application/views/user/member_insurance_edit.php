@@ -59,7 +59,7 @@
                               else
                               {
                                  ?>
-                              <iframe src="<?php echo base_url().'rta_assets/member/insurance/'.$member->insurance_doc; ?>" width="200px"></iframe>
+                              <iframe src="<?php echo base_url().'uploads/member/insurance/'.$member->insurance_doc; ?>" width="200px"></iframe>
                                  <?php
                               }
                               ?>

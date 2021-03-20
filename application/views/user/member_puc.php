@@ -56,7 +56,7 @@
                               else
                               {
                                  ?>
-                              <iframe src="<?php echo base_url().'rta_assets/member/puc/'.$member->puc_doc; ?>" width="200px"></iframe>
+                              <iframe src="<?php echo base_url().'uploads/member/puc/'.$member->puc_doc; ?>" width="200px"></iframe>
                                  <?php
                               }
                               ?>

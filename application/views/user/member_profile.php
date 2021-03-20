@@ -98,13 +98,13 @@
                            if(empty($member->profile_pic))
                            {
                               ?>
-                           <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/member/profile_pics/parrot.jpg'; ?>">
+                           <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'uploads/member/profile_pics/parrot.jpg'; ?>">
                               <?php
                            }
                            else
                            {
                               ?>
-                           <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'rta_assets/member/profile_pics/'.$member->profile_pic; ?>">
+                           <img style="max-width:130px;" class="img-profile rounded-circle" src="<?php echo base_url().'uploads/member/profile_pics/'.$member->profile_pic; ?>">
                               <?php
                            }
                            ?>

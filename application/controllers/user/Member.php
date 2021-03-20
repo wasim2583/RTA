@@ -164,7 +164,7 @@ class Member extends CI_Controller{
 			$member['address'] = $this->input->post('address');
 			$member['dob'] = $this->input->post('dob') ?? null;
 
-			$config['upload_path'] = './rta_assets/member/profile_pics/';
+			$config['upload_path'] = './uploads/member/profile_pics/';
 			// $config['upload_path'] = $this->config->item('profile_pic_path');
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = 4096;
@@ -272,7 +272,7 @@ class Member extends CI_Controller{
 		{
 			
 			$member['dl_no'] = $this->input->post('dl_no');
-			$config['upload_path'] = './rta_assets/member/driving_licence/';
+			$config['upload_path'] = './uploads/member/driving_licence/';
 	        $config['allowed_types'] = 'jpg|jpeg|png|gif|docx|doc|pdf';
 	        $config['max_size'] = 4096;
 	        $this->load->library('upload', $config);
@@ -337,7 +337,7 @@ class Member extends CI_Controller{
 			
 			$member['policy_no'] = $this->input->post('policy_no');
 			$member['insurance_exp_date'] = $this->input->post('insurance_exp_date');
-			$config['upload_path'] = './rta_assets/member/insurance/';
+			$config['upload_path'] = './uploads/member/insurance/';
 	        $config['allowed_types'] = 'jpg|jpeg|png|gif|docx|doc|pdf';
 	        $config['max_size'] = 4096;
 	        $this->load->library('upload', $config);
@@ -399,7 +399,7 @@ class Member extends CI_Controller{
         if($this->input->post('submit') && ($this->form_validation->run() == true))
         {
             $member['puc_exp_date'] = $this->input->post('puc_exp_date');
-            $config['upload_path'] = './rta_assets/member/puc/';
+            $config['upload_path'] = './uploads/member/puc/';
             $config['allowed_types'] = 'jpg|jpeg|png|gif|docx|doc|pdf';
             $config['max_size'] = 4096;
             $this->load->library('upload', $config);
