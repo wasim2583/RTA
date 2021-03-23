@@ -138,6 +138,14 @@ class Base_model extends CI_Model
         return $result->result();
     }
 
+    public function get_gallery_videos($nr, $i)
+    {
+        $this->db->limit($nr, $i);
+        $this->db->order_by('id','desc');
+        $result = $this->db->get('da_videos_tbl');
+        return $result->result();
+    }
+
     public function get_videos_by_state()
     {
         $this->db->select('*');

@@ -283,13 +283,13 @@ class Users_controller extends CI_Controller{
 		$si=$this->uri->segment(4,0);
 		$base_url= base_url().'admin/users/user_information';
 		$tr=$this->crud_model->count_num_recs('da_users_tbl');
-		$pp=20;
+		$pp=10;
 		$config = $this->pagination1($base_url,$tr, $pp);
-		$this->load->library('pagination');
+		// $this->load->library('pagination');
 		$this->pagination->initialize($config);
 		$this->data['links']=$this->pagination->create_links();
 		
-		$res=$this->crud_model->get('da_users_tbl',$config['per_page'],$si);
+		// $res=$this->crud_model->get('da_users_tbl',$config['per_page'],$si);
 		$res=$this->crud_model->get('da_users_tbl',$config['per_page'],$si);
 		$this->data['row']=$res->result_array();
 		// $this->data['row'] = $this->Base_model->get_users($this->state_id);

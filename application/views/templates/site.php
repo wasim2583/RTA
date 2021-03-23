@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <link rel="icon" href="<?php echo $this->config->item('base_url');?>/design/images/IRS.png" type="image/gif" sizes="16x16">
+      <link rel="icon" href="<?php echo base_url();?>design/images/IRS.png" type="image/gif" sizes="16x16">
       <title>IRS</title>
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/font-awesome.css">

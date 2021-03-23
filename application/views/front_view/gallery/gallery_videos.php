@@ -71,6 +71,10 @@
                   </div>
                </div>
             </div>
+
+            <div class="">
+               <?php echo $links;?>
+            </div>
          </div>
       </div>
    </div>

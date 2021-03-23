@@ -73,7 +73,19 @@ class Home extends CI_Controller {
 		}
 		// $this->data['videos']=$this->Base_model->get_videos_by_state();
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
-		$this->data['videos']=$this->Base_model->get_all_videos();
+		// $this->data['videos'] = $this->Base_model->get_all_videos();
+
+		$si=$this->uri->segment(3,0);
+		$base_url= base_url().'Home/gallery_videos';
+		$tr=$this->crud_model->count_num_recs('da_videos_tbl');
+		$pp=10;
+		$config = $this->pagination1($base_url, $tr, $pp);
+		$this->load->library('pagination');
+		$this->pagination->initialize($config);
+		$this->data['links']=$this->pagination->create_links();
+		$res=$this->crud_model->get('da_users_tbl',$config['per_page'],$si);
+		$this->data['videos'] = $this->Base_model->get_gallery_videos($config['per_page'], $si);
+
 		$this->template->load('site', 'front_view/gallery/gallery_videos', $this->data);
 	}
 
@@ -86,4 +98,33 @@ class Home extends CI_Controller {
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		$this->template->load('site', 'front_view/contactus',$this->data);
 	}
+
+	public function pagination1($base_url, $total_rows, $per_page)
+	{
+		$config = array(
+            'base_url'          => $base_url,
+            'per_page'          => $per_page,
+            'total_rows'        => $total_rows,
+            'full_tag_open'     => "<ul class='pagination'>",
+            'full_tag_close'    => '</ul>',
+            'first_link'        => 'First',
+            'last_link'         => 'Last',
+            'num_links'         => 3,
+            'next_link'         => 'Next',
+            'prev_link'         => 'Prev',
+            'first_tag_open'    => '<li>',
+            'first_tag_close'   => '</li>',
+            'last_tag_open'     => '<li>',
+            'last_tag_close'    => '</li>',
+            'next_tag_open'     => '<li>',
+            'next_tag_close'    => '</li>',
+            'prev_tag_open'     => '<li>',
+            'prev_tag_close'    => '</li>',
+            'num_tag_open'      => '<li>',
+            'num_tag_close'     => '</li>',
+            'cur_tag_open'      => "<li class='active'><a>",
+            'cur_tag_close'     => '</a></li>'
+        );
+		return $config;
+    }
 }
