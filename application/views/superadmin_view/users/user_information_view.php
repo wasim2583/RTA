@@ -10,7 +10,7 @@
       <?php $this->load->view('superadmin_view/includes/sidebar_view');?>
       <div class="col-sm-10">
         <?php $si=$this->uri->segment(4);?>
-        <form method="post" action="<?php echo HTTP_BASE_PATH;?>admin/users/search/<?php echo $si;?>" >
+        <form method="post" action="<?php echo base_url();?>admin/users/search/<?php echo $si;?>" >
           <div class="col-sm-12">
             <div class="row m-t-15" style="margin-right: 0px;">
               <div class="bg-site col-wh col-sm-12 head-pad hgh-40">

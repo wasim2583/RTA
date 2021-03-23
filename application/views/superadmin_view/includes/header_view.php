@@ -11,7 +11,8 @@
   <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
 -->
    <!--  Style .css-->
-  <link type="text/css" href="<?php echo AM_CSS ;?>style.css" rel="stylesheet">
+  <!-- <link type="text/css" href="<?php // echo AM_CSS ;?>style.css" rel="stylesheet"> -->
+  <link type="text/css" href="<?php echo base_url();?>admin_assets/css/style.css" rel="stylesheet">
     
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">

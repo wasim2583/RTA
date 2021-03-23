@@ -22,7 +22,7 @@
       <?php $this->load->view('superadmin_view/includes/sidebar_view');?>
       <div class="col-sm-10">
         <?php $s=$this->uri->segment(4);?>
-        <form method="post" action="<?php echo HTTP_BASE_PATH;?>admin/users/insert_user" >
+        <form method="post" action="<?php echo base_url();?>admin/users/insert_user" >
           <div class="col-sm-12">
             <div class="row m-t-15" style="margin-right: 0px;">
               <div class="bg-site col-wh col-sm-12 head-pad hgh-40">
@@ -96,7 +96,7 @@
                     <div class="col-sm-12 text-center">
                       <div class="clearfix">&nbsp;</div>
                       <input type="submit" class="btn btn-info no-bod-rad" onClick="return validate_user();"  value="ADD"> 
-                      <a href="<?php echo HTTP_BASE_PATH;?>admin/users/add" class="btn btn-info no-bod-rad" style="color:#fff" > RESET</a>
+                      <a href="<?php echo base_url();?>admin/users/add" class="btn btn-info no-bod-rad" style="color:#fff" > RESET</a>
                       <div class="clearfix">&nbsp;</div>
                     </div>
                   </div>

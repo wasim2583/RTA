@@ -30,6 +30,8 @@ $url_details.=str_replace(basename($_SERVER['SCRIPT_NAME']),'',$_SERVER['SCRIPT_
 $config['base_url'] ='http://'.$url_details;
 $config['default_state_id'] = 2;
 
+$config['logo_path'] = './uploads/logos/';
+
 $config['mobile_activation'] = TRUE;
 $config['sms_user'] ='seafoods';
 $config['sms_password'] ='959432';

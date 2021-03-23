@@ -10,7 +10,7 @@ if(empty($email)){
      <?php $this->load->view('superadmin_view/includes/sidebar_view');?>
         <div class="col-sm-10">
 		  <?php $s=$this->uri->segment(5); ?>
-          <form method="post" id="form" action="<?php echo HTTP_BASE_PATH;?>admin/users/update_user/<?php echo $row['user_id'];?>/<?php echo $s;?>">
+          <form method="post" id="form" action="<?php echo base_url();?>admin/users/update_user/<?php echo $row['user_id'];?>/<?php echo $s;?>">
             <div class="col-sm-12">
                 <div class="row m-t-15" style="margin-right: 0px;">
                     <div class="bg-site col-wh col-sm-12 head-pad hgh-40"> 
