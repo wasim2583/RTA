@@ -219,17 +219,17 @@
                <div class="foot-soc-links col-lg-3 col-md-3 col-sm-12 col-xs-12">
                   <h3>Social Links</h3>
                   <ul>
-                     <a href="">
-                        <li><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</li>
+                     <a href="https://www.facebook.com/IRS-CLUB-103459838508114" target="_blank">
+                        <li><i class="fa fa-facebook-official" aria-hidden="true"></i>Facebook</li>
                      </a>
-                     <a href="">
-                        <li><i class="fa fa-youtube-square" aria-hidden="true"></i> YouTube</li>
+                     <a href="https://www.youtube.com/channel/UCQz480coy50HAaZHSmmAK5A" target="_blank">
+                        <li><i class="fa fa-youtube-square" aria-hidden="true"></i>YouTube</li>
                      </a>
-                     <a href="">
-                        <li><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</li>
+                     <a href="https://twitter.com/irsclub1" target="_blank">
+                        <li><i class="fa fa-twitter-square" aria-hidden="true"></i>Twitter</li>
                      </a>
-                     <a href="">
-                        <li><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn</li>
+                     <a href="https://www.instagram.com/IRSCLUB2021/" target="_blank">
+                        <li><i class="fa fa-instagram" aria-hidden="true"></i>Instagram</li>
                      </a>
                   </ul>
                </div>
