@@ -8,7 +8,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <title><?php echo empty($title) ? 'Partner Dashboard' : $title; ?></title>
-      <link rel="icon" href="<?php echo $this->config->item('base_url');?>/design/images/IRS.png" type="image/gif" sizes="16x16">
+      <link rel="icon" href="<?php echo base_url();?>design/images/IRS.png" type="image/gif" sizes="16x16">
       <!-- Custom fonts for this template-->
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
          rel="stylesheet">
@@ -246,6 +246,6 @@
       <!-- Page level custom scripts -->
       <script src="js/demo/chart-area-demo.js"></script>
       <script src="js/demo/chart-pie-demo.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>rta_assets/js/rta_js.js"></script>
+      <script src="<?php echo base_url(); ?>rta_assets/js/rta_js.js"></script>
    </body>
 </html>

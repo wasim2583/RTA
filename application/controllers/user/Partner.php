@@ -231,7 +231,12 @@ class Partner extends CI_Controller{
 
     public function offers()
     {
-        $this->template->load('partner', 'coming_soon', $this->data);
+        $this->template->load('partner', 'user/offers', $this->data);
+    }
+
+    public function create_offer()
+    {
+        $this->template->load('partner', 'user/create_offer', $this->data);
     }
 
     public function logout()
