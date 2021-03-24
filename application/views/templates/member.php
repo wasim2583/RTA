@@ -15,6 +15,8 @@
       <link href="<?php echo base_url(); ?>design/css/all.min.css" rel="stylesheet" >
       <!-- Custom styles for this template-->
       <link href="<?php echo base_url(); ?>design/css/dashboard.css" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
    </head>
    <body id="page-top" class="mem_prof">
       <!-- Page Wrapper -->
@@ -253,18 +255,8 @@
             </div>
          </div>
       </div>
-      <!-- Bootstrap core JavaScript-->
-      <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <!-- Core plugin JavaScript-->
-      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-      <!-- Custom scripts for all pages-->
-      <script src="js/sb-admin-2.min.js"></script>
-      <!-- Page level plugins -->
-      <script src="vendor/chart.js/Chart.min.js"></script>
-      <!-- Page level custom scripts -->
-      <script src="js/demo/chart-area-demo.js"></script>
-      <script src="js/demo/chart-pie-demo.js"></script>
-      <!-- <script src="<?php echo base_url();?>rta_assets/js/rta_js.js"></script> -->
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>design/js/bootstrap.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>rta_assets/js/rta_js.js"></script>
    </body>
 </html>

@@ -28,7 +28,7 @@
                          ?>
                      <div class="carousel-item <?php if($i==1){echo 'active';} ?>">
                         <img src="<?php echo base_url(); ?>uploads/slider/<?php echo $slide->slider_img; ?>" class="d-block w-100" alt="...">
-                        <!-- <img src="<?php echo HTTP_BASE_PATH;?>uploads/slider/<?php echo $rec->slider_img;?>" class="img-fluid" alt="image1" title="image1"> -->
+                        
                         <div class="carousel-caption d-none d-md-block">
                            <h5><?php echo $slide->slider_title; ?></h5>
                            <p><?php echo $slide->slider_caption; ?></p>
@@ -39,22 +39,7 @@
                        }
                      }
                      ?>
-                     <!--
-                     <div class="carousel-item">
-                        <img src="<?php echo base_url(); ?>design/images/1.jpeg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                           <h5>Second slide label</h5>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                     </div>
-                     <div class="carousel-item">
-                        <img src="<?php echo base_url(); ?>design/images/2.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                           <h5>Third slide label</h5>
-                           <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                        </div>
-                     </div>
-                   -->
+                     
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
