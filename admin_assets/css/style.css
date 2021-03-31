@@ -18,6 +18,7 @@
 .font14{font-size: 14px}
 /*fonts end*/
 /*Menu css Start*/
+
 .side-menu ul{list-style-type: none;padding: 0px;width: 100%}
 .side-menu ul li {padding: 6px 18px 6px;border-radius: 0px;background-color: #000000;}
 .side-menu ul li:hover {padding: 6px 18px 6px;border-radius: 0px;background-color: #ffea00;}

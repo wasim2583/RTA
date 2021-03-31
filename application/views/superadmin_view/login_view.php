@@ -41,6 +41,11 @@
     height: 100%;
     top: 0;
 }
+.admin_log{background:#000000;}
+.admin_log .btn-danger{    background: #ffea00;color:#000000;}
+.admin_log .fa{color:#ffea00;}
+.admin_log .input-group-addon{border-bottom: 1px solid #ffea00 !important;}
+.admin_log h1>a{color:#ffea00;text-decoration: none;}
     </style>
   </head>
   <body class="login-body" style="background-image: url(<?php echo base_url();?>admin_assets/img/pexels-photo-1955134.jpeg);background-size: 100% 100%;background-repeat:no-repeat !important">
@@ -56,7 +61,7 @@
             <div class="clearfix">&nbsp;</div>
             <div class="clearfix">&nbsp;</div>
             <div class="row">
-              <div class="col-sm-4 offset-sm-4 bg-wl no-padd card">
+              <div class="col-sm-4 offset-sm-4 admin_log no-padd card">
                 <?php if($msg=$this->session->flashdata('message')){
                   $message=$this->session->flashdata('message');
                   
