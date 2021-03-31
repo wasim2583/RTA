@@ -59,6 +59,7 @@ class Home extends CI_Controller {
 		{
 			redirect(base_url());
 		}
+		$this->data['title'] = 'Gallery - Photos';
 		// $this->data['photos']=$this->Base_model->get_photos_by_state();
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		$this->data['photos']=$this->Base_model->get_all_photos()->result();
@@ -71,19 +72,20 @@ class Home extends CI_Controller {
 		{
 			redirect(base_url());
 		}
+		$this->data['title'] = 'Gallery - Videos';
 		// $this->data['videos']=$this->Base_model->get_videos_by_state();
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
 		// $this->data['videos'] = $this->Base_model->get_all_videos();
 
-		$si=$this->uri->segment(3,0);
-		$base_url= base_url().'Home/gallery_videos';
-		$tr=$this->crud_model->count_num_recs('da_videos_tbl');
-		$pp=10;
+		$si = $this->uri->segment(3,0);
+		$base_url = base_url().'Home/gallery_videos';
+		$tr = $this->crud_model->count_num_recs('da_videos_tbl');
+		$pp = 4;
 		$config = $this->pagination1($base_url, $tr, $pp);
 		$this->load->library('pagination');
 		$this->pagination->initialize($config);
-		$this->data['links']=$this->pagination->create_links();
-		$res=$this->crud_model->get('da_users_tbl',$config['per_page'],$si);
+		$this->data['links'] = $this->pagination->create_links();
+		$res = $this->crud_model->get('da_users_tbl',$config['per_page'],$si);
 		$this->data['videos'] = $this->Base_model->get_gallery_videos($config['per_page'], $si);
 
 		$this->template->load('site', 'front_view/gallery/gallery_videos', $this->data);

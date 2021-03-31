@@ -71,8 +71,9 @@
                   </div>
                </div>
             </div>
-
-            <div class="">
+         </div>
+         <div class="row">
+            <div class="col-sm-12">
                <?php echo $links;?>
             </div>
          </div>

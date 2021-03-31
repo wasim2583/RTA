@@ -4,7 +4,7 @@
 <html>
    <head>
       <link rel="icon" href="<?php echo base_url();?>design/images/IRS.png" type="image/gif" sizes="16x16">
-      <title>IRS</title>
+      <title><?php echo empty($title) ? 'IRS' : $title; ?></title>
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/font-awesome.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/style.css">
@@ -86,8 +86,8 @@
                            News
                            </a>
                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <li><a class="dropdown-item" href="" target="_blank">Photos</a></li>
-                              <li><a class="dropdown-item" href="" target="_blank">Videos </a></li>
+                              <li><a class="dropdown-item" href="<?php echo base_url().'Home/news_photos'; ?>" target="_self">Photos</a></li>
+                              <li><a class="dropdown-item" href="<?php echo base_url().'Home/news_photos'; ?>" target="_self">Videos </a></li>
                            </ul>
                         </li>
                         <li class="nav-item dropdown">
