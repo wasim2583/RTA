@@ -19,9 +19,11 @@
 /*fonts end*/
 /*Menu css Start*/
 .side-menu ul{list-style-type: none;padding: 0px;width: 100%}
-.side-menu ul li {padding: 6px 18px 6px;border-radius: 0px;background-color: #4E596B;}
-.side-menu ul li:hover {padding: 6px 18px 6px;border-radius: 0px;background-color: #C33D96;}
-.side-menu ul li.active {padding: 6px 18px 6px;border-radius: 0px;background-color: #C33D96;}
+.side-menu ul li {padding: 6px 18px 6px;border-radius: 0px;background-color: #000000;}
+.side-menu ul li:hover {padding: 6px 18px 6px;border-radius: 0px;background-color: #ffea00;}
+.side-menu ul li.active {padding: 6px 18px 6px;border-radius: 0px;background-color: #ffea00;}
+.side-menu ul li.active > a,.side-menu ul li:hover > a{color: #000000 !important;}
+#collapsibleNavbar1 .bg-site{background:#000000;}
 /*.side-menu ul li.active ::before {border-radius: 0px;background-color: #fff;border-bottom: 1px solid #fff;position: absolute;right:0px  }*/
 .btnn-coll{ float: right;margin-top: -64px;color: #fff;margin-right: 15px;}
 .side-menu ul li i{font-size: 15px}

@@ -1,5 +1,5 @@
 <?php $segment=$this->uri->segment(2);?>
-<div class="col-sm-2 side-menu  navbar-expand-sm bg-site padd-right">
+<div class="col-sm-2 side-menu  navbar-expand-sm padd-right" style="background:#000000;">
     <button class="navbar-toggler btnn-coll" type="button" data-toggle="collapse" data-target="#collapsibleNavbar1">
 <!--    <span class="navbar-toggler-icon bg-site" style="color:red !important"></span>-->
      <i class="fa fa-bars bg-site mr-auto"></i>

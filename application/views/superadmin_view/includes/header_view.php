@@ -56,7 +56,7 @@
 <body class="font3">
 <!-- Header Start-->
   <div class="container-fluid no-padd">
-    <nav class="navbar navbar-expand-md bg-light navbar-dark" style="    background: #4e596b !important;">
+    <nav class="navbar navbar-expand-md bg-light navbar-dark" style="    background: #000000 !important;">
       <a class="navbar-brand" href="<?php echo base_url(); ?>">
         <i>
           <h1 style="color:white;"><u>I.R.S</u></h1>

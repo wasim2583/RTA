@@ -1,10 +1,10 @@
 /* Abhilash script starts */
 $(document).ready(function(){
 
-	var site_url = 'http://localhost:8080/RTA/';
+	var site_url = 'http://localhost/RTA/';
 	
 	$('#country').change(function(){
-		var selectedCountry = $('#country').val();;
+		var selectedCountry = $('#country').val();
 		var options = '<option value="0">Select State</option>';
 		if(selectedCountry){
 			$.ajax({
