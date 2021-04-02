@@ -73,7 +73,7 @@
             </div>
          </div>
          <div class="row">
-            <div class="col-sm-12">
+            <div class="col-12 inventory">
                <?php echo $links;?>
             </div>
          </div>

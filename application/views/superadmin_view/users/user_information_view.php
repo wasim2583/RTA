@@ -34,7 +34,7 @@
                 <strong></strong><?php echo $select;?>
               </div>
               <?php  }?>
-              <div class="col-sm-12 bg-light inventory">
+              <div class="col-sm-12 bg-light">
                 <div class="clearfix">&nbsp;</div>
                 <div class="table-responsive col-sm-12 font14">
                   <div class="row">

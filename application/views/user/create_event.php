@@ -82,12 +82,12 @@
                                  </select>
                               </div>
                               <?php echo form_error('location'); ?>
-                           </div>
-                           
-                           <button type="submit" class="btn btn-primary btn_submit">Create</button>
+                           </div>                           
+                           <!-- <button type="submit" class="btn btn-primary btn_submit">Create</button> -->
                         </div>
                      </div>
                   </form>
+                  <a href="<?php echo base_url(); ?>user/Partner/events"><button class="btn btn-primary btn_submit">Create</button></a>
                </div>
             </div>
             <!-- Color System -->

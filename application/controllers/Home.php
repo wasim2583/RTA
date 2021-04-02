@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model(['crud_model', 'Base_model', 'User_model']);
-		$this->load->library('form_validation');
+		$this->load->library(['form_validation', 'pagination']);
 		$this->data['states'] = $this->Base_model->get_states();
 	}
 
@@ -82,7 +82,6 @@ class Home extends CI_Controller {
 		$tr = $this->crud_model->count_num_recs('da_videos_tbl');
 		$pp = 4;
 		$config = $this->pagination1($base_url, $tr, $pp);
-		$this->load->library('pagination');
 		$this->pagination->initialize($config);
 		$this->data['links'] = $this->pagination->create_links();
 		$res = $this->crud_model->get('da_users_tbl',$config['per_page'],$si);

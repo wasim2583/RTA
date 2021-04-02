@@ -8,6 +8,7 @@
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/font-awesome.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>design/css/style.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>admin_assets/css/style.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>rta_assets/css/lightbox.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
