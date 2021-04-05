@@ -170,7 +170,7 @@
                      <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><button onclick="location.href='<?php echo base_url(); ?>user/Partner/logout'" class="btn btn-danger btn-sm">Logout</button></span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><button class="btn btn-danger btn-sm">My Account</button></span>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -231,7 +231,7 @@
                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                <div class="modal-footer">
                   <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                  <a class="btn btn-primary" href="login.html">Logout</a>
+                  <a class="btn btn-primary" href="<?php echo base_url(); ?>user/Partner/logout">Logout</a>
                </div>
             </div>
          </div>
