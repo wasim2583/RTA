@@ -97,7 +97,17 @@ class Home extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->data['state'] = $this->Base_model->get_state_by_id($this->session->userdata('state_id'));
-		$this->template->load('site', 'front_view/contactus',$this->data);
+		// $this->template->load('site', 'front_view/contactus',$this->data);
+		$this->form_validation->set_rules('mobile', 'Mobile Number', 'required|numeric|exact_length[10]');
+		if($this->form_validation->run() == true)
+		{
+			$enquiry = $this->input->post();
+			print_r($enquiry);
+		}
+		else
+		{
+			$this->template->load('site', 'contact_us_page', $this->data);
+		}
 	}
 
 	public function pagination1($base_url, $total_rows, $per_page)
