@@ -433,6 +433,40 @@ class Member extends CI_Controller{
         }
     }
 
+    public function update_password()
+    {
+    	$member_id = $this->session->userdata('member_id');
+        $this->data['title'] = 'Member - Insurance';
+        $this->data['member'] = $this->User_model->get_member_by_id($member_id);
+        $this->form_validation->set_rules('password', 'New Password', 'required|min_length[3]|max_length[12]', array(
+			'required' => 'Please provide your %s.'
+		));
+        $this->form_validation->set_rules('conf_pwd', 'Confirm Password', 'matches[password]');
+        if($this->form_validation->run() == true)
+        {
+        	$member['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+    		$member_update_result = $this->User_model->update_member($member, $member_id);
+        }
+        else
+        {
+        	$this->data['password'] = [
+				'name' => 'password',
+				'id' => 'password',
+				'type' => 'password',
+				'class' => 'form-control',
+				'value' => $this->form_validation->set_value('password'),
+			];
+			$this->data['cnf_pwd'] = [
+				'name' => 'cnf_pwd',
+				'id' => 'cnf_pwd',
+				'type' => 'password',
+				'class' => 'form-control',
+				'value' => $this->form_validation->set_value('cnf_pwd'),
+			];
+        	$this->template->load('member', 'user/change_password', $this->data);
+        }
+    }
+
 	public function logout()
 	{
 		$this->session->unset_userdata('member_id');
